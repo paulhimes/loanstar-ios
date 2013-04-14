@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B96DE071718C7DD002FD8E4 /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */; };
+		8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96DE091718CD43002FD8E4 /* placeholder.jpg */; };
+		8B96DE0E1718D29D002FD8E4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE0D1718D29D002FD8E4 /* Item.m */; };
+		8B96DE111718D2C0002FD8E4 /* Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE101718D2C0002FD8E4 /* Format.m */; };
+		8BA0D66E1719118B00484E46 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D66D1719118B00484E46 /* UserAccount.m */; };
+		8BA0D671171917D200484E46 /* Borrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D670171917D100484E46 /* Borrow.m */; };
+		8BA0D6741719191900484E46 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D6731719191900484E46 /* Status.m */; };
+		8BA0D677171B3A1A00484E46 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */; };
 		8BF4173B1718562F00077E2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173A1718562F00077E2D /* UIKit.framework */; };
 		8BF4173D1718562F00077E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173C1718562F00077E2D /* Foundation.framework */; };
 		8BF4173F1718562F00077E2D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173E1718562F00077E2D /* CoreGraphics.framework */; };
@@ -17,7 +25,7 @@
 		8BF4174F1718562F00077E2D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF4174E1718562F00077E2D /* Default@2x.png */; };
 		8BF417511718562F00077E2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417501718562F00077E2D /* Default-568h@2x.png */; };
 		8BF417541718562F00077E2D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417521718562F00077E2D /* MainStoryboard.storyboard */; };
-		8BF417571718562F00077E2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417561718562F00077E2D /* ViewController.m */; };
+		8BF417571718562F00077E2D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417561718562F00077E2D /* LoginViewController.m */; };
 		8BF4175F1718562F00077E2D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4175E1718562F00077E2D /* SenTestingKit.framework */; };
 		8BF417601718562F00077E2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173A1718562F00077E2D /* UIKit.framework */; };
 		8BF417611718562F00077E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173C1718562F00077E2D /* Foundation.framework */; };
@@ -36,6 +44,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
+		8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
+		8B96DE091718CD43002FD8E4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
+		8B96DE0C1718D29D002FD8E4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		8B96DE0D1718D29D002FD8E4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		8B96DE0F1718D2C0002FD8E4 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
+		8B96DE101718D2C0002FD8E4 /* Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Format.m; sourceTree = "<group>"; };
+		8BA0D66C1719118B00484E46 /* UserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccount.h; sourceTree = "<group>"; };
+		8BA0D66D1719118B00484E46 /* UserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccount.m; sourceTree = "<group>"; };
+		8BA0D66F171917D100484E46 /* Borrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Borrow.h; sourceTree = "<group>"; };
+		8BA0D670171917D100484E46 /* Borrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Borrow.m; sourceTree = "<group>"; };
+		8BA0D6721719191900484E46 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		8BA0D6731719191900484E46 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailViewController.h; path = ../ItemDetailViewController.h; sourceTree = "<group>"; };
+		8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailViewController.m; path = ../ItemDetailViewController.m; sourceTree = "<group>"; };
 		8BF417371718562F00077E2D /* loanstar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loanstar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF4173A1718562F00077E2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8BF4173C1718562F00077E2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,8 +73,8 @@
 		8BF4174E1718562F00077E2D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8BF417501718562F00077E2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8BF417531718562F00077E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		8BF417551718562F00077E2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8BF417561718562F00077E2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8BF417551718562F00077E2D /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8BF417561718562F00077E2D /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8BF4175D1718562F00077E2D /* loanstarTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = loanstarTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF4175E1718562F00077E2D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8BF417661718562F00077E2D /* loanstarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "loanstarTests-Info.plist"; sourceTree = "<group>"; };
@@ -84,6 +107,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B96DE081718CD36002FD8E4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B96DE091718CD43002FD8E4 /* placeholder.jpg */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8B96DE0B1718D283002FD8E4 /* Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8B96DE0C1718D29D002FD8E4 /* Item.h */,
+				8B96DE0D1718D29D002FD8E4 /* Item.m */,
+				8B96DE0F1718D2C0002FD8E4 /* Format.h */,
+				8B96DE101718D2C0002FD8E4 /* Format.m */,
+				8BA0D66C1719118B00484E46 /* UserAccount.h */,
+				8BA0D66D1719118B00484E46 /* UserAccount.m */,
+				8BA0D66F171917D100484E46 /* Borrow.h */,
+				8BA0D670171917D100484E46 /* Borrow.m */,
+				8BA0D6721719191900484E46 /* Status.h */,
+				8BA0D6731719191900484E46 /* Status.m */,
+			);
+			name = "Model Objects";
+			sourceTree = "<group>";
+		};
 		8BF4172E1718562F00077E2D = {
 			isa = PBXGroup;
 			children = (
@@ -120,9 +168,15 @@
 				8BF417491718562F00077E2D /* AppDelegate.h */,
 				8BF4174A1718562F00077E2D /* AppDelegate.m */,
 				8BF417521718562F00077E2D /* MainStoryboard.storyboard */,
-				8BF417551718562F00077E2D /* ViewController.h */,
-				8BF417561718562F00077E2D /* ViewController.m */,
+				8BF417551718562F00077E2D /* LoginViewController.h */,
+				8BF417561718562F00077E2D /* LoginViewController.m */,
+				8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */,
+				8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */,
+				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
+				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
+				8B96DE0B1718D283002FD8E4 /* Model Objects */,
 				8BF417411718562F00077E2D /* Supporting Files */,
+				8B96DE081718CD36002FD8E4 /* Resources */,
 			);
 			path = loanstar;
 			sourceTree = "<group>";
@@ -236,6 +290,7 @@
 				8BF4174F1718562F00077E2D /* Default@2x.png in Resources */,
 				8BF417511718562F00077E2D /* Default-568h@2x.png in Resources */,
 				8BF417541718562F00077E2D /* MainStoryboard.storyboard in Resources */,
+				8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +327,14 @@
 			files = (
 				8BF417471718562F00077E2D /* main.m in Sources */,
 				8BF4174B1718562F00077E2D /* AppDelegate.m in Sources */,
-				8BF417571718562F00077E2D /* ViewController.m in Sources */,
+				8BF417571718562F00077E2D /* LoginViewController.m in Sources */,
+				8B96DE071718C7DD002FD8E4 /* ItemListViewController.m in Sources */,
+				8B96DE0E1718D29D002FD8E4 /* Item.m in Sources */,
+				8B96DE111718D2C0002FD8E4 /* Format.m in Sources */,
+				8BA0D66E1719118B00484E46 /* UserAccount.m in Sources */,
+				8BA0D671171917D200484E46 /* Borrow.m in Sources */,
+				8BA0D6741719191900484E46 /* Status.m in Sources */,
+				8BA0D677171B3A1A00484E46 /* ItemDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +515,7 @@
 				8BF417711718562F00077E2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BF417721718562F00077E2D /* Build configuration list for PBXNativeTarget "loanstarTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +524,7 @@
 				8BF417741718562F00077E2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

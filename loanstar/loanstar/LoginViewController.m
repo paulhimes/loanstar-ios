@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  LoginViewController.m
 //  loanstar
 //
 //  Created by Paul Himes on 4/12/13.
 //  Copyright (c) 2013 MSSE. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginViewController.h"
 
-@interface ViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation ViewController
+@implementation LoginViewController
 
 - (void)viewDidLoad
 {
