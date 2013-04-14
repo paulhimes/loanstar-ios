@@ -9,6 +9,9 @@
 #import "ItemDetailViewController.h"
 #import "Format.h"
 #import "UserAccount.h"
+#import "Borrow.h"
+#import "Status.h"
+#import "ItemEditViewController.h"
 
 @interface ItemDetailViewController ()
 
@@ -44,6 +47,22 @@
     self.itemYearLabel.text = [NSString stringWithFormat:@"%d", self.item.year];
     self.itemFormatLabel.text = self.item.format.name;
     
+    // Determine the item status...
+    BOOL activeBorrow = NO;
+    // Check if any of the borrows are active as of now.
+    NSDate *now = [NSDate date];
+    for (Borrow *borrow in self.item.borrows) {
+        if (borrow.startDate && borrow.startDate.timeIntervalSince1970 < now.timeIntervalSince1970) {
+            // Borrow started before now.
+            if (!borrow.endDate || borrow.endDate.timeIntervalSince1970 > now.timeIntervalSince1970) {
+                // Borrow has not yet ended.
+                activeBorrow = YES;
+                break;
+            }
+        }
+    }
+    self.itemStatusLabel.text = activeBorrow ? @"Loaned Out" : @"Available";
+    
     self.ownerNameLabel.text = self.item.owner.displayName;
 }
 
@@ -51,6 +70,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Edit"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        ItemEditViewController *editViewController = (ItemEditViewController*)navController.topViewController;
+        editViewController.item = self.item;
+    }
 }
 
 #pragma mark - Table view data source
@@ -69,68 +97,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return [self.item.borrows count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    Borrow *borrow = self.item.borrows[indexPath.row];
+    cell.textLabel.text = borrow.borrower.displayName;
+    cell.detailTextLabel.text = borrow.status.name;
     
     return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end

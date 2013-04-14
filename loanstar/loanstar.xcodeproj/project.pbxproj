@@ -15,6 +15,13 @@
 		8BA0D671171917D200484E46 /* Borrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D670171917D100484E46 /* Borrow.m */; };
 		8BA0D6741719191900484E46 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D6731719191900484E46 /* Status.m */; };
 		8BA0D677171B3A1A00484E46 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */; };
+		8BA0D67E171B4E3A00484E46 /* UITabBarContactsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D678171B4E3A00484E46 /* UITabBarContactsTemplate.png */; };
+		8BA0D67F171B4E3A00484E46 /* UITabBarContactsTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D679171B4E3A00484E46 /* UITabBarContactsTemplate@2x.png */; };
+		8BA0D680171B4E3A00484E46 /* UITabBarHistoryTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67A171B4E3A00484E46 /* UITabBarHistoryTemplate.png */; };
+		8BA0D681171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67B171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png */; };
+		8BA0D682171B4E3A00484E46 /* UITabBarMostViewedTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67C171B4E3A00484E46 /* UITabBarMostViewedTemplate.png */; };
+		8BA0D683171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67D171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png */; };
+		8BA0D689171B4FFE00484E46 /* ItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */; };
 		8BF4173B1718562F00077E2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173A1718562F00077E2D /* UIKit.framework */; };
 		8BF4173D1718562F00077E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173C1718562F00077E2D /* Foundation.framework */; };
 		8BF4173F1718562F00077E2D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173E1718562F00077E2D /* CoreGraphics.framework */; };
@@ -59,6 +66,14 @@
 		8BA0D6731719191900484E46 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailViewController.h; path = ../ItemDetailViewController.h; sourceTree = "<group>"; };
 		8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailViewController.m; path = ../ItemDetailViewController.m; sourceTree = "<group>"; };
+		8BA0D678171B4E3A00484E46 /* UITabBarContactsTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarContactsTemplate.png; sourceTree = "<group>"; };
+		8BA0D679171B4E3A00484E46 /* UITabBarContactsTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITabBarContactsTemplate@2x.png"; sourceTree = "<group>"; };
+		8BA0D67A171B4E3A00484E46 /* UITabBarHistoryTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarHistoryTemplate.png; sourceTree = "<group>"; };
+		8BA0D67B171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITabBarHistoryTemplate@2x.png"; sourceTree = "<group>"; };
+		8BA0D67C171B4E3A00484E46 /* UITabBarMostViewedTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarMostViewedTemplate.png; sourceTree = "<group>"; };
+		8BA0D67D171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITabBarMostViewedTemplate@2x.png"; sourceTree = "<group>"; };
+		8BA0D687171B4FFE00484E46 /* ItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemEditViewController.h; path = ../ItemEditViewController.h; sourceTree = "<group>"; };
+		8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemEditViewController.m; path = ../ItemEditViewController.m; sourceTree = "<group>"; };
 		8BF417371718562F00077E2D /* loanstar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loanstar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF4173A1718562F00077E2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8BF4173C1718562F00077E2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +125,12 @@
 		8B96DE081718CD36002FD8E4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BA0D678171B4E3A00484E46 /* UITabBarContactsTemplate.png */,
+				8BA0D679171B4E3A00484E46 /* UITabBarContactsTemplate@2x.png */,
+				8BA0D67A171B4E3A00484E46 /* UITabBarHistoryTemplate.png */,
+				8BA0D67B171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png */,
+				8BA0D67C171B4E3A00484E46 /* UITabBarMostViewedTemplate.png */,
+				8BA0D67D171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png */,
 				8B96DE091718CD43002FD8E4 /* placeholder.jpg */,
 			);
 			name = Resources;
@@ -174,6 +195,8 @@
 				8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */,
 				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
 				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
+				8BA0D687171B4FFE00484E46 /* ItemEditViewController.h */,
+				8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */,
 				8B96DE0B1718D283002FD8E4 /* Model Objects */,
 				8BF417411718562F00077E2D /* Supporting Files */,
 				8B96DE081718CD36002FD8E4 /* Resources */,
@@ -291,6 +314,12 @@
 				8BF417511718562F00077E2D /* Default-568h@2x.png in Resources */,
 				8BF417541718562F00077E2D /* MainStoryboard.storyboard in Resources */,
 				8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */,
+				8BA0D67E171B4E3A00484E46 /* UITabBarContactsTemplate.png in Resources */,
+				8BA0D67F171B4E3A00484E46 /* UITabBarContactsTemplate@2x.png in Resources */,
+				8BA0D680171B4E3A00484E46 /* UITabBarHistoryTemplate.png in Resources */,
+				8BA0D681171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png in Resources */,
+				8BA0D682171B4E3A00484E46 /* UITabBarMostViewedTemplate.png in Resources */,
+				8BA0D683171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +364,7 @@
 				8BA0D671171917D200484E46 /* Borrow.m in Sources */,
 				8BA0D6741719191900484E46 /* Status.m in Sources */,
 				8BA0D677171B3A1A00484E46 /* ItemDetailViewController.m in Sources */,
+				8BA0D689171B4FFE00484E46 /* ItemEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

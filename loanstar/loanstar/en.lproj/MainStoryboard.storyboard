@@ -167,7 +167,7 @@
         <scene sceneID="Cjr-6h-SCj">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Qju-QV-BQj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Requests" id="YBi-Zm-3Jr"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="UITabBarHistoryTemplate.png" id="YBi-Zm-3Jr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7dq-Zc-SVp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -183,7 +183,7 @@
         <scene sceneID="dW4-Nq-C8y">
             <objects>
                 <navigationController definesPresentationContext="YES" id="0y4-6J-xSK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Global Library" id="DOt-la-493"/>
+                    <tabBarItem key="tabBarItem" title="Global Library" image="UITabBarMostViewedTemplate.png" id="DOt-la-493"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7gG-2I-gPW">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -266,10 +266,10 @@
             </objects>
             <point key="canvasLocation" x="1594" y="-641"/>
         </scene>
-        <!--Table View Controller - <Edit Item>-->
+        <!--Item Edit View Controller - Edit-->
         <scene sceneID="ypI-UY-mrQ">
             <objects>
-                <tableViewController id="BAf-uO-f5L" sceneMemberID="viewController">
+                <tableViewController id="BAf-uO-f5L" customClass="ItemEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JjD-Fl-4T1">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,10 +436,24 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="&lt;Edit Item>" id="jN4-cG-rZP">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EMb-bs-tuc"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="osU-HZ-3V3"/>
+                    <navigationItem key="navigationItem" title="Edit" id="jN4-cG-rZP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EMb-bs-tuc">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="BAf-uO-f5L" id="sfq-bB-iYX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="osU-HZ-3V3">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="BAf-uO-f5L" id="y0Y-rg-u2D"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="formatField" destination="TGc-Ug-fdh" id="20D-YE-bV2"/>
+                        <outlet property="pictureButton" destination="Ssr-tq-vft" id="ooR-B9-Wn6"/>
+                        <outlet property="titleField" destination="Zvz-9s-4nF" id="ZQP-Mr-n4a"/>
+                        <outlet property="yearField" destination="O5e-o7-3cZ" id="DIN-kS-73M"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZqJ-dm-zwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -492,20 +506,6 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwW-Yd-dB2">
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="32" id="bLk-sF-B0w"/>
-                                        <constraint firstAttribute="width" constant="45" id="wxQ-d1-zs9"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="IMDB">
-                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Owner:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l90-6S-eWu">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -588,7 +588,6 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="DwW-Yd-dB2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="4uZ-q7-KaA"/>
                                 <constraint firstItem="l90-6S-eWu" firstAttribute="top" secondItem="aCX-hI-oCZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8h6-j6-JrG"/>
                                 <constraint firstAttribute="trailing" secondItem="KQE-pX-w0g" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="C6U-Hz-VUR"/>
                                 <constraint firstItem="aCX-hI-oCZ" firstAttribute="top" secondItem="hZt-EH-IFZ" secondAttribute="top" constant="20" symbolic="YES" type="default" id="CSm-oR-89g"/>
@@ -604,7 +603,6 @@
                                 <constraint firstItem="BVm-oF-C9z" firstAttribute="leading" secondItem="l90-6S-eWu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Xz9-7W-P4a"/>
                                 <constraint firstItem="C0F-ce-aHe" firstAttribute="leading" secondItem="hZt-EH-IFZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Y3e-3e-KM8"/>
                                 <constraint firstAttribute="trailing" secondItem="cfU-Ms-bgy" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Zfn-ER-MvE"/>
-                                <constraint firstItem="DwW-Yd-dB2" firstAttribute="top" secondItem="hZt-EH-IFZ" secondAttribute="top" constant="78" id="aE8-0F-sJv"/>
                                 <constraint firstAttribute="bottom" secondItem="gq8-aW-Nyw" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="c3v-kv-Y37"/>
                                 <constraint firstAttribute="trailing" secondItem="BVm-oF-C9z" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cxJ-rr-UM6"/>
                                 <constraint firstAttribute="bottom" secondItem="C0F-ce-aHe" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="doV-Of-ycq"/>
@@ -618,13 +616,12 @@
                                 <constraint firstItem="TqI-bd-gGC" firstAttribute="top" secondItem="Qsk-yS-afy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="pUn-pR-93R"/>
                                 <constraint firstItem="q1q-gB-ezj" firstAttribute="leading" secondItem="aCX-hI-oCZ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pet-7A-Umf"/>
                                 <constraint firstItem="Y7V-VQ-umP" firstAttribute="top" secondItem="l90-6S-eWu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tBz-pV-mWp"/>
-                                <constraint firstItem="TqI-bd-gGC" firstAttribute="baseline" secondItem="DwW-Yd-dB2" secondAttribute="baseline" type="default" id="ts0-ML-B6T"/>
                                 <constraint firstItem="BVm-oF-C9z" firstAttribute="leading" secondItem="TqI-bd-gGC" secondAttribute="leading" type="default" id="xPJ-Tr-aCH"/>
                                 <constraint firstItem="Qsk-yS-afy" firstAttribute="leading" secondItem="aCX-hI-oCZ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zMO-iF-Q07"/>
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RequestCell" textLabel="hK2-Pb-wnQ" style="IBUITableViewCellStyleDefault" id="ecV-V3-fhY">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RequestCell" textLabel="hK2-Pb-wnQ" detailTextLabel="8cS-xn-Co4" style="IBUITableViewCellStyleValue1" id="ecV-V3-fhY">
                                 <rect key="frame" x="0.0" y="282" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -632,8 +629,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK2-Pb-wnQ">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cS-xn-Co4">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
@@ -649,7 +651,7 @@
                     <navigationItem key="navigationItem" title="&lt;Item Detail>" id="MTf-h8-r3n">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="jEQ-Wp-Yaf">
                             <connections>
-                                <segue destination="M4N-pZ-FC1" kind="modal" modalTransitionStyle="flipHorizontal" id="Jgf-cK-Ih7"/>
+                                <segue destination="M4N-pZ-FC1" kind="modal" identifier="Edit" modalTransitionStyle="flipHorizontal" id="Jgf-cK-Ih7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -657,7 +659,6 @@
                         <outlet property="acceptButton" destination="C0F-ce-aHe" id="xrq-OX-BFq"/>
                         <outlet property="cancelRequestButton" destination="cfU-Ms-bgy" id="8b1-xI-M4f"/>
                         <outlet property="denyButton" destination="gq8-aW-Nyw" id="hVo-Hi-W53"/>
-                        <outlet property="imdbButton" destination="DwW-Yd-dB2" id="tNo-ml-597"/>
                         <outlet property="itemFormatLabel" destination="TqI-bd-gGC" id="O2F-c4-2UX"/>
                         <outlet property="itemStatusLabel" destination="0Xh-fl-wQK" id="dpq-GN-eNg"/>
                         <outlet property="itemTitleLabel" destination="q1q-gB-ezj" id="GAT-lC-abt"/>
@@ -676,7 +677,7 @@
         <scene sceneID="SDk-KM-jDS">
             <objects>
                 <navigationController definesPresentationContext="YES" id="i3V-j9-bRA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Library" id="5eP-Jb-RJg"/>
+                    <tabBarItem key="tabBarItem" title="My Library" image="UITabBarContactsTemplate.png" id="5eP-Jb-RJg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L6g-Cy-Hpb">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -690,6 +691,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="UITabBarContactsTemplate.png" width="16" height="16"/>
+        <image name="UITabBarHistoryTemplate.png" width="16" height="16"/>
+        <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
     <classes>
@@ -699,7 +703,6 @@
                 <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imdbButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
@@ -708,6 +711,17 @@
                 <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ItemEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
+                <relationship kind="outlet" name="formatField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="ItemListViewController" superclassName="UITableViewController">

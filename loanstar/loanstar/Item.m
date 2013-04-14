@@ -45,6 +45,9 @@
 {
     if (![self.borrows containsObject:borrow]) {
         _borrows = [self.borrows arrayByAddingObject:borrow];
+        _borrows = [_borrows sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [((Borrow*) obj1).requestDate compare:((Borrow*) obj2).requestDate];
+        }];
         borrow.item = self;
     }
 }

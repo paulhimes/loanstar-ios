@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *itemStatusLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 
-@property (weak, nonatomic) IBOutlet UIButton *imdbButton;
 @property (weak, nonatomic) IBOutlet UIButton *returnedButton;
 @property (weak, nonatomic) IBOutlet UIButton *requestButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
