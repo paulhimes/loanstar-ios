@@ -13,7 +13,8 @@
 
 @interface ItemListViewController : UITableViewController
 
-@property (nonatomic, strong) NSString *topSectionTitle;
-@property (nonatomic, strong) NSString *bottomSectionTitle;
+@property (nonatomic, readonly) NSArray *sectionTitles;
+
+- (NSArray*)itemsInSection:(NSUInteger)section;
 
 @end

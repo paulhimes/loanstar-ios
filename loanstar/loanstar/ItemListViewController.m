@@ -14,6 +14,7 @@
 @end
 
 @implementation ItemListViewController
+@synthesize sectionTitles = _sectionTitles;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,18 +41,7 @@
     if ([segue.identifier isEqualToString:@"Detail"]) {
         ItemDetailViewController *itemDetailViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Item *item;
-        switch (indexPath.section) {
-            case 0:
-                item = [self topSectionItems][indexPath.row];
-                break;
-            case 1:
-                item = [self bottomSectionItems][indexPath.row];
-                break;
-            default:
-                break;
-        }
-        itemDetailViewController.item = item;
+        itemDetailViewController.item = [self itemsInSection:indexPath.section][indexPath.row];
     } else if ([segue.identifier isEqualToString:@"Add"]) {
         
 //        // Create a new contact.
@@ -68,35 +58,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return [self.sectionTitles count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return self.topSectionTitle;
-        case 1:
-            return self.bottomSectionTitle;
-        default:
-            break;
-    }
-    return nil;
+    return self.sectionTitles[section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    switch (section) {
-        case 0:
-            return [[self topSectionItems] count];
-            break;
-        case 1:
-            return [[self bottomSectionItems] count];
-        default:
-            break;
-    }
-    return 0;
+    return [[self itemsInSection:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,41 +81,26 @@
     cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
 
     // Get the item for this cell.
-    Item *item;
-    switch (indexPath.section) {
-        case 0:
-            item = [self topSectionItems][indexPath.row];
-            break;
-        case 1:
-            item = [self bottomSectionItems][indexPath.row];
-            break;
-        default:
-            break;
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
+    Item *item = [self itemsInSection:indexPath.section][indexPath.row];
+    cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
     cell.detailTextLabel.text = item.format.name;
     
     return cell;
 }
 
-#pragma mark - Helper methods
+#pragma mark - Model Methods
 
-- (NSArray*)topSectionItems
+- (NSArray *)sectionTitles
 {
-//    NSArray *items = @[[Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]]];
-//    UserAccount *chad = [[UserAccount alloc] init];
-//    chad.displayName = @"Chadm";
-//    ((Item*)items[0]).owner = chad;
-//    
-//    return items;
-    return @[];
+    if (!_sectionTitles) {
+        _sectionTitles = @[];
+    }
+    
+    return _sectionTitles;
 }
 
-- (NSArray*)bottomSectionItems
+- (NSArray*)itemsInSection:(NSUInteger)section
 {
-//    NSArray *items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
-//    return items;
     return @[];
 }
 

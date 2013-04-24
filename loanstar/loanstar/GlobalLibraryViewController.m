@@ -13,55 +13,60 @@
 @end
 
 @implementation GlobalLibraryViewController
+@synthesize sectionTitles = _sectionTitles;
 
-- (NSArray*)topSectionItems
+- (NSArray *)sectionTitles
 {
-    NSArray *items = @[[Item itemWithTitle:@"Jurassic Park" year:1993 format:[Format vhs]],
-                       [Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]],
-                       [Item itemWithTitle:@"The Matrix" year:1999 format:[Format dvd]],
-                       [Item itemWithTitle:@"The Dark Crystal" year:1982 format:[Format vhs]]];
+    if (!_sectionTitles) {
+        _sectionTitles = @[@"Available", @"On Loan"];
+    }
     
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = @"Paul";
-    userAccount.userId = userAccount.displayName;
-    ((Item*)items[0]).owner = userAccount;
-    
+    return _sectionTitles;
+}
+
+- (NSArray *)itemsInSection:(NSUInteger)section
+{
+    NSArray *items;
     NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
     NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
     UserAccount *currentUserAccount = [[UserAccount alloc] init];
     currentUserAccount.displayName = currentDisplayName;
     currentUserAccount.userId = currentUserId;
-    ((Item*)items[1]).owner = currentUserAccount;
     
-    UserAccount *otherUserAccount = [[UserAccount alloc] init];
-    otherUserAccount.displayName = @"Bob";
-    otherUserAccount.userId = otherUserAccount.displayName;
-    ((Item*)items[2]).owner = otherUserAccount;
-    
-
-    ((Item*)items[3]).owner = currentUserAccount;
+    if (section == 0) {
+        items = @[[Item itemWithTitle:@"Jurassic Park" year:1993 format:[Format vhs]],
+                  [Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]],
+                  [Item itemWithTitle:@"The Matrix" year:1999 format:[Format dvd]],
+                  [Item itemWithTitle:@"The Dark Crystal" year:1982 format:[Format vhs]]];
+        
+        UserAccount *userAccount = [[UserAccount alloc] init];
+        userAccount.displayName = @"Paul";
+        userAccount.userId = userAccount.displayName;
+        
+        UserAccount *otherUserAccount = [[UserAccount alloc] init];
+        otherUserAccount.displayName = @"Bob";
+        otherUserAccount.userId = otherUserAccount.displayName;
+        
+        ((Item*)items[0]).owner = userAccount;
+        ((Item*)items[1]).owner = currentUserAccount;
+        ((Item*)items[2]).owner = otherUserAccount;
+        ((Item*)items[3]).owner = currentUserAccount;
+    } else if (section == 1) {
+        items = @[[Item itemWithTitle:@"Raiders of the Lost Ark" year:1981 format:[Format dvd]],
+                  [Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
+        
+        UserAccount *userAccount = [[UserAccount alloc] init];
+        userAccount.displayName = @"Bob";
+        userAccount.userId = userAccount.displayName;
+        
+        ((Item*)items[0]).owner = userAccount;
+        ((Item*)items[1]).owner = currentUserAccount;
+    } else {
+        items = @[];
+    }
     
     return items;
 }
 
-- (NSArray*)bottomSectionItems
-{
-    NSArray *items = @[[Item itemWithTitle:@"Raiders of the Lost Ark" year:1981 format:[Format dvd]],
-                       [Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
-    
-    NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    UserAccount *currentUserAccount = [[UserAccount alloc] init];
-    currentUserAccount.displayName = currentDisplayName;
-    currentUserAccount.userId = currentUserId;
-    ((Item*)items[1]).owner = currentUserAccount;
-    
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = @"Bob";
-    userAccount.userId = userAccount.displayName;
-    ((Item*)items[0]).owner = userAccount;
-    
-    return items;
-}
 
 @end

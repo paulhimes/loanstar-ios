@@ -13,34 +13,37 @@
 @end
 
 @implementation MyLibraryViewController
+@synthesize sectionTitles = _sectionTitles;
 
-- (NSArray*)topSectionItems
+- (NSArray *)sectionTitles
 {
-    NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+    if (!_sectionTitles) {
+        _sectionTitles = @[@"At Home", @"Away", @"Borrowed"];
+    }
     
-    NSArray *items = @[[Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]],
-                       [Item itemWithTitle:@"The Dark Crystal" year:1982 format:[Format vhs]]];
-    
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = currentDisplayName;
-    userAccount.userId = currentUserId;
-    ((Item*)items[0]).owner = userAccount;
-    ((Item*)items[1]).owner = userAccount;
-    
-    return items;
+    return _sectionTitles;
 }
 
-- (NSArray*)bottomSectionItems
+- (NSArray *)itemsInSection:(NSUInteger)section
 {
+    NSArray *items;
     NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
     NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    
-    NSArray *items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
     UserAccount *userAccount = [[UserAccount alloc] init];
     userAccount.displayName = currentDisplayName;
     userAccount.userId = currentUserId;
-    ((Item*)items[0]).owner = userAccount;
+    if (section == 0) {
+        items = @[[Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]],
+                  [Item itemWithTitle:@"The Dark Crystal" year:1982 format:[Format vhs]]];
+        ((Item*)items[0]).owner = userAccount;
+        ((Item*)items[1]).owner = userAccount;
+    } else if (section == 1) {
+        items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
+        ((Item*)items[0]).owner = userAccount;
+    } else {
+        items = @[];
+    }
+    
     return items;
 }
 

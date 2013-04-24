@@ -120,10 +120,6 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Global Library" id="vty-tT-5uk"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="topSectionTitle" value="Available"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bottomSectionTitle" value="On Loan"/>
-                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaO-da-oY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,10 +161,6 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Requests" id="0cj-6M-Mbk"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="topSectionTitle" value="My Requests"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bottomSectionTitle" value="Requests From Others"/>
-                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjP-6B-K9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,10 +260,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="topSectionTitle" value="At Home"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bottomSectionTitle" value="Away"/>
-                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7b1-IU-JgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -714,63 +702,14 @@
         <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
-    <classes>
-        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
-        </class>
-        <class className="ItemDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemYearLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ownerNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="ItemEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="formatField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ItemListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="displayNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MyLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RequestsViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="RG1-rB-rwS"/>
         <segue reference="P3t-PJ-6gK"/>
-        <segue reference="kmi-6V-KL5"/>
         <segue reference="l50-B4-jeb"/>
     </inferredMetricsTieBreakers>
 </document>

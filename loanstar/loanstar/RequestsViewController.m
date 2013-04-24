@@ -13,6 +13,42 @@
 @end
 
 @implementation RequestsViewController
+@synthesize sectionTitles = _sectionTitles;
+
+- (NSArray *)sectionTitles
+{
+    if (!_sectionTitles) {
+        _sectionTitles = @[@"My Requests", @"Requests From Others"];
+    }
+    
+    return _sectionTitles;
+}
+
+- (NSArray *)itemsInSection:(NSUInteger)section
+{
+    NSArray *items;
+    NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
+    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+    UserAccount *userAccount = [[UserAccount alloc] init];
+    userAccount.displayName = currentDisplayName;
+    userAccount.userId = currentUserId;
+    if (section == 0) {
+        items = @[[Item itemWithTitle:@"The Matrix" year:1999 format:[Format dvd]]];
+        
+        UserAccount *userAccount = [[UserAccount alloc] init];
+        userAccount.displayName = @"Bob";
+        userAccount.userId = userAccount.displayName;
+        
+        ((Item*)items[0]).owner = userAccount;
+    } else if (section == 1) {
+        items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
+        ((Item*)items[0]).owner = userAccount;
+    } else {
+        items = @[];
+    }
+    
+    return items;
+}
 
 - (NSArray*)topSectionItems
 {
