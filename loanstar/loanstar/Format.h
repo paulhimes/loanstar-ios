@@ -22,5 +22,6 @@
 + (Format*)vhs;
 + (Format*)dvd;
 + (Format*)bluray;
++ (NSArray*)allFormats;
 
 @end

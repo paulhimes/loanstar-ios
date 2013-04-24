@@ -11,6 +11,10 @@
 @class Item;
 @class Borrow;
 
+static NSString * const kCurrentUserId = @"CurrentUserId";
+static NSString * const kCurrentEmail = @"CurrentEmail";
+static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
+
 @interface UserAccount : NSObject
 
 @property (nonatomic, strong) NSString *userId;

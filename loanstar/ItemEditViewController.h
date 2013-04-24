@@ -13,12 +13,4 @@
 
 @property (nonatomic, strong) Item *item;
 
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UITextField *yearField;
-@property (weak, nonatomic) IBOutlet UITextField *formatField;
-@property (weak, nonatomic) IBOutlet UIButton *pictureButton;
-
-- (IBAction)saveButtonPressed:(id)sender;
-- (IBAction)cancelButtonPressed:(id)sender;
-
 @end

@@ -17,7 +17,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-ui-Dbp">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-ui-Dbp">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,11 +29,17 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yth-ug-6ab">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="nFP-qK-a0O"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-CH-tNx">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="yeh-G4-zzs"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-Xl-tOY">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -45,7 +51,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cJM-lA-Lcm" kind="modal" modalTransitionStyle="crossDissolve" id="lxX-6P-iUl"/>
+                                    <segue destination="cJM-lA-Lcm" kind="modal" identifier="Login" modalTransitionStyle="crossDissolve" id="lxX-6P-iUl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,26 +63,31 @@
                             <constraint firstAttribute="trailing" secondItem="yth-ug-6ab" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6hr-cE-0ur"/>
                             <constraint firstAttribute="trailing" secondItem="gi3-CH-tNx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="75M-nQ-T1c"/>
                             <constraint firstAttribute="trailing" secondItem="F6v-Xl-tOY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="8TD-x8-CSr"/>
-                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="145" id="AoR-hl-Fw0"/>
+                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="145" type="user" id="AoR-hl-Fw0"/>
                             <constraint firstItem="6n7-ui-Dbp" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Crm-G4-Oy9"/>
-                            <constraint firstItem="yth-ug-6ab" firstAttribute="top" secondItem="6n7-ui-Dbp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="IhV-Y8-P2y"/>
+                            <constraint firstItem="yth-ug-6ab" firstAttribute="top" secondItem="6n7-ui-Dbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="IhV-Y8-P2y"/>
                             <constraint firstItem="F6v-Xl-tOY" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Y94-AM-RuZ"/>
                             <constraint firstAttribute="bottom" secondItem="F6v-Xl-tOY" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="YjA-JE-xEj"/>
                             <constraint firstItem="IEz-2h-9yy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="67" id="h8g-CV-h8U"/>
-                            <constraint firstAttribute="bottom" secondItem="gi3-CH-tNx" secondAttribute="bottom" constant="208" id="ohv-7q-qvk"/>
+                            <constraint firstItem="QAH-hO-shQ" firstAttribute="top" secondItem="yth-ug-6ab" secondAttribute="bottom" constant="77" type="user" id="nFf-pa-zhh"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qpB-d9-y2Q"/>
-                            <constraint firstItem="gi3-CH-tNx" firstAttribute="top" secondItem="QAH-hO-shQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="taV-0I-4Ok"/>
+                            <constraint firstItem="gi3-CH-tNx" firstAttribute="top" secondItem="QAH-hO-shQ" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="taV-0I-4Ok"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="displayNameField" destination="yth-ug-6ab" id="DqS-ZG-xDz"/>
+                        <outlet property="passwordField" destination="gi3-CH-tNx" id="a59-h8-uVj"/>
+                        <segue destination="cJM-lA-Lcm" kind="modal" identifier="QuickLogin" modalTransitionStyle="crossDissolve" animates="NO" id="P3t-PJ-6gK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="102" y="35"/>
         </scene>
-        <!--Item List View Controller - Global Library-->
+        <!--Global Library View Controller - Global Library-->
         <scene sceneID="iBW-GW-Amm">
             <objects>
-                <tableViewController id="HWl-Mn-haW" customClass="ItemListViewController" sceneMemberID="viewController">
+                <tableViewController id="HWl-Mn-haW" customClass="GlobalLibraryViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f0d-BY-4mk">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="1594" y="35"/>
         </scene>
-        <!--Item List View Controller - Requests-->
+        <!--Requests View Controller - Requests-->
         <scene sceneID="Zgb-Nt-Sa6">
             <objects>
-                <tableViewController id="BZC-iI-dRe" customClass="ItemListViewController" sceneMemberID="viewController">
+                <tableViewController id="BZC-iI-dRe" customClass="RequestsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ESu-he-KpS">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="608" y="35"/>
         </scene>
-        <!--Item List View Controller - My Library-->
+        <!--My Library View Controller - My Library-->
         <scene sceneID="g93-l7-z1L">
             <objects>
-                <tableViewController title="My Library" id="YhU-7b-ryP" customClass="ItemListViewController" sceneMemberID="viewController">
+                <tableViewController title="My Library" id="YhU-7b-ryP" customClass="MyLibraryViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uqa-I9-tJX">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -394,6 +405,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="changePicture:" destination="BAf-uO-f5L" eventType="touchUpInside" id="xxL-b9-P2N"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -450,7 +464,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="formatField" destination="TGc-Ug-fdh" id="20D-YE-bV2"/>
-                        <outlet property="pictureButton" destination="Ssr-tq-vft" id="ooR-B9-Wn6"/>
+                        <outlet property="pictureButton" destination="Ssr-tq-vft" id="PFc-DK-HHV"/>
                         <outlet property="titleField" destination="Zvz-9s-4nF" id="ZQP-Mr-n4a"/>
                         <outlet property="yearField" destination="O5e-o7-3cZ" id="DIN-kS-73M"/>
                     </connections>
@@ -681,6 +695,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L6g-Cy-Hpb">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="VM5-TL-cMA">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="YhU-7b-ryP" kind="relationship" relationship="rootViewController" id="BEJ-C8-BQq"/>
                     </connections>
@@ -697,6 +715,9 @@
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
     <classes>
+        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
+        </class>
         <class className="ItemDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
             <relationships>
@@ -716,8 +737,6 @@
         <class className="ItemEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="action" name="saveButtonPressed:"/>
                 <relationship kind="outlet" name="formatField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
@@ -729,9 +748,19 @@
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MyLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RequestsViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -740,7 +769,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="P3t-PJ-6gK"/>
         <segue reference="kmi-6V-KL5"/>
-        <segue reference="Jgf-cK-Ih7"/>
+        <segue reference="l50-B4-jeb"/>
     </inferredMetricsTieBreakers>
 </document>

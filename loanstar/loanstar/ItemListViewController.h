@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
+#import "Format.h"
+#import "UserAccount.h"
 
 @interface ItemListViewController : UITableViewController
 

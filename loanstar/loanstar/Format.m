@@ -13,7 +13,7 @@
 
 static NSString * const kVHS = @"VHS";
 static NSString * const kDVD = @"DVD";
-static NSString * const kBluray = @"Bluray";
+static NSString * const kBluray = @"Blu-ray";
 static NSMutableDictionary *typeDictionary;
 
 - (void)addItem:(Item*)item
@@ -61,6 +61,11 @@ static NSMutableDictionary *typeDictionary;
 + (Format*)bluray
 {
     return [Format formatForType:kBluray];
+}
+
++ (NSArray*)allFormats
+{
+    return @[[self dvd], [self bluray], [self vhs]];
 }
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B90916E17264048000A8B35 /* MyLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B90916D17264048000A8B35 /* MyLibraryViewController.m */; };
+		8B90917217264245000A8B35 /* GlobalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B90917117264245000A8B35 /* GlobalLibraryViewController.m */; };
+		8B909175172642D6000A8B35 /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B909174172642D6000A8B35 /* RequestsViewController.m */; };
+		8B909178172759B0000A8B35 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B909177172759AF000A8B35 /* Theme.m */; };
 		8B96DE071718C7DD002FD8E4 /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */; };
 		8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96DE091718CD43002FD8E4 /* placeholder.jpg */; };
 		8B96DE0E1718D29D002FD8E4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE0D1718D29D002FD8E4 /* Item.m */; };
@@ -51,6 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B90916C17264048000A8B35 /* MyLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLibraryViewController.h; sourceTree = "<group>"; };
+		8B90916D17264048000A8B35 /* MyLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLibraryViewController.m; sourceTree = "<group>"; };
+		8B90917017264245000A8B35 /* GlobalLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalLibraryViewController.h; sourceTree = "<group>"; };
+		8B90917117264245000A8B35 /* GlobalLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalLibraryViewController.m; sourceTree = "<group>"; };
+		8B909173172642D6000A8B35 /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
+		8B909174172642D6000A8B35 /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
+		8B909176172759AF000A8B35 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		8B909177172759AF000A8B35 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
 		8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
 		8B96DE091718CD43002FD8E4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
@@ -122,6 +134,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B90916F17264062000A8B35 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */,
+				8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */,
+				8B90916C17264048000A8B35 /* MyLibraryViewController.h */,
+				8B90916D17264048000A8B35 /* MyLibraryViewController.m */,
+				8B90917017264245000A8B35 /* GlobalLibraryViewController.h */,
+				8B90917117264245000A8B35 /* GlobalLibraryViewController.m */,
+				8B909173172642D6000A8B35 /* RequestsViewController.h */,
+				8B909174172642D6000A8B35 /* RequestsViewController.m */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
 		8B96DE081718CD36002FD8E4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,8 +218,7 @@
 				8BF417521718562F00077E2D /* MainStoryboard.storyboard */,
 				8BF417551718562F00077E2D /* LoginViewController.h */,
 				8BF417561718562F00077E2D /* LoginViewController.m */,
-				8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */,
-				8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */,
+				8B90916F17264062000A8B35 /* Lists */,
 				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
 				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
 				8BA0D687171B4FFE00484E46 /* ItemEditViewController.h */,
@@ -200,6 +226,8 @@
 				8B96DE0B1718D283002FD8E4 /* Model Objects */,
 				8BF417411718562F00077E2D /* Supporting Files */,
 				8B96DE081718CD36002FD8E4 /* Resources */,
+				8B909176172759AF000A8B35 /* Theme.h */,
+				8B909177172759AF000A8B35 /* Theme.m */,
 			);
 			path = loanstar;
 			sourceTree = "<group>";
@@ -365,6 +393,10 @@
 				8BA0D6741719191900484E46 /* Status.m in Sources */,
 				8BA0D677171B3A1A00484E46 /* ItemDetailViewController.m in Sources */,
 				8BA0D689171B4FFE00484E46 /* ItemEditViewController.m in Sources */,
+				8B90916E17264048000A8B35 /* MyLibraryViewController.m in Sources */,
+				8B90917217264245000A8B35 /* GlobalLibraryViewController.m in Sources */,
+				8B909175172642D6000A8B35 /* RequestsViewController.m in Sources */,
+				8B909178172759B0000A8B35 /* Theme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

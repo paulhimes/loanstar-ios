@@ -37,6 +37,12 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+
+    if (![self.item.owner.userId isEqualToString:currentUserId]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

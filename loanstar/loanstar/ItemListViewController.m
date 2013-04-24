@@ -7,10 +7,7 @@
 //
 
 #import "ItemListViewController.h"
-#import "Item.h"
 #import "ItemDetailViewController.h"
-#import "Format.h"
-#import "UserAccount.h"
 
 @interface ItemListViewController ()
 
@@ -30,12 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,10 +106,7 @@
     
     // Configure the cell...
     cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
-//    cell.detailTextLabel.numberOfLines = 2;
-//    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-    
-    
+
     // Get the item for this cell.
     Item *item;
     switch (indexPath.section) {
@@ -138,74 +126,24 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 #pragma mark - Helper methods
 
 - (NSArray*)topSectionItems
 {
-    NSArray *items = @[[Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]]];
-    UserAccount *chad = [[UserAccount alloc] init];
-    chad.displayName = @"Chadm";
-    ((Item*)items[0]).owner = chad;
-    
-    return items;
+//    NSArray *items = @[[Item itemWithTitle:@"Serenity" year:2005 format:[Format vhs]]];
+//    UserAccount *chad = [[UserAccount alloc] init];
+//    chad.displayName = @"Chadm";
+//    ((Item*)items[0]).owner = chad;
+//    
+//    return items;
+    return @[];
 }
 
 - (NSArray*)bottomSectionItems
 {
-    NSArray *items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
-    return items;
+//    NSArray *items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
+//    return items;
+    return @[];
 }
 
 @end
