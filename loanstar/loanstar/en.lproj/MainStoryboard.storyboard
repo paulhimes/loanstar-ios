@@ -17,7 +17,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-ui-Dbp">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-ui-Dbp">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,6 +42,9 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-Xl-tOY">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="126" id="dz1-Rm-Lv9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,7 +54,20 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cJM-lA-Lcm" kind="modal" identifier="Login" modalTransitionStyle="crossDissolve" id="lxX-6P-iUl"/>
+                                    <action selector="loginAction:" destination="2" eventType="touchUpInside" id="9WJ-jG-PLu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjX-4V-PA0">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="New Account">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createAction:" destination="2" eventType="touchUpInside" id="vZH-XO-MSD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -62,22 +78,25 @@
                             <constraint firstItem="yth-ug-6ab" firstAttribute="centerX" secondItem="IEz-2h-9yy" secondAttribute="centerX" type="default" id="5em-if-NNM"/>
                             <constraint firstAttribute="trailing" secondItem="yth-ug-6ab" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6hr-cE-0ur"/>
                             <constraint firstAttribute="trailing" secondItem="gi3-CH-tNx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="75M-nQ-T1c"/>
-                            <constraint firstAttribute="trailing" secondItem="F6v-Xl-tOY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="8TD-x8-CSr"/>
                             <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="145" type="user" id="AoR-hl-Fw0"/>
                             <constraint firstItem="6n7-ui-Dbp" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Crm-G4-Oy9"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="top" secondItem="6n7-ui-Dbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="IhV-Y8-P2y"/>
+                            <constraint firstItem="AjX-4V-PA0" firstAttribute="width" secondItem="F6v-Xl-tOY" secondAttribute="width" type="user" id="RJ0-7O-8Ek"/>
                             <constraint firstItem="F6v-Xl-tOY" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Y94-AM-RuZ"/>
                             <constraint firstAttribute="bottom" secondItem="F6v-Xl-tOY" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="YjA-JE-xEj"/>
+                            <constraint firstAttribute="bottom" secondItem="AjX-4V-PA0" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="fhV-AH-6xA"/>
                             <constraint firstItem="IEz-2h-9yy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="67" id="h8g-CV-h8U"/>
+                            <constraint firstAttribute="trailing" secondItem="AjX-4V-PA0" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="my4-es-MMN"/>
                             <constraint firstItem="QAH-hO-shQ" firstAttribute="top" secondItem="yth-ug-6ab" secondAttribute="bottom" constant="77" type="user" id="nFf-pa-zhh"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qpB-d9-y2Q"/>
                             <constraint firstItem="gi3-CH-tNx" firstAttribute="top" secondItem="QAH-hO-shQ" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="taV-0I-4Ok"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="displayNameField" destination="yth-ug-6ab" id="DqS-ZG-xDz"/>
+                        <outlet property="emailField" destination="yth-ug-6ab" id="rfr-02-Ybg"/>
                         <outlet property="passwordField" destination="gi3-CH-tNx" id="a59-h8-uVj"/>
                         <segue destination="cJM-lA-Lcm" kind="modal" identifier="QuickLogin" modalTransitionStyle="crossDissolve" animates="NO" id="P3t-PJ-6gK"/>
+                        <segue destination="cJM-lA-Lcm" kind="modal" identifier="Login" modalTransitionStyle="crossDissolve" id="dcL-HK-ahO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -702,14 +721,65 @@
         <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
+    <classes>
+        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
+        </class>
+        <class className="ItemDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemYearLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ownerNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ItemEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="formatField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ItemListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createAction:"/>
+                <relationship kind="action" name="loginAction:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MyLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RequestsViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RG1-rB-rwS"/>
-        <segue reference="P3t-PJ-6gK"/>
+        <segue reference="dcL-HK-ahO"/>
         <segue reference="l50-B4-jeb"/>
+        <segue reference="RG1-rB-rwS"/>
     </inferredMetricsTieBreakers>
 </document>

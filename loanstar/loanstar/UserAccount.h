@@ -20,6 +20,7 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *displayName;
+@property (nonatomic, strong) NSString *hashedPassword;
 
 @property (nonatomic, readonly) NSArray *items;
 @property (nonatomic, readonly) NSArray *borrows;

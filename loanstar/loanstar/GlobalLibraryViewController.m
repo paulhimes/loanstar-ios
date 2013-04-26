@@ -15,6 +15,13 @@
 @implementation GlobalLibraryViewController
 @synthesize sectionTitles = _sectionTitles;
 
+- (void)loadItems
+{
+    [ServerAdapter getAllItemsWithCompletion:^(NSArray *allItems, NSError *error) {
+        self.items = allItems;
+    }];
+}
+
 - (NSArray *)sectionTitles
 {
     if (!_sectionTitles) {

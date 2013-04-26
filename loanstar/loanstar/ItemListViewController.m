@@ -30,6 +30,12 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadItems];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -51,6 +57,20 @@
 //        editContactViewController.contact = contact;
 //        [editContactViewController hideCancelButton];
     }
+}
+
+- (NSArray *)items
+{
+    if (!_items) {
+        _items = @[];
+    }
+    
+    return _items;
+}
+
+- (void)loadItems
+{
+    // Override this method to actually load something.
 }
 
 #pragma mark - Table view data source

@@ -15,6 +15,15 @@
 @implementation RequestsViewController
 @synthesize sectionTitles = _sectionTitles;
 
+- (void)loadItems
+{
+    UserAccount *currentAccount = [[UserAccount alloc] init];
+    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+    [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
+        self.items = items;
+    }];
+}
+
 - (NSArray *)sectionTitles
 {
     if (!_sectionTitles) {

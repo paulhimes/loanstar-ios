@@ -8,6 +8,7 @@
 
 #import "ItemEditViewController.h"
 #import "Format.h"
+#import "ServerAdapter.h"
 
 @interface ItemEditViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -63,7 +64,18 @@
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    [self dismiss];
+    if (self.item) {
+        // Update item details.
+        [ServerAdapter editItem:self.item completion:^(NSError *error) {
+            [self dismiss];
+        }];
+    } else {
+        Item *item = [[Item alloc] init];
+        // Fill in item details.
+        [ServerAdapter createItem:item completion:^(Item *confirmedItem, NSError *error) {
+            [self dismiss];
+        }];
+    }
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {

@@ -11,6 +11,7 @@
 		8B90917217264245000A8B35 /* GlobalLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B90917117264245000A8B35 /* GlobalLibraryViewController.m */; };
 		8B909175172642D6000A8B35 /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B909174172642D6000A8B35 /* RequestsViewController.m */; };
 		8B909178172759B0000A8B35 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B909177172759AF000A8B35 /* Theme.m */; };
+		8B90917B1728EE5A000A8B35 /* ServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B90917A1728EE5A000A8B35 /* ServerAdapter.m */; };
 		8B96DE071718C7DD002FD8E4 /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */; };
 		8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96DE091718CD43002FD8E4 /* placeholder.jpg */; };
 		8B96DE0E1718D29D002FD8E4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE0D1718D29D002FD8E4 /* Item.m */; };
@@ -63,6 +64,8 @@
 		8B909174172642D6000A8B35 /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
 		8B909176172759AF000A8B35 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		8B909177172759AF000A8B35 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
+		8B9091791728EE5A000A8B35 /* ServerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAdapter.h; sourceTree = "<group>"; };
+		8B90917A1728EE5A000A8B35 /* ServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAdapter.m; sourceTree = "<group>"; };
 		8B96DE051718C7DD002FD8E4 /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
 		8B96DE061718C7DD002FD8E4 /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
 		8B96DE091718CD43002FD8E4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
@@ -213,11 +216,13 @@
 		8BF417401718562F00077E2D /* loanstar */ = {
 			isa = PBXGroup;
 			children = (
-				8BF417491718562F00077E2D /* AppDelegate.h */,
-				8BF4174A1718562F00077E2D /* AppDelegate.m */,
 				8BF417521718562F00077E2D /* MainStoryboard.storyboard */,
+				8B909176172759AF000A8B35 /* Theme.h */,
+				8B909177172759AF000A8B35 /* Theme.m */,
 				8BF417551718562F00077E2D /* LoginViewController.h */,
 				8BF417561718562F00077E2D /* LoginViewController.m */,
+				8B9091791728EE5A000A8B35 /* ServerAdapter.h */,
+				8B90917A1728EE5A000A8B35 /* ServerAdapter.m */,
 				8B90916F17264062000A8B35 /* Lists */,
 				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
 				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
@@ -226,8 +231,6 @@
 				8B96DE0B1718D283002FD8E4 /* Model Objects */,
 				8BF417411718562F00077E2D /* Supporting Files */,
 				8B96DE081718CD36002FD8E4 /* Resources */,
-				8B909176172759AF000A8B35 /* Theme.h */,
-				8B909177172759AF000A8B35 /* Theme.m */,
 			);
 			path = loanstar;
 			sourceTree = "<group>";
@@ -238,6 +241,8 @@
 				8BF417421718562F00077E2D /* loanstar-Info.plist */,
 				8BF417431718562F00077E2D /* InfoPlist.strings */,
 				8BF417461718562F00077E2D /* main.m */,
+				8BF417491718562F00077E2D /* AppDelegate.h */,
+				8BF4174A1718562F00077E2D /* AppDelegate.m */,
 				8BF417481718562F00077E2D /* loanstar-Prefix.pch */,
 				8BF4174C1718562F00077E2D /* Default.png */,
 				8BF4174E1718562F00077E2D /* Default@2x.png */,
@@ -397,6 +402,7 @@
 				8B90917217264245000A8B35 /* GlobalLibraryViewController.m in Sources */,
 				8B909175172642D6000A8B35 /* RequestsViewController.m in Sources */,
 				8B909178172759B0000A8B35 /* Theme.m in Sources */,
+				8B90917B1728EE5A000A8B35 /* ServerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

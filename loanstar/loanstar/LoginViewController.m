@@ -8,10 +8,11 @@
 
 #import "LoginViewController.h"
 #import "UserAccount.h"
+#import "ServerAdapter.h"
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *displayNameField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @end
@@ -28,10 +29,10 @@
 {
     [super viewDidAppear:animated];
     
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    if (currentUserId) {
-        [self performSegueWithIdentifier:@"QuickLogin" sender:nil];
-    }
+//    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+//    if (currentUserId) {
+//        [self performSegueWithIdentifier:@"QuickLogin" sender:nil];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,31 +41,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"Login"]) {
-        [[NSUserDefaults standardUserDefaults] setValue:self.displayNameField.text forKey:kCurrentDisplayName];
-        [[NSUserDefaults standardUserDefaults] setValue:self.displayNameField.text forKey:kCurrentUserId];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:@"Login"]) {
-        if ([self.displayNameField.text length] == 0) {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.displayNameField) {
+    if (textField == self.emailField) {
         [self.passwordField becomeFirstResponder];
     } else {
         [textField resignFirstResponder];
@@ -72,5 +53,75 @@
     
     return NO;
 }
+
+#pragma mark - Login methods
+
+- (IBAction)loginAction:(id)sender
+{
+    UserAccount *userAccount = [[UserAccount alloc] init];
+    userAccount.email = self.emailField.text;
+    userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
+    [ServerAdapter loginWithUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
+        if (error) {
+            // Handle the error.
+            NSLog(@"Login Failed: %@", [error localizedDescription]);
+        } else {
+            // Success
+            [self setCurrentUserAccount:confirmedUserAccount];
+            [self performSegueWithIdentifier:@"Login" sender:nil];
+        }
+    }];
+}
+
+- (IBAction)createAction:(id)sender
+{
+    // Ask for a display name
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"What is your name?"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Login"
+                                          otherButtonTitles:nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *displayName = [alertView textFieldAtIndex:0].text;
+    
+    if ([displayName length] > 0) {
+        UserAccount *userAccount = [[UserAccount alloc] init];
+        userAccount.email = self.emailField.text;
+        userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
+        userAccount.displayName = displayName;
+        
+        [ServerAdapter createUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
+            if (error) {
+                // Handle the error.
+                NSLog(@"Create User Account Failed: %@", [error localizedDescription]);
+            } else {
+                // Success
+                [self setCurrentUserAccount:userAccount];
+                [self performSegueWithIdentifier:@"Login" sender:nil];
+            }
+        }];
+    }
+}
+
+
+- (void)setCurrentUserAccount:(UserAccount*)userAccount
+{
+    [[NSUserDefaults standardUserDefaults] setValue:userAccount.email forKey:kCurrentEmail];
+    [[NSUserDefaults standardUserDefaults] setValue:userAccount.userId forKey:kCurrentUserId];
+    [[NSUserDefaults standardUserDefaults] setValue:userAccount.displayName forKey:kCurrentDisplayName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)hashString:(NSString*)plaintext
+{
+    // Don't tell the security guys about this one...
+    return [@([plaintext hash]) stringValue];
+}
+
 
 @end
