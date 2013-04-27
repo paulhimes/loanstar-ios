@@ -29,7 +29,7 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 + (void)loginWithUserAccount:(UserAccount *)userAccount
                   completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/user/login" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
+    [self requestDictionaryFromAPIEndpoint:@"api/login" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
         UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
         confirmedUserAccount.email = userAccount.email;
         confirmedUserAccount.userId = responseDictionary[@"userId"];
@@ -142,6 +142,9 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
         NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:endpoint error:&error];
         
         NSLog(@"%@", responseDictionary);
+        if (error) {
+            NSLog(@"%@", error);
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(responseDictionary, error);
