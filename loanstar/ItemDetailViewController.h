@@ -13,17 +13,4 @@
 
 @property (nonatomic, strong) Item* item;
 
-@property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *itemYearLabel;
-@property (weak, nonatomic) IBOutlet UILabel *itemFormatLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *itemStatusLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
-
-@property (weak, nonatomic) IBOutlet UIButton *returnedButton;
-@property (weak, nonatomic) IBOutlet UIButton *requestButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
-@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
-@property (weak, nonatomic) IBOutlet UIButton *denyButton;
-
 @end

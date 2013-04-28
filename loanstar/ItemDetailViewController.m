@@ -15,6 +15,19 @@
 
 @interface ItemDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *itemYearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *itemFormatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *itemStatusLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
+
+@property (weak, nonatomic) IBOutlet UIButton *returnedButton;
+@property (weak, nonatomic) IBOutlet UIButton *requestButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
+@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+@property (weak, nonatomic) IBOutlet UIButton *denyButton;
+
 @end
 
 @implementation ItemDetailViewController
@@ -52,6 +65,7 @@
     self.itemTitleLabel.text = self.item.title;
     self.itemYearLabel.text = [NSString stringWithFormat:@"%d", self.item.year];
     self.itemFormatLabel.text = self.item.format.name;
+    self.ownerNameLabel.text = self.item.owner.displayName;
     
     // Determine the item status...
     BOOL activeBorrow = NO;
@@ -69,7 +83,46 @@
     }
     self.itemStatusLabel.text = activeBorrow ? @"Loaned Out" : @"Available";
     
-    self.ownerNameLabel.text = self.item.owner.displayName;
+    // Determine which borrow button(s) to show...
+    // Hide all the buttons first.
+    self.returnedButton.hidden = YES;
+    self.requestButton.hidden = YES;
+    self.cancelRequestButton.hidden = YES;
+    self.acceptButton.hidden = YES;
+    self.denyButton.hidden = YES;
+    
+    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+
+    if ([self.item.owner.userId isEqualToString:currentUserId]) {
+        // The user owns this item. The options are blank, accept / deny a request, or mark it as returned.
+        for (Borrow *borrow in self.item.borrows) {
+            if (borrow.startDate && [borrow.startDate timeIntervalSinceNow] <= 0) {
+                // There is an active borrow. This is more important than any pending borrow requests.
+                self.returnedButton.hidden = NO;
+                self.acceptButton.hidden = YES;
+                self.denyButton.hidden = YES;
+                break;
+            } else {
+                self.acceptButton.hidden = NO;
+                self.denyButton.hidden = NO;
+            }
+        }
+    } else {
+        // The user doesn't own this item. The options are to make a request or cancel a request.
+        self.requestButton.hidden = NO;
+        // Check if the user is borrowing or has requested to borrow this item.
+        for (Borrow *borrow in self.item.borrows) {
+            if ([borrow.borrower.userId isEqualToString:currentUserId]) {
+                // This user cannot request this item again.
+                self.requestButton.hidden = YES;
+                // Check if the request has not been accepted.
+                if (!borrow.startDate || [borrow.startDate timeIntervalSinceNow] > 0) {
+                    self.cancelRequestButton.hidden = NO;
+                }
+            }
+        }
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
