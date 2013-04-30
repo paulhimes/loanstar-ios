@@ -48,6 +48,11 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     }];
 }
 
++ (void)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount*)userAccount completion:(void (^)(NSArray *items, NSError *error))completion
+{
+    completion(@[], nil);
+}
+
 + (void)getAllItemsOwnedByUserAccount:(UserAccount*)userAccount
                            completion:(void (^)(NSArray *items, NSError* error))completion
 {

@@ -16,6 +16,7 @@
 		8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96DE091718CD43002FD8E4 /* placeholder.jpg */; };
 		8B96DE0E1718D29D002FD8E4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE0D1718D29D002FD8E4 /* Item.m */; };
 		8B96DE111718D2C0002FD8E4 /* Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B96DE101718D2C0002FD8E4 /* Format.m */; };
+		8B9EF744172E073800A64E8E /* MockServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9EF743172E073800A64E8E /* MockServerAdapter.m */; };
 		8BA0D66E1719118B00484E46 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D66D1719118B00484E46 /* UserAccount.m */; };
 		8BA0D671171917D200484E46 /* Borrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D670171917D100484E46 /* Borrow.m */; };
 		8BA0D6741719191900484E46 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D6731719191900484E46 /* Status.m */; };
@@ -73,6 +74,8 @@
 		8B96DE0D1718D29D002FD8E4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		8B96DE0F1718D2C0002FD8E4 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
 		8B96DE101718D2C0002FD8E4 /* Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Format.m; sourceTree = "<group>"; };
+		8B9EF742172E073700A64E8E /* MockServerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockServerAdapter.h; sourceTree = "<group>"; };
+		8B9EF743172E073800A64E8E /* MockServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockServerAdapter.m; sourceTree = "<group>"; };
 		8BA0D66C1719118B00484E46 /* UserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccount.h; sourceTree = "<group>"; };
 		8BA0D66D1719118B00484E46 /* UserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccount.m; sourceTree = "<group>"; };
 		8BA0D66F171917D100484E46 /* Borrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Borrow.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				8BF417561718562F00077E2D /* LoginViewController.m */,
 				8B9091791728EE5A000A8B35 /* ServerAdapter.h */,
 				8B90917A1728EE5A000A8B35 /* ServerAdapter.m */,
+				8B9EF742172E073700A64E8E /* MockServerAdapter.h */,
+				8B9EF743172E073800A64E8E /* MockServerAdapter.m */,
 				8B90916F17264062000A8B35 /* Lists */,
 				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
 				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
@@ -403,6 +408,7 @@
 				8B909175172642D6000A8B35 /* RequestsViewController.m in Sources */,
 				8B909178172759B0000A8B35 /* Theme.m in Sources */,
 				8B90917B1728EE5A000A8B35 /* ServerAdapter.m in Sources */,
+				8B9EF744172E073800A64E8E /* MockServerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

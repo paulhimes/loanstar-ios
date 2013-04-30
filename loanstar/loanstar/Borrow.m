@@ -37,4 +37,21 @@
     }
 }
 
+- (BOOL)isActive
+{
+    return self.startDate && [self.startDate timeIntervalSinceNow] <= 0 &&
+           (!self.endDate || [self.endDate timeIntervalSinceNow] > 0);
+}
+
+- (NSString *)description
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterLongStyle;
+    formatter.timeStyle = NSDateFormatterLongStyle;
+    
+    NSString *description = [NSString stringWithFormat:@"%@ requested to borrow %@'s copy of %@. requested=%@, started=%@, ended=%@", self.borrower.displayName, self.item.owner.displayName, self.item.title, [formatter stringFromDate:self.requestDate], [formatter stringFromDate:self.startDate], [formatter stringFromDate:self.endDate]];
+    
+    return description;
+}
+
 @end

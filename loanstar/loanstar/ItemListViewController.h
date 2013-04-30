@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Item.h"
+#import "Borrow.h"
 #import "Format.h"
 #import "UserAccount.h"
 #import "ServerAdapter.h"
+#import "MockServerAdapter.h"
 
 @interface ItemListViewController : UITableViewController
 

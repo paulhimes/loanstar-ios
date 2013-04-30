@@ -10,6 +10,7 @@
 #import "Borrow.h"
 
 @implementation Status
+@synthesize borrows = _borrows;
 
 static NSString * const kRequested = @"Requested";
 static NSString * const kCancelled = @"Cancelled";
@@ -17,6 +18,15 @@ static NSString * const kAccepted = @"Accepted";
 static NSString * const kDenied = @"Denied";
 static NSString * const kReturned = @"Returned";
 static NSMutableDictionary *typeDictionary;
+
+- (NSArray *)borrows
+{
+    if (!_borrows) {
+        _borrows = @[];
+    }
+    
+    return _borrows;
+}
 
 - (void)addBorrow:(Borrow*)borrow
 {

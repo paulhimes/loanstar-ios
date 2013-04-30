@@ -11,6 +11,17 @@
 #import "Borrow.h"
 
 @implementation UserAccount
+@synthesize items = _items;
+@synthesize borrows = _borrows;
+
+- (NSArray *)items
+{
+    if (!_items) {
+        _items = @[];
+    }
+    
+    return _items;
+}
 
 - (void)addItem:(Item*)item
 {
@@ -27,6 +38,15 @@
         [mutableCopy removeObject:item];
         _items = mutableCopy;
     }
+}
+
+- (NSArray *)borrows
+{
+    if (!_borrows) {
+        _borrows = @[];
+    }
+    
+    return _borrows;
 }
 
 - (void)addBorrow:(Borrow*)borrow

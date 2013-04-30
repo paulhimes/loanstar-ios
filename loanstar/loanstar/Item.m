@@ -12,6 +12,7 @@
 #import "UserAccount.h"
 
 @implementation Item
+@synthesize borrows = _borrows;
 
 + (Item*)itemWithTitle:(NSString*)title
                   year:(NSUInteger)year
@@ -39,6 +40,15 @@
         _owner = owner;
         [_owner addItem:self];
     }
+}
+
+- (NSArray *)borrows
+{
+    if (!_borrows) {
+        _borrows = @[];
+    }
+    
+    return _borrows;
 }
 
 - (void)addBorrow:(Borrow*)borrow

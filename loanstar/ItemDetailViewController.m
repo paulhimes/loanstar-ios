@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
 @property (weak, nonatomic) IBOutlet UIButton *denyButton;
+@property (weak, nonatomic) IBOutlet UILabel *noRequestsLabel;
 
 @end
 
@@ -90,13 +91,17 @@
     self.cancelRequestButton.hidden = YES;
     self.acceptButton.hidden = YES;
     self.denyButton.hidden = YES;
+    self.noRequestsLabel.hidden = YES;
     
     NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
 
     if ([self.item.owner.userId isEqualToString:currentUserId]) {
         // The user owns this item. The options are blank, accept / deny a request, or mark it as returned.
+        self.noRequestsLabel.hidden = NO;
         for (Borrow *borrow in self.item.borrows) {
-            if (borrow.startDate && [borrow.startDate timeIntervalSinceNow] <= 0) {
+            self.noRequestsLabel.hidden = YES;
+            NSLog(@"%@", borrow);
+            if ([borrow isActive]) {
                 // There is an active borrow. This is more important than any pending borrow requests.
                 self.returnedButton.hidden = NO;
                 self.acceptButton.hidden = YES;
@@ -116,7 +121,7 @@
                 // This user cannot request this item again.
                 self.requestButton.hidden = YES;
                 // Check if the request has not been accepted.
-                if (!borrow.startDate || [borrow.startDate timeIntervalSinceNow] > 0) {
+                if (![borrow isActive]) {
                     self.cancelRequestButton.hidden = NO;
                 }
             }

@@ -22,4 +22,6 @@
 @property (nonatomic, strong) Item *item;
 @property (nonatomic, strong) Status *status;
 
+- (BOOL)isActive;
+
 @end

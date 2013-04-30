@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "UserAccount.h"
 #import "ServerAdapter.h"
+#import "MockServerAdapter.h"
 
 @interface LoginViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -61,7 +62,7 @@
     UserAccount *userAccount = [[UserAccount alloc] init];
     userAccount.email = self.emailField.text;
     userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
-    [ServerAdapter loginWithUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
+    [MockServerAdapter loginWithUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
         if (error) {
             // Handle the error.
             NSLog(@"Login Failed: %@", [error localizedDescription]);
@@ -95,7 +96,7 @@
         userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
         userAccount.displayName = displayName;
         
-        [ServerAdapter createUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
+        [MockServerAdapter createUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
             if (error) {
                 // Handle the error.
                 NSLog(@"Create User Account Failed: %@", [error localizedDescription]);

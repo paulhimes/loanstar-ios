@@ -10,11 +10,21 @@
 #import "Item.h"
 
 @implementation Format
+@synthesize items = _items;
 
 static NSString * const kVHS = @"VHS";
 static NSString * const kDVD = @"DVD";
 static NSString * const kBluray = @"Blu-ray";
 static NSMutableDictionary *typeDictionary;
+
+- (NSArray *)items
+{
+    if (!_items) {
+        _items = @[];
+    }
+    
+    return _items;
+}
 
 - (void)addItem:(Item*)item
 {

@@ -23,6 +23,8 @@
 
 + (void)getAllItemsWithCompletion:(void (^)(NSArray *allItems, NSError* error))completion;
 
++ (void)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount*)userAccount completion:(void (^)(NSArray *items, NSError *error))completion;
+
 + (void)getAllItemsOwnedByUserAccount:(UserAccount*)userAccount
                            completion:(void (^)(NSArray *items, NSError* error))completion;
 

@@ -19,7 +19,7 @@
 {
     UserAccount *currentAccount = [[UserAccount alloc] init];
     currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
+    [MockServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
         self.items = items;
     }];
 }
@@ -35,51 +35,32 @@
 
 - (NSArray *)itemsInSection:(NSUInteger)section
 {
-    NSArray *items;
-    NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = currentDisplayName;
-    userAccount.userId = currentUserId;
+    NSMutableArray *items = [NSMutableArray array];
+    
+    UserAccount *currentAccount = [[UserAccount alloc] init];
+    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
     if (section == 0) {
-        items = @[[Item itemWithTitle:@"The Matrix" year:1999 format:[Format dvd]]];
-        
-        UserAccount *userAccount = [[UserAccount alloc] init];
-        userAccount.displayName = @"Bob";
-        userAccount.userId = userAccount.displayName;
-        
-        ((Item*)items[0]).owner = userAccount;
+        // My Requests
+        for (Item *item in self.items) {
+            for (Borrow *borrow in item.borrows) {
+                if (![borrow isActive] && [borrow.borrower.userId isEqualToString:currentAccount.userId]) {
+                    [items addObject:item];
+                    break;
+                }
+            }
+        }
     } else if (section == 1) {
-        items = @[[Item itemWithTitle:@"Star Wars" year:1977 format:[Format bluray]]];
-        ((Item*)items[0]).owner = userAccount;
-    } else {
-        items = @[];
+        // Requests from others
+        for (Item *item in self.items) {
+            for (Borrow *borrow in item.borrows) {
+                if (![borrow isActive] && [borrow.item.owner.userId isEqualToString:currentAccount.userId]) {
+                    [items addObject:item];
+                    break;
+                }
+            }
+        }
     }
     
-    return items;
-}
-
-- (NSArray*)topSectionItems
-{
-    NSArray *items = @[[Item itemWithTitle:@"The Matrix" year:1999 format:[Format dvd]]];
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = @"Bob";
-    userAccount.userId = userAccount.displayName;
-    ((Item*)items[0]).owner = userAccount;
-    
-    return items;
-}
-
-- (NSArray*)bottomSectionItems
-{
-    NSString *currentDisplayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    
-    NSArray *items = @[[Item itemWithTitle:@"The Dark Crystal" year:1982 format:[Format vhs]]];
-    UserAccount *userAccount = [[UserAccount alloc] init];
-    userAccount.displayName = currentDisplayName;
-    userAccount.userId = currentUserId;
-    ((Item*)items[0]).owner = userAccount;
     return items;
 }
 
