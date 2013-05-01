@@ -71,4 +71,35 @@
     }
 }
 
+- (NSDictionary*)dictionary
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    if (self.itemId) {
+        dictionary[@"itemId"] = self.itemId;
+    }
+    if (self.title) {
+        dictionary[@"title"] = self.title;
+    }
+    if (self.year) {
+        dictionary[@"year"] = [@(self.year) stringValue];
+    }
+    if (self.format) {
+        dictionary[@"format"] = self.format;
+    }
+    return [dictionary copy];
+}
+
++ (Item*)fromDictionary:(NSDictionary*)dictionary
+{
+    Item *item;
+    if (dictionary) {
+        item = [[Item alloc] init];
+        item.itemId = dictionary[@"itemId"];
+        item.title = dictionary[@"title"];
+        item.year = [dictionary[@"year"] unsignedIntegerValue];
+        item.format = [Format formatForString:dictionary[@"format"]];
+    }
+    return item;
+}
+
 @end

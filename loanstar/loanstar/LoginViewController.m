@@ -62,16 +62,18 @@
     UserAccount *userAccount = [[UserAccount alloc] init];
     userAccount.email = self.emailField.text;
     userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
-    [MockServerAdapter loginWithUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
-        if (error) {
-            // Handle the error.
-            NSLog(@"Login Failed: %@", [error localizedDescription]);
-        } else {
-            // Success
-            [self setCurrentUserAccount:confirmedUserAccount];
-            [self performSegueWithIdentifier:@"Login" sender:nil];
-        }
-    }];
+    NSError *error;
+    UserAccount *confirmedUserAccount = [MockServerAdapter loginWithUserAccount:userAccount error:&error];
+    
+    if (error) {
+        // Handle the error.
+        NSLog(@"Login Failed: %@", [error localizedDescription]);
+    } else {
+        // Success
+        [UserAccount setCurrentUserAccount:confirmedUserAccount];
+        [self performSegueWithIdentifier:@"Login" sender:nil];
+    }
+
 }
 
 - (IBAction)createAction:(id)sender
@@ -95,27 +97,17 @@
         userAccount.email = self.emailField.text;
         userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
         userAccount.displayName = displayName;
-        
-        [MockServerAdapter createUserAccount:userAccount completion:^(UserAccount *confirmedUserAccount, NSError *error) {
-            if (error) {
-                // Handle the error.
-                NSLog(@"Create User Account Failed: %@", [error localizedDescription]);
-            } else {
-                // Success
-                [self setCurrentUserAccount:userAccount];
-                [self performSegueWithIdentifier:@"Login" sender:nil];
-            }
-        }];
+        NSError *error;
+        UserAccount *confirmedUserAccount = [MockServerAdapter createUserAccount:userAccount error:&error];
+        if (error) {
+            // Handle the error.
+            NSLog(@"Create User Account Failed: %@", [error localizedDescription]);
+        } else {
+            // Success
+            [UserAccount setCurrentUserAccount:confirmedUserAccount];
+            [self performSegueWithIdentifier:@"Login" sender:nil];
+        }
     }
-}
-
-
-- (void)setCurrentUserAccount:(UserAccount*)userAccount
-{
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.email forKey:kCurrentEmail];
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.userId forKey:kCurrentUserId];
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.displayName forKey:kCurrentDisplayName];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString*)hashString:(NSString*)plaintext

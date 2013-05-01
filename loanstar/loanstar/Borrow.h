@@ -14,6 +14,7 @@
 
 @interface Borrow : NSObject
 
+@property (nonatomic, strong) NSString *borrowId;
 @property (nonatomic, strong) NSDate *requestDate;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
@@ -23,5 +24,8 @@
 @property (nonatomic, strong) Status *status;
 
 - (BOOL)isActive;
+
+- (NSDictionary*)dictionary;
++ (Borrow*)fromDictionary:(NSDictionary*)dictionary;
 
 @end

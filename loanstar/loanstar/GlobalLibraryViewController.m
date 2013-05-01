@@ -10,6 +10,9 @@
 
 @interface GlobalLibraryViewController ()
 
+@property (nonatomic, strong) NSMutableArray *availableItems;
+@property (nonatomic, strong) NSMutableArray *loanedItems;
+
 @end
 
 @implementation GlobalLibraryViewController
@@ -17,11 +20,43 @@
 
 - (void)loadItems
 {
-    UserAccount *currentAccount = [[UserAccount alloc] init];
-    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    [MockServerAdapter getAllItemsNotOwnedOrBorrowedByUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
-        self.items = items;
-    }];
+    [self.availableItems removeAllObjects];
+    [self.loanedItems removeAllObjects];
+    
+    NSArray *items = [ServerAdapter getAllItemsNotOwnedOrBorrowedByUserAccount:[UserAccount currentUserAccount] error:NULL];
+    
+    for (Item *item in items) {
+        BOOL hasActiveBorrow = NO;
+        for (Borrow *borrow in item.borrows) {
+            if ([borrow isActive]) {
+                hasActiveBorrow = YES;
+                break;
+            }
+        }
+        if (!hasActiveBorrow) {
+            // Available Items
+            [self.availableItems addObject:item];
+        } else {
+            // Loaned Items
+            [self.loanedItems addObject:item];
+        }
+    }
+}
+
+- (NSMutableArray *)availableItems
+{
+    if (!_availableItems) {
+        _availableItems = [NSMutableArray array];
+    }
+    return _availableItems;
+}
+
+- (NSMutableArray *)loanedItems
+{
+    if (!_loanedItems) {
+        _loanedItems = [NSMutableArray array];
+    }
+    return _loanedItems;
 }
 
 - (NSArray *)sectionTitles
@@ -38,29 +73,9 @@
     NSMutableArray *items = [NSMutableArray array];
     
     if (section == 0) {
-        // Items with no active borrows.
-        for (Item *item in self.items) {
-            BOOL hasActiveBorrow = NO;
-            for (Borrow *borrow in item.borrows) {
-                if ([borrow isActive]) {
-                    hasActiveBorrow = YES;
-                    break;
-                }
-            }
-            if (!hasActiveBorrow) {
-                [items addObject:item];
-            }
-        }
+        items = self.availableItems;
     } else if (section == 1) {
-        // Items with active borrows.
-        for (Item *item in self.items) {
-            for (Borrow *borrow in item.borrows) {
-                if ([borrow isActive]) {
-                    [items addObject:item];
-                    break;
-                }
-            }
-        }
+        items = self.loanedItems;
     }
     
     return [items copy];

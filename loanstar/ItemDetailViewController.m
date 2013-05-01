@@ -46,15 +46,7 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-
-    if (![self.item.owner.userId isEqualToString:currentUserId]) {
+    if (![self.item.owner isEqual:[UserAccount currentUserAccount]]) {
         self.navigationItem.rightBarButtonItem = nil;
     }
 }
@@ -93,9 +85,7 @@
     self.denyButton.hidden = YES;
     self.noRequestsLabel.hidden = YES;
     
-    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-
-    if ([self.item.owner.userId isEqualToString:currentUserId]) {
+    if ([self.item.owner isEqual:[UserAccount currentUserAccount]]) {
         // The user owns this item. The options are blank, accept / deny a request, or mark it as returned.
         self.noRequestsLabel.hidden = NO;
         for (Borrow *borrow in self.item.borrows) {
@@ -117,7 +107,7 @@
         self.requestButton.hidden = NO;
         // Check if the user is borrowing or has requested to borrow this item.
         for (Borrow *borrow in self.item.borrows) {
-            if ([borrow.borrower.userId isEqualToString:currentUserId]) {
+            if ([borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
                 // This user cannot request this item again.
                 self.requestButton.hidden = YES;
                 // Check if the request has not been accepted.

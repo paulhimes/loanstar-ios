@@ -23,5 +23,6 @@
 + (Format*)dvd;
 + (Format*)bluray;
 + (NSArray*)allFormats;
++ (Format*)formatForString:(NSString*)formatString;
 
 @end

@@ -8,8 +8,11 @@
 
 #import "ItemListViewController.h"
 #import "ItemDetailViewController.h"
+#import "LoadingCell.h"
 
 @interface ItemListViewController ()
+
+@property (nonatomic) BOOL dataLoaded;
 
 @end
 
@@ -32,9 +35,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.dataLoaded = NO;
     [super viewWillAppear:animated];
     [self loadItems];
+    // Items have been loaded. Dismiss the waiting / loading view and refresh the table.
+    self.dataLoaded = YES;
+    [self.tableView reloadData];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -59,15 +68,6 @@
     }
 }
 
-- (NSArray *)items
-{
-    if (!_items) {
-        _items = @[];
-    }
-    
-    return _items;
-}
-
 - (void)loadItems
 {
     // Override this method to actually load something.
@@ -78,32 +78,42 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.sectionTitles count];
+    NSUInteger numberOfSections = self.dataLoaded ? [self.sectionTitles count] : 1;
+    return numberOfSections;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return self.sectionTitles[section];
+    return self.dataLoaded ? self.sectionTitles[section] : nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[self itemsInSection:section] count];
+    return self.dataLoaded ? [[self itemsInSection:section] count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ItemCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell;
     
-    // Configure the cell...
-    cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
-
-    // Get the item for this cell.
-    Item *item = [self itemsInSection:indexPath.section][indexPath.row];
-    cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
-    cell.detailTextLabel.text = item.format.name;
+    if (self.dataLoaded) {
+        // Item Cell
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
+        
+        // Configure the cell...
+        cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
+        
+        // Get the item for this cell.
+        Item *item = [self itemsInSection:indexPath.section][indexPath.row];
+        cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
+        cell.detailTextLabel.text = item.format.name;
+    } else {
+        // Loading Cell
+        cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
+        LoadingCell *loadingCell = (LoadingCell*)cell;
+        [loadingCell.activityIndicator startAnimating];
+    }
     
     return cell;
 }

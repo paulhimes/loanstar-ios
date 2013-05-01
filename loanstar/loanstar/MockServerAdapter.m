@@ -128,7 +128,7 @@
 + (UserAccount *)paul
 {
     UserAccount *paul = [[UserAccount alloc] init];
-    paul.userId = @"paul";
+    paul.userId = @"1";
     paul.email = @"paul@paulhimes.com";
     paul.displayName = @"Paul Himes";
     return paul;
@@ -137,7 +137,7 @@
 + (UserAccount *)bob
 {
     UserAccount *bob = [[UserAccount alloc] init];
-    bob.userId = @"bob";
+    bob.userId = @"2";
     bob.email = @"redusek@gmail.com";
     bob.displayName = @"Bob Dusek";
     return bob;
@@ -146,7 +146,7 @@
 + (UserAccount *)chad
 {
     UserAccount *chad = [[UserAccount alloc] init];
-    chad.userId = @"chad";
+    chad.userId = @"3";
     chad.email = @"chadmlinke@gmail.com";
     chad.displayName = @"Chad Linke";
     return chad;
@@ -154,34 +154,36 @@
 
 #pragma mark - UserAccount management
 
-+ (void)createUserAccount:(UserAccount *)userAccount
-               completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion
++ (UserAccount *)createUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    completion([self paul], nil);
+    [self delay];
+    return [self paul];
 }
 
-+ (void)loginWithUserAccount:(UserAccount *)userAccount
-                  completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion
++ (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    completion([self paul], nil);
+    [self delay];
+    return [self paul];
 }
 
 #pragma mark - Item management
 
-+ (void)getAllItemsWithCompletion:(void (^)(NSArray *allItems, NSError* error))completion
++ (NSArray *)getAllItemsWithError:(NSError **)error
 {
-    completion([self allItems], nil);
+    [self delay];
+    return [self allItems];
 }
 
-+ (void)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount*)userAccount completion:(void (^)(NSArray *items, NSError *error))completion
++ (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
+    [self delay];
     NSMutableArray *items = [NSMutableArray array];
     for (Item *item in [self allItems]) {
-        if (![item.owner.userId isEqualToString:userAccount.userId]) {
+        if (![item.owner isEqual:userAccount]) {
             // The user account does not own this item.
             BOOL isBorrowedByUser = NO;
             for (Borrow *borrow in item.borrows) {
-                if ([borrow.borrower.userId isEqualToString:userAccount.userId] && [borrow isActive]) {
+                if ([borrow.borrower isEqual:userAccount] && [borrow isActive]) {
                     isBorrowedByUser = YES;
                     break;
                 }
@@ -191,68 +193,65 @@
             }
         }
     }
-    completion([items copy], nil);
+    return [items copy];
 }
 
-+ (void)getAllItemsOwnedByUserAccount:(UserAccount*)userAccount
-                           completion:(void (^)(NSArray *items, NSError* error))completion
++ (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
+    [self delay];
     NSMutableArray *items = [NSMutableArray array];
     for (Item *item in [self allItems]) {
-        if ([item.owner.userId isEqualToString:userAccount.userId]) {
+        if ([item.owner isEqual:userAccount]) {
             [items addObject:item];
         }
     }
-    completion([items copy], nil);
+    return [items copy];
 }
 
-+ (void)createItem:(Item *)item
-        completion:(void (^)(Item *confirmedItem, NSError* error))completion
++ (Item *)createItem:(Item *)item error:(NSError **)error
 {
-    completion(item, nil);
+    [self delay];
+    return item;
 }
 
-+ (void)editItem:(Item *)item
-      completion:(void (^)(NSError* error))completion
++ (void)editItem:(Item *)item error:(NSError **)error
 {
-    completion(nil);
+    [self delay];
 }
 
-+ (void)deleteItem:(Item *)item
-        completion:(void (^)(NSError* error))completion
++ (void)deleteItem:(Item *)item error:(NSError **)error
 {
-    completion(nil);
+    [self delay];
 }
 
 #pragma mark - Borrow management
 
-+ (void)createBorrow:(Borrow *)borrow
-          completion:(void (^)(Borrow *confirmedBorrow, NSError *error))completion
++ (Borrow *)createBorrow:(Borrow *)borrow error:(NSError **)error
 {
-    completion(borrow, nil);
+    [self delay];
+    return borrow;
 }
 
-+ (void)editBorrow:(Borrow *)borrow
-        completion:(void (^)(NSError* error))completion
++ (void)editBorrow:(Borrow *)borrow error:(NSError **)error
 {
-    completion(nil);
+    [self delay];
 }
 
-+ (void)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount
-                                        completion:(void (^)(NSArray *items, NSError* error))completion
++ (NSArray *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount error:(NSError **)error
 {
+    [self delay];
     NSMutableArray *items = [NSMutableArray array];
     for (Item *item in [self allItems]) {
         for (Borrow *borrow in item.borrows) {
-            if ([borrow.item.owner.userId isEqualToString:userAccount.userId] ||
-                [borrow.borrower.userId isEqualToString:userAccount.userId]) {
+            if ([borrow.item.owner isEqual:userAccount] ||
+                [borrow.borrower isEqual:userAccount]) {
                 if (![items containsObject:item]) {
                     [items addObject:item];
                 }
             }
         }
     }
-    completion([items copy], nil);
+    return [items copy];
 }
 
 #pragma mark - Helper methods
@@ -261,6 +260,11 @@
 {
     double secondsPerDay = 60 * 60 * 24;
     return [NSDate dateWithTimeInterval:secondsPerDay * days sinceDate:[NSDate date]];
+}
+
++ (void)delay
+{
+    [NSThread sleepForTimeInterval:0.25];
 }
 
 @end

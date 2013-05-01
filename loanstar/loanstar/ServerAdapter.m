@@ -7,6 +7,9 @@
 //
 
 #import "ServerAdapter.h"
+#import "Item.h"
+#import "Format.h"
+#import "Borrow.h"
 
 @implementation ServerAdapter
 
@@ -14,105 +17,119 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 #pragma mark - UserAccount management
 
-+ (void)createUserAccount:(UserAccount *)userAccount
-               completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion
+
+
++ (UserAccount *)createUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/user/create" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
-        confirmedUserAccount.email = userAccount.email;
-        confirmedUserAccount.displayName = userAccount.displayName;
-        confirmedUserAccount.userId = responseDictionary[@"userId"];
-        completion(confirmedUserAccount, error);
-    }];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/user/create" jsonData:nil error:error];
+    
+    UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
+    confirmedUserAccount.email = userAccount.email;
+    confirmedUserAccount.displayName = userAccount.displayName;
+    confirmedUserAccount.userId = responseDictionary[@"userId"];
+    return confirmedUserAccount;
 }
 
-+ (void)loginWithUserAccount:(UserAccount *)userAccount
-                  completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion
++ (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/login" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
-        confirmedUserAccount.email = userAccount.email;
-        confirmedUserAccount.userId = responseDictionary[@"userId"];
-        confirmedUserAccount.displayName = responseDictionary[@"displayName"];
-        completion(confirmedUserAccount, nil);
-    }];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/login" jsonData:nil error:error];
+    UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
+    confirmedUserAccount.email = userAccount.email;
+    confirmedUserAccount.userId = responseDictionary[@"userId"];
+    confirmedUserAccount.displayName = responseDictionary[@"displayName"];
+    return confirmedUserAccount;
 }
 
 #pragma mark - Item management
 
-+ (void)getAllItemsWithCompletion:(void (^)(NSArray *allItems, NSError* error))completion
++ (NSArray *)getAllItemsWithError:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/items" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        NSArray *allItems = @[];
-        completion(allItems, error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/items" jsonData:nil error:error];
+    return @[];
 }
 
-+ (void)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount*)userAccount completion:(void (^)(NSArray *items, NSError *error))completion
++ (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    completion(@[], nil);
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/items?userId=%@", userAccount.userId] jsonData:nil error:error];
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
+        Item *item = [Item fromDictionary:itemDictionary];
+        
+        for (NSDictionary *borrowDictionary in itemDictionary[@"borrows"]) {
+            Borrow *borrow = [Borrow fromDictionary:borrowDictionary];
+            borrow.borrower = [UserAccount fromDictionary:borrowDictionary[@"userAccount"]];
+            [item addBorrow:borrow];
+        }
+        
+        // Only include items which this user does not own and is not actively borrowing.
+        
+        BOOL isBorrowing = NO;
+        for (Borrow *borrow in item.borrows) {
+            if ([borrow isActive] && [borrow.borrower isEqual:userAccount]) {
+                isBorrowing = YES;
+                break;
+            }
+        }
+        
+        if (!isBorrowing) {
+            [items addObject:item];
+        }
+    }
+    return items;
 }
 
-+ (void)getAllItemsOwnedByUserAccount:(UserAccount*)userAccount
-                           completion:(void (^)(NSArray *items, NSError* error))completion
++ (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/user/items" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        NSArray *items = @[];
-        completion(items, error);
-    }];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/items/owned?userId=%@", userAccount.userId] jsonData:nil error:error];
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
+        Item *item = [Item fromDictionary:itemDictionary];
+        item.owner = userAccount;
+        [items addObject:item];
+        for (NSDictionary *borrowDictionary in itemDictionary[@"borrows"]) {
+            Borrow *borrow = [Borrow fromDictionary:borrowDictionary];
+            borrow.borrower = [UserAccount fromDictionary:borrowDictionary[@"userAccount"]];
+            [item addBorrow:borrow];
+        }
+    }
+    return items;
 }
 
-+ (void)createItem:(Item *)item
-        completion:(void (^)(Item *confirmedItem, NSError* error))completion
++ (Item *)createItem:(Item *)item error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/create" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        Item *confirmedItem = item;
-        completion(confirmedItem, error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/create" jsonData:nil error:error];
+    return item;
 }
 
-+ (void)editItem:(Item *)item
-      completion:(void (^)(NSError* error))completion
++ (void)editItem:(Item *)item error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/update" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        completion(error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/update" jsonData:nil error:error];
 }
 
-+ (void)deleteItem:(Item *)item
-        completion:(void (^)(NSError* error))completion
++ (void)deleteItem:(Item *)item error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        completion(error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" jsonData:nil error:error];
 }
 
 #pragma mark - Borrow management
 
-+ (void)createBorrow:(Borrow *)borrow
-          completion:(void (^)(Borrow *confirmedBorrow, NSError *error))completion
++ (Borrow *)createBorrow:(Borrow *)borrow error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        Borrow *confirmedBorrow = borrow;
-        completion(confirmedBorrow, error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create" jsonData:nil error:error];
+    return borrow;
 }
 
-+ (void)editBorrow:(Borrow *)borrow
-        completion:(void (^)(NSError* error))completion
++ (void)editBorrow:(Borrow *)borrow error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        completion(error);
-    }];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update" jsonData:nil error:error];
 }
 
-+ (void)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount
-                                        completion:(void (^)(NSArray *items, NSError* error))completion
++ (NSArray *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount error:(NSError **)error
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/user/requests" withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
-        NSArray *items = @[];
-        completion(items, error);
-    }];
+     [self requestDictionaryFromAPIEndpoint:@"api/user/requests" jsonData:nil error:error];
+     return @[];
 }
 
 #pragma mark - Helper methods
@@ -122,10 +139,19 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kServerBaseUrl, endPoint]];
 }
 
-+ (NSDictionary*)requestDictionaryFromAPIEndpoint:(NSString*)endpoint error:(NSError **)error
++ (NSDictionary*)requestDictionaryFromAPIEndpoint:(NSString*)endpoint jsonData:(NSData*)jsonData error:(NSError **)error
 {
     // Setup the request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[self urlForEndpoint:endpoint]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self urlForEndpoint:endpoint]];
+    
+    if (jsonData) {
+        [request setHTTPMethod:@"GET"];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody:jsonData];
+    }
+    
+    NSLog(@"sending: %@", request);
     
     // Make the request and get the response.
     NSURLResponse *response;
@@ -133,28 +159,17 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:error];
     
     // Convert the response to objective c objects.
-    return [NSJSONSerialization JSONObjectWithData:responseData options:0 error:error];
-}
-
-+ (void)requestDictionaryFromAPIEndpoint:(NSString*)endpoint
-                          withCompletion:(void (^)(NSDictionary *responseDictionary, NSError *error))completion
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // This code will run on a background thread.
-        
-        // Make the request.
-        NSError *error;
-        NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:endpoint error:&error];
-        
-        NSLog(@"%@", responseDictionary);
-        if (error) {
-            NSLog(@"%@", error);
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion(responseDictionary, error);
-        });
-    });
+    NSDictionary *responseDictionary;
+    if (responseData) {
+        responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:error];
+    }
+    
+    NSLog(@"%@", responseDictionary);
+    if (error) {
+        NSLog(@"%@", *error);
+    }
+    
+    return responseDictionary;
 }
 
 @end

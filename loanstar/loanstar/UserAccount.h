@@ -11,10 +11,6 @@
 @class Item;
 @class Borrow;
 
-static NSString * const kCurrentUserId = @"CurrentUserId";
-static NSString * const kCurrentEmail = @"CurrentEmail";
-static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
-
 @interface UserAccount : NSObject
 
 @property (nonatomic, strong) NSString *userId;
@@ -29,5 +25,11 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
 - (void)removeItem:(Item*)item;
 - (void)addBorrow:(Borrow*)borrow;
 - (void)removeBorrow:(Borrow*)borrow;
+
++ (UserAccount*)currentUserAccount;
++ (void)setCurrentUserAccount:(UserAccount*)userAccount;
+
+- (NSDictionary*)dictionary;
++ (UserAccount*)fromDictionary:(NSDictionary*)dictionary;
 
 @end

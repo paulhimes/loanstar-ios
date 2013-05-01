@@ -78,4 +78,32 @@ static NSMutableDictionary *typeDictionary;
     return @[[self dvd], [self bluray], [self vhs]];
 }
 
++ (Format*)formatForString:(NSString*)formatString
+{
+    Format *format;
+    if ([formatString isEqualToString:@"bluray"]) {
+        format = [self bluray];
+    } else if ([formatString isEqualToString:@"dvd"]) {
+        format = [self dvd];
+    } else if ([formatString isEqualToString:@"vhs"]) {
+        format = [self vhs];
+    }
+    
+    return format;
+}
+
+- (NSString *)description
+{
+    NSString *string;
+    if ([self isEqual:[Format bluray]]) {
+        string = @"bluray";
+    } else if ([self isEqual:[Format dvd]]) {
+        string = @"dvd";
+    } else if ([self isEqual:[Format vhs]]) {
+        string = @"vhs";
+    }
+    
+    return string;
+}
+
 @end

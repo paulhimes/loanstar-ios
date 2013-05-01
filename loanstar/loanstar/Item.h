@@ -14,6 +14,7 @@
 
 @interface Item : NSObject
 
+@property (nonatomic, strong) NSString *itemId;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic) NSUInteger year;
 @property (nonatomic, strong) UIImage *picture;
@@ -28,5 +29,8 @@
 + (Item*)itemWithTitle:(NSString*)title
                   year:(NSUInteger)year
                 format:(Format*)format;
+
+- (NSDictionary*)dictionary;
++ (Item*)fromDictionary:(NSDictionary*)dictionary;
 
 @end

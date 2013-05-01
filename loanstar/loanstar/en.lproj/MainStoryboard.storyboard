@@ -136,6 +136,27 @@
                                     <segue destination="1wj-tA-cGj" kind="push" identifier="Detail" id="yO1-aD-VKv"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" id="ZRN-8d-cer" customClass="LoadingCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-PE-p34">
+                                            <color key="color" red="0.0" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="Phs-PE-p34" firstAttribute="top" secondItem="ZRN-8d-cer" secondAttribute="top" constant="3" id="420-Gi-cNf"/>
+                                    <constraint firstItem="Phs-PE-p34" firstAttribute="centerX" secondItem="ZRN-8d-cer" secondAttribute="centerX" type="default" id="Mdi-xP-Wve"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="Phs-PE-p34" id="R2u-1c-qbZ"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Global Library" id="vty-tT-5uk"/>
@@ -175,6 +196,27 @@
                                 </view>
                                 <connections>
                                     <segue destination="1wj-tA-cGj" kind="push" identifier="Detail" id="RG1-rB-rwS"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" id="neT-2r-iRV" customClass="LoadingCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DeG-bk-0V3">
+                                            <color key="color" red="0.0" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="DeG-bk-0V3" firstAttribute="top" secondItem="neT-2r-iRV" secondAttribute="top" constant="3" id="4dw-m2-ALg"/>
+                                    <constraint firstItem="DeG-bk-0V3" firstAttribute="centerX" secondItem="neT-2r-iRV" secondAttribute="centerX" type="default" id="NPm-40-y65"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="DeG-bk-0V3" id="C7d-zV-Ifb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -268,6 +310,27 @@
                                 </view>
                                 <connections>
                                     <segue destination="1wj-tA-cGj" kind="push" identifier="Detail" id="kmi-6V-KL5"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" id="jVj-sx-RJs" customClass="LoadingCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UAu-oB-NdQ">
+                                            <color key="color" red="0.0" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="UAu-oB-NdQ" firstAttribute="centerX" secondItem="jVj-sx-RJs" secondAttribute="centerX" type="default" id="532-H8-O6H"/>
+                                    <constraint firstItem="UAu-oB-NdQ" firstAttribute="top" secondItem="jVj-sx-RJs" secondAttribute="top" constant="3" id="KcK-NF-f10"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="UAu-oB-NdQ" id="WQ1-vi-S8E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -736,61 +799,6 @@
         <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
-    <classes>
-        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
-        </class>
-        <class className="ItemDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemYearLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noRequestsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ownerNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="ItemEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="action" name="changePicture:"/>
-                <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="outlet" name="formatField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ItemListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createAction:"/>
-                <relationship kind="action" name="loginAction:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MyLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RequestsViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -799,6 +807,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dcL-HK-ahO"/>
         <segue reference="RG1-rB-rwS"/>
-        <segue reference="Jgf-cK-Ih7"/>
+        <segue reference="l50-B4-jeb"/>
     </inferredMetricsTieBreakers>
 </document>

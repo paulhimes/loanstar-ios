@@ -13,39 +13,23 @@
 
 #pragma mark - UserAccount management
 
-+ (void)createUserAccount:(UserAccount *)userAccount
-               completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion;
-
-+ (void)loginWithUserAccount:(UserAccount *)userAccount
-                  completion:(void (^)(UserAccount *confirmedUserAccount, NSError* error))completion;
++ (UserAccount *)createUserAccount:(UserAccount *)userAccount error:(NSError **)error;
++ (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount error:(NSError **)error;
 
 #pragma mark - Item management
 
-+ (void)getAllItemsWithCompletion:(void (^)(NSArray *allItems, NSError* error))completion;
-
-+ (void)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount*)userAccount completion:(void (^)(NSArray *items, NSError *error))completion;
-
-+ (void)getAllItemsOwnedByUserAccount:(UserAccount*)userAccount
-                           completion:(void (^)(NSArray *items, NSError* error))completion;
-
-+ (void)createItem:(Item *)item
-        completion:(void (^)(Item *confirmedItem, NSError* error))completion;
-
-+ (void)editItem:(Item *)item
-      completion:(void (^)(NSError* error))completion;
-
-+ (void)deleteItem:(Item *)item
-        completion:(void (^)(NSError* error))completion;
++ (NSArray *)getAllItemsWithError:(NSError **)error;
++ (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount error:(NSError **)error;
++ (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount error:(NSError **)error;
++ (Item *)createItem:(Item *)item error:(NSError **)error;
++ (void)editItem:(Item *)item error:(NSError **)error;
++ (void)deleteItem:(Item *)item error:(NSError **)error;
 
 #pragma mark - Borrow management
 
-+ (void)createBorrow:(Borrow *)borrow
-          completion:(void (^)(Borrow *confirmedBorrow, NSError *error))completion;
++ (Borrow *)createBorrow:(Borrow *)borrow error:(NSError **)error;
++ (void)editBorrow:(Borrow *)borrow error:(NSError **)error;
++ (NSArray *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount error:(NSError **)error;
 
-+ (void)editBorrow:(Borrow *)borrow
-        completion:(void (^)(NSError* error))completion;
-
-+ (void)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount
-                                        completion:(void (^)(NSArray *items, NSError* error))completion;
 
 @end

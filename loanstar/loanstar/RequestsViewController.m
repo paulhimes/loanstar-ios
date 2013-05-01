@@ -10,6 +10,9 @@
 
 @interface RequestsViewController ()
 
+@property (nonatomic, strong) NSMutableArray *myRequests;
+@property (nonatomic, strong) NSMutableArray *othersRequests;
+
 @end
 
 @implementation RequestsViewController
@@ -17,11 +20,45 @@
 
 - (void)loadItems
 {
-    UserAccount *currentAccount = [[UserAccount alloc] init];
-    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    [MockServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
-        self.items = items;
-    }];
+    [self.myRequests removeAllObjects];
+    [self.othersRequests removeAllObjects];
+
+    NSArray *items = [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:[UserAccount currentUserAccount] error:NULL];
+    
+    // My Requests
+    for (Item *item in items) {
+        for (Borrow *borrow in item.borrows) {
+            if (![borrow isActive] && [borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
+                [self.myRequests addObject:item];
+                break;
+            }
+        }
+    }
+    // Requests from others
+    for (Item *item in items) {
+        for (Borrow *borrow in item.borrows) {
+            if (![borrow isActive] && [borrow.item.owner isEqual:[UserAccount currentUserAccount]]) {
+                [self.othersRequests addObject:item];
+                break;
+            }
+        }
+    }
+}
+
+- (NSMutableArray *)myRequests
+{
+    if (!_myRequests) {
+        _myRequests = [NSMutableArray array];
+    }
+    return _myRequests;
+}
+
+- (NSMutableArray *)othersRequests
+{
+    if (!_othersRequests) {
+        _othersRequests = [NSMutableArray array];
+    }
+    return _othersRequests;
 }
 
 - (NSArray *)sectionTitles
@@ -37,31 +74,13 @@
 {
     NSMutableArray *items = [NSMutableArray array];
     
-    UserAccount *currentAccount = [[UserAccount alloc] init];
-    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
     if (section == 0) {
-        // My Requests
-        for (Item *item in self.items) {
-            for (Borrow *borrow in item.borrows) {
-                if (![borrow isActive] && [borrow.borrower.userId isEqualToString:currentAccount.userId]) {
-                    [items addObject:item];
-                    break;
-                }
-            }
-        }
+        items = self.myRequests;
     } else if (section == 1) {
-        // Requests from others
-        for (Item *item in self.items) {
-            for (Borrow *borrow in item.borrows) {
-                if (![borrow isActive] && [borrow.item.owner.userId isEqualToString:currentAccount.userId]) {
-                    [items addObject:item];
-                    break;
-                }
-            }
-        }
+        items = self.othersRequests;
     }
     
-    return items;
+    return [items copy];
 }
 
 @end

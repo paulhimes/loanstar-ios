@@ -10,38 +10,77 @@
 
 @interface MyLibraryViewController ()
 
-@property (nonatomic, strong) NSArray *borrowedItems;
+@property (nonatomic, strong) NSMutableArray *atHomeItems;
+@property (nonatomic, strong) NSMutableArray *awayItems;
+@property (nonatomic, strong) NSMutableArray *borrowedItems;
 
 @end
 
 @implementation MyLibraryViewController
 @synthesize sectionTitles = _sectionTitles;
 
-- (void)loadItems;
+- (void)loadItems
 {
-    UserAccount *currentAccount = [[UserAccount alloc] init];
-    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    [MockServerAdapter getAllItemsOwnedByUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
-        
-        self.items = items;
-        
-        [MockServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:currentAccount completion:^(NSArray *items, NSError *error) {
-            
-            NSMutableArray *borrowedSubset = [NSMutableArray array];
-            for (Item *item in items) {
-                // Make sure there is an active borrow attributed to the current user.
-                for (Borrow *borrow in item.borrows) {
-                    if ([borrow.borrower.userId isEqualToString:currentAccount.userId] && [borrow isActive]) {
-                        [borrowedSubset addObject:item];
-                        break;
-                    }
-                }
+    [self.atHomeItems removeAllObjects];
+    [self.awayItems removeAllObjects];
+    
+    NSArray *ownedItems = [ServerAdapter getAllItemsOwnedByUserAccount:[UserAccount currentUserAccount] error:NULL];
+    
+    for (Item *item in ownedItems) {
+        BOOL hasActiveBorrow = NO;
+        for (Borrow *borrow in item.borrows) {
+            if ([borrow isActive]) {
+                hasActiveBorrow = YES;
+                break;
             }
-            
-            self.borrowedItems = [borrowedSubset copy];
-        }];
+        }
         
-    }];
+        if (!hasActiveBorrow) {
+            // At Home Items - no active borrows
+            [self.atHomeItems addObject:item];
+        } else {
+            // Away Items - active borrows
+            [self.awayItems addObject:item];
+        }
+    }
+    
+    [self.borrowedItems removeAllObjects];
+    
+    NSArray *itemsWithRelatedBorrows = [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:[UserAccount currentUserAccount] error:NULL];
+    
+    for (Item *item in itemsWithRelatedBorrows) {
+        // Make sure there is an active borrow attributed to the current user.
+        for (Borrow *borrow in item.borrows) {
+            if ([borrow.borrower isEqual:[UserAccount currentUserAccount]] && [borrow isActive]) {
+                [self.borrowedItems addObject:item];
+                break;
+            }
+        }
+    }
+}
+
+- (NSMutableArray *)atHomeItems
+{
+    if (!_atHomeItems) {
+        _atHomeItems = [NSMutableArray array];
+    }
+    return _atHomeItems;
+}
+
+- (NSMutableArray *)awayItems
+{
+    if (!_awayItems) {
+        _awayItems = [NSMutableArray array];
+    }
+    return _awayItems;
+}
+
+- (NSMutableArray *)borrowedItems
+{
+    if (!_borrowedItems) {
+        _borrowedItems = [NSMutableArray array];
+    }
+    return _borrowedItems;
 }
 
 - (NSArray *)sectionTitles
@@ -58,31 +97,11 @@
     NSMutableArray *items = [NSMutableArray array];
     
     if (section == 0) {
-        // Items with no active borrows.
-        for (Item *item in self.items) {
-            BOOL hasActiveBorrow = NO;
-            for (Borrow *borrow in item.borrows) {
-                if ([borrow isActive]) {
-                    hasActiveBorrow = YES;
-                    break;
-                }
-            }
-            if (!hasActiveBorrow) {
-                [items addObject:item];
-            }
-        }
+        items = self.atHomeItems;
     } else if (section == 1) {
-        // Items with active borrows.
-        for (Item *item in self.items) {
-            for (Borrow *borrow in item.borrows) {
-                if ([borrow isActive]) {
-                    [items addObject:item];
-                    break;
-                }
-            }
-        }
+        items = self.awayItems;
     } else {
-        items = [self.borrowedItems mutableCopy];
+        items = self.borrowedItems;
     }
     
     return [items copy];

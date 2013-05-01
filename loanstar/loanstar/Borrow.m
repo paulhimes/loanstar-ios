@@ -54,4 +54,41 @@
     return description;
 }
 
+- (NSDictionary*)dictionary
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    if (self.borrowId) {
+        dictionary[@"borrowId"] = self.borrowId;
+    }
+    if (self.requestDate) {
+        dictionary[@"requestDate"] = [@([self.requestDate timeIntervalSince1970]) stringValue];
+    }
+    if (self.startDate) {
+        dictionary[@"startDate"] = [@([self.startDate timeIntervalSince1970]) stringValue];
+    }
+    return [dictionary copy];
+}
+
++ (Borrow*)fromDictionary:(NSDictionary*)dictionary
+{
+    Borrow *borrow;
+    if (dictionary) {
+        borrow = [[Borrow alloc] init];
+        borrow.borrowId = dictionary[@"borrowId"];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        if (![dictionary[@"requestDate"] isEqual:[NSNull null]]) {
+            borrow.requestDate = [dateFormatter dateFromString:dictionary[@"requestDate"]];
+        }
+        if (![dictionary[@"startDate"] isEqual:[NSNull null]]) {
+            borrow.startDate = [dateFormatter dateFromString:dictionary[@"startDate"]];
+        }
+    }
+    return borrow;
+}
+
+
+
 @end

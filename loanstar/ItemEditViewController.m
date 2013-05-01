@@ -67,15 +67,13 @@
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.item) {
         // Update item details.
-        [MockServerAdapter editItem:self.item completion:^(NSError *error) {
-            [self dismiss];
-        }];
+        [ServerAdapter editItem:self.item error:NULL];
+        [self dismiss];
     } else {
         Item *item = [[Item alloc] init];
         // Fill in item details.
-        [MockServerAdapter createItem:item completion:^(Item *confirmedItem, NSError *error) {
-            [self dismiss];
-        }];
+        item = [ServerAdapter createItem:item error:NULL];
+        [self dismiss];
     }
 }
 
