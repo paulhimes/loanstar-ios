@@ -168,12 +168,6 @@
 
 #pragma mark - Item management
 
-+ (NSArray *)getAllItems
-{
-    [self delay];
-    return [self allItems];
-}
-
 + (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount
 {
     [self delay];

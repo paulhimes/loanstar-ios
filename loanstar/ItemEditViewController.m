@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *yearField;
-@property (weak, nonatomic) IBOutlet UITextField *formatField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *formatPicker;
 @property (weak, nonatomic) IBOutlet UIButton *pictureButton;
 
 @end
@@ -48,7 +48,14 @@
     self.title = self.item.title;
     self.titleField.text = self.item.title;
     self.yearField.text = [NSString stringWithFormat:@"%d", self.item.year];
-    self.formatField.text = self.item.format.name;
+    
+    if (self.item.format == [Format vhs]) {
+        self.formatPicker.selectedSegmentIndex = 0;
+    } else if (self.item.format == [Format dvd]) {
+        self.formatPicker.selectedSegmentIndex = 1;
+    } else if (self.item.format == [Format bluray]) {
+        self.formatPicker.selectedSegmentIndex = 2;
+    }
 }
 
 - (IBAction)changePicture:(id)sender {
@@ -67,6 +74,25 @@
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.item) {
         // Update item details.
+        self.item.title = self.titleField.text;
+        self.item.year = [self.yearField.text integerValue];
+        
+        switch (self.formatPicker.selectedSegmentIndex) {
+            case 0:
+                self.item.format = [Format vhs];
+                break;
+            case 1:
+                self.item.format = [Format dvd];
+                break;
+            case 2:
+                self.item.format = [Format bluray];
+                break;
+            default:
+                break;
+        }
+
+        self.item.picture = [self.pictureButton imageForState:UIControlStateNormal];
+        
         [ServerAdapter editItem:self.item];
         [self dismiss];
     } else {

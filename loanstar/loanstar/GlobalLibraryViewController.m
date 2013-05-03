@@ -23,7 +23,6 @@
     [self.availableItems removeAllObjects];
     [self.loanedItems removeAllObjects];
     
-    NSError *error;
     NSArray *items = [ServerAdapter getAllItemsNotOwnedOrBorrowedByUserAccount:[UserAccount currentUserAccount]];
     
     for (Item *item in items) {

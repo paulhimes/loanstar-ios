@@ -18,7 +18,6 @@
 
 #pragma mark - Item management
 
-+ (NSArray *)getAllItems;
 + (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount;
 + (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount;
 + (Item *)createItem:(Item *)item;

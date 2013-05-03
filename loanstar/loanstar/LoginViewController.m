@@ -30,10 +30,9 @@
 {
     [super viewDidAppear:animated];
     
-//    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-//    if (currentUserId) {
-//        [self performSegueWithIdentifier:@"QuickLogin" sender:nil];
-//    }
+    if ([UserAccount currentUserAccount]) {
+        [self performSegueWithIdentifier:@"QuickLogin" sender:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning

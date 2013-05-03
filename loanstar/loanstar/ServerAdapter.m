@@ -11,6 +11,13 @@
 #import "Format.h"
 #import "Borrow.h"
 
+typedef enum kHTTPMethod : NSUInteger {
+    kGET,
+    kPOST,
+    kPUT,
+    kDELETE
+} kHTTPMethod;
+
 @implementation ServerAdapter
 
 static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
@@ -20,11 +27,10 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 // done
 + (UserAccount *)createUserAccount:(UserAccount *)userAccount
-{
-    NSDictionary *jsonDataDictionary = @{@"email": userAccount.email, @"hashedPassword": userAccount.hashedPassword, @"displayName": userAccount.displayName};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:0 error:NULL];
-    
-    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/user/create" jsonData:jsonData debug:NO];
+{    
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/user/create"
+                                                               dataDictionary:@{@"email": userAccount.email, @"hashedPassword": userAccount.hashedPassword, @"displayName": userAccount.displayName}
+                                                                   httpMethod:kPOST debug:NO];
     
     UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
     confirmedUserAccount.email = userAccount.email;
@@ -36,7 +42,10 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 // done
 + (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount
 {
-    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/user/login?email=%@&hashedPassword=%@", userAccount.email, userAccount.hashedPassword] jsonData:nil debug:NO];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/user/login"
+                                                               dataDictionary:@{@"email": userAccount.email, @"hashedPassword": userAccount.hashedPassword}
+                                                                   httpMethod:kGET
+                                                                        debug:NO];
     UserAccount *confirmedUserAccount = [[UserAccount alloc] init];
     confirmedUserAccount.email = userAccount.email;
     confirmedUserAccount.userId = [responseDictionary[@"userId"] description];
@@ -46,16 +55,13 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 #pragma mark - Item management
 
-+ (NSArray *)getAllItems
-{
-    [self requestDictionaryFromAPIEndpoint:@"api/items" jsonData:nil debug:NO];
-    return @[];
-}
-
 // done
 + (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount
 {
-    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/items?userId=%@", userAccount.userId] jsonData:nil debug:NO];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/items"
+                                                               dataDictionary:@{@"userId": userAccount.userId}
+                                                                   httpMethod:kGET
+                                                                        debug:NO];
     
     NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
@@ -80,7 +86,10 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 // done
 + (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount
 {
-    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/items/owned?userId=%@", userAccount.userId] jsonData:nil debug:NO];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/items/owned"
+                                                               dataDictionary:@{@"userId": userAccount.userId}
+                                                                   httpMethod:kGET
+                                                                        debug:NO];
     
     NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
@@ -92,37 +101,42 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 + (Item *)createItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/create" jsonData:nil debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/create" dataDictionary:nil httpMethod:kPOST debug:NO];
     return item;
 }
 
 + (void)editItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/update" jsonData:nil debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/update"
+                            dataDictionary:@{@"title": item.title, @"year": @(item.year), @"format": item.format.name, @"itemId": item.itemId} httpMethod:kPUT
+                                     debug:YES];
 }
 
 + (void)deleteItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" jsonData:nil debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" dataDictionary:nil httpMethod:kDELETE debug:NO];
 }
 
 #pragma mark - Borrow management
 
 + (Borrow *)createBorrow:(Borrow *)borrow
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create" jsonData:nil debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create" dataDictionary:nil httpMethod:kPOST debug:NO];
     return borrow;
 }
 
 + (void)editBorrow:(Borrow *)borrow
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update" jsonData:nil debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update" dataDictionary:nil httpMethod:kPUT debug:NO];
 }
 
 // done
 + (NSDictionary *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount
 {
-     NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/borrows/requests?userId=%@", userAccount.userId] jsonData:nil debug:YES];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/borrows/requests"
+                                                               dataDictionary:@{@"userId":userAccount.userId}
+                                                                   httpMethod:kGET
+                                                                        debug:NO];
     
     NSMutableArray *myRequests = [NSMutableArray array];
     NSMutableArray *requestsFromOthers = [NSMutableArray array];
@@ -142,7 +156,10 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 // done
 + (NSArray *)getAllItemsCurrentlyBorrowedByUserAccount:(UserAccount*)userAccount
 {
-    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:[NSString stringWithFormat:@"api/borrows?userId=%@", userAccount.userId] jsonData:nil debug:YES];
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/borrows"
+                                                               dataDictionary:@{@"userId": userAccount.userId}
+                                                                   httpMethod:kGET
+                                                                        debug:NO];
     
     NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
@@ -159,14 +176,48 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kServerBaseUrl, endPoint]];
 }
 
-+ (NSDictionary*)requestDictionaryFromAPIEndpoint:(NSString*)endpoint jsonData:(NSData*)jsonData debug:(BOOL)debug
++ (NSDictionary*)requestDictionaryFromAPIEndpoint:(NSString*)endpoint
+                                   dataDictionary:(NSDictionary*)dataDictionary
+                                       httpMethod:(kHTTPMethod)method
+                                            debug:(BOOL)debug
 {
     // Setup the request.
+    if (method == kGET) {
+        // Encode the data dictionary as an http query.
+        NSMutableString *queryString = [NSMutableString string];
+        NSUInteger index = 0;
+        for (id<NSObject> key in dataDictionary) {
+            [queryString appendFormat:@"%@=%@", [key description], [dataDictionary[key] description]];
+            if (index < [dataDictionary count] - 1) {
+                [queryString appendString:@"&"];
+            }
+            index++;
+        }
+        
+        // Add the query to the endpoint path.
+        endpoint = [NSString stringWithFormat:@"%@?%@", endpoint, queryString];
+    }
+    
     endpoint = [endpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self urlForEndpoint:endpoint]];
     
-    if (jsonData) {
-        [request setHTTPMethod:@"POST"];
+    if (method == kPOST ||
+        method == kPUT ||
+        method == kDELETE) {
+        
+        // Set the request's method type.
+        if (method == kPOST) {
+            [request setHTTPMethod:@"POST"];
+        } else if (method == kPUT) {
+            [request setHTTPMethod:@"PUT"];
+        } else {
+            [request setHTTPMethod:@"DELETE"];
+        }
+        
+        // Convert the data dictionary to json data.
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDictionary options:0 error:NULL];
+        
+        // Put the json data in the body of the request.
         [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:jsonData];
@@ -176,7 +227,7 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     
     // Make the request and get the response.
     NSURLResponse *response;
-        
+    
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
     
     // Convert the response to objective c objects.

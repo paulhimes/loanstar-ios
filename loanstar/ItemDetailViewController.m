@@ -59,6 +59,9 @@
     self.itemYearLabel.text = [NSString stringWithFormat:@"%d", self.item.year];
     self.itemFormatLabel.text = self.item.format.name;
     self.ownerNameLabel.text = self.item.owner.displayName;
+    if (self.item.picture) {
+        self.pictureImageView.image = self.item.picture;
+    }
     
     // Determine the item status...
     BOOL activeBorrow = NO;

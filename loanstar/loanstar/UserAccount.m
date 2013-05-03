@@ -85,10 +85,13 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
 
 + (UserAccount*)currentUserAccount
 {
-    UserAccount *currentAccount = [[UserAccount alloc] init];
-    currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
-    currentAccount.email = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentEmail];
-    currentAccount.displayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
+    UserAccount *currentAccount;
+    if ([[[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId] length] > 0) {
+        currentAccount = [[UserAccount alloc] init];
+        currentAccount.userId = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentUserId];
+        currentAccount.email = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentEmail];
+        currentAccount.displayName = [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentDisplayName];
+    }
     return currentAccount;
 }
 
