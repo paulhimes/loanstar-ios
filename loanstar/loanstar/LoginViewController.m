@@ -62,12 +62,12 @@
     UserAccount *userAccount = [[UserAccount alloc] init];
     userAccount.email = self.emailField.text;
     userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
-    NSError *error;
-    UserAccount *confirmedUserAccount = [MockServerAdapter loginWithUserAccount:userAccount error:&error];
+
+    UserAccount *confirmedUserAccount = [ServerAdapter loginWithUserAccount:userAccount];
     
-    if (error) {
+    if ([confirmedUserAccount.userId length] <= 0) {
         // Handle the error.
-        NSLog(@"Login Failed: %@", [error localizedDescription]);
+        NSLog(@"Login Failed");
     } else {
         // Success
         [UserAccount setCurrentUserAccount:confirmedUserAccount];
@@ -97,11 +97,12 @@
         userAccount.email = self.emailField.text;
         userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
         userAccount.displayName = displayName;
-        NSError *error;
-        UserAccount *confirmedUserAccount = [MockServerAdapter createUserAccount:userAccount error:&error];
-        if (error) {
+        
+        UserAccount *confirmedUserAccount = [ServerAdapter createUserAccount:userAccount];
+        
+        if ([confirmedUserAccount.userId length] <= 0) {
             // Handle the error.
-            NSLog(@"Create User Account Failed: %@", [error localizedDescription]);
+            NSLog(@"Create User Account Failed");
         } else {
             // Success
             [UserAccount setCurrentUserAccount:confirmedUserAccount];

@@ -24,7 +24,7 @@
     [self.atHomeItems removeAllObjects];
     [self.awayItems removeAllObjects];
     
-    NSArray *ownedItems = [ServerAdapter getAllItemsOwnedByUserAccount:[UserAccount currentUserAccount] error:NULL];
+    NSArray *ownedItems = [ServerAdapter getAllItemsOwnedByUserAccount:[UserAccount currentUserAccount]];
     
     for (Item *item in ownedItems) {
         BOOL hasActiveBorrow = NO;
@@ -45,18 +45,7 @@
     }
     
     [self.borrowedItems removeAllObjects];
-    
-    NSArray *itemsWithRelatedBorrows = [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:[UserAccount currentUserAccount] error:NULL];
-    
-    for (Item *item in itemsWithRelatedBorrows) {
-        // Make sure there is an active borrow attributed to the current user.
-        for (Borrow *borrow in item.borrows) {
-            if ([borrow.borrower isEqual:[UserAccount currentUserAccount]] && [borrow isActive]) {
-                [self.borrowedItems addObject:item];
-                break;
-            }
-        }
-    }
+    [self.borrowedItems addObjectsFromArray:[ServerAdapter getAllItemsCurrentlyBorrowedByUserAccount:[UserAccount currentUserAccount]]];
 }
 
 - (NSMutableArray *)atHomeItems

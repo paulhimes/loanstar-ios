@@ -75,15 +75,12 @@
     if (dictionary) {
         borrow = [[Borrow alloc] init];
         borrow.borrowId = dictionary[@"borrowId"];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        
+
         if (![dictionary[@"requestDate"] isEqual:[NSNull null]]) {
-            borrow.requestDate = [dateFormatter dateFromString:dictionary[@"requestDate"]];
+            borrow.requestDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[@"requestDate"] doubleValue]];
         }
         if (![dictionary[@"startDate"] isEqual:[NSNull null]]) {
-            borrow.startDate = [dateFormatter dateFromString:dictionary[@"startDate"]];
+            borrow.startDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[@"startDate"] doubleValue]];
         }
     }
     return borrow;

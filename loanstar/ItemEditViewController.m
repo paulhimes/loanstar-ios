@@ -67,12 +67,12 @@
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.item) {
         // Update item details.
-        [ServerAdapter editItem:self.item error:NULL];
+        [ServerAdapter editItem:self.item];
         [self dismiss];
     } else {
         Item *item = [[Item alloc] init];
         // Fill in item details.
-        item = [ServerAdapter createItem:item error:NULL];
+        item = [ServerAdapter createItem:item];
         [self dismiss];
     }
 }

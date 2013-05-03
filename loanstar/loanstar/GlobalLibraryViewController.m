@@ -23,7 +23,8 @@
     [self.availableItems removeAllObjects];
     [self.loanedItems removeAllObjects];
     
-    NSArray *items = [ServerAdapter getAllItemsNotOwnedOrBorrowedByUserAccount:[UserAccount currentUserAccount] error:NULL];
+    NSError *error;
+    NSArray *items = [ServerAdapter getAllItemsNotOwnedOrBorrowedByUserAccount:[UserAccount currentUserAccount]];
     
     for (Item *item in items) {
         BOOL hasActiveBorrow = NO;

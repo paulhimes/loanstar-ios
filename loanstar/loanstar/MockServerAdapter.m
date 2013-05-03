@@ -154,13 +154,13 @@
 
 #pragma mark - UserAccount management
 
-+ (UserAccount *)createUserAccount:(UserAccount *)userAccount error:(NSError **)error
++ (UserAccount *)createUserAccount:(UserAccount *)userAccount
 {
     [self delay];
     return [self paul];
 }
 
-+ (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount error:(NSError **)error
++ (UserAccount *)loginWithUserAccount:(UserAccount *)userAccount
 {
     [self delay];
     return [self paul];
@@ -168,13 +168,13 @@
 
 #pragma mark - Item management
 
-+ (NSArray *)getAllItemsWithError:(NSError **)error
++ (NSArray *)getAllItems
 {
     [self delay];
     return [self allItems];
 }
 
-+ (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
++ (NSArray *)getAllItemsNotOwnedOrBorrowedByUserAccount:(UserAccount *)userAccount
 {
     [self delay];
     NSMutableArray *items = [NSMutableArray array];
@@ -196,7 +196,7 @@
     return [items copy];
 }
 
-+ (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount error:(NSError **)error
++ (NSArray *)getAllItemsOwnedByUserAccount:(UserAccount *)userAccount
 {
     [self delay];
     NSMutableArray *items = [NSMutableArray array];
@@ -208,36 +208,36 @@
     return [items copy];
 }
 
-+ (Item *)createItem:(Item *)item error:(NSError **)error
++ (Item *)createItem:(Item *)item
 {
     [self delay];
     return item;
 }
 
-+ (void)editItem:(Item *)item error:(NSError **)error
++ (void)editItem:(Item *)item
 {
     [self delay];
 }
 
-+ (void)deleteItem:(Item *)item error:(NSError **)error
++ (void)deleteItem:(Item *)item
 {
     [self delay];
 }
 
 #pragma mark - Borrow management
 
-+ (Borrow *)createBorrow:(Borrow *)borrow error:(NSError **)error
++ (Borrow *)createBorrow:(Borrow *)borrow
 {
     [self delay];
     return borrow;
 }
 
-+ (void)editBorrow:(Borrow *)borrow error:(NSError **)error
++ (void)editBorrow:(Borrow *)borrow
 {
     [self delay];
 }
 
-+ (NSArray *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount error:(NSError **)error
++ (NSArray *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount
 {
     [self delay];
     NSMutableArray *items = [NSMutableArray array];

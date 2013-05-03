@@ -77,7 +77,7 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
     if ([object isKindOfClass:[UserAccount class]]) {
         UserAccount *otherUserAccount = (UserAccount*)object;
         
-        equal = [self.userId isEqual:otherUserAccount.userId];
+        equal = [self.userId isEqualToString:otherUserAccount.userId];
     }
     
     return equal;
@@ -123,7 +123,7 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
     UserAccount *userAccount;
     if (dictionary) {
         userAccount = [[UserAccount alloc] init];
-        userAccount.userId = dictionary[@"userId"];
+        userAccount.userId = [dictionary[@"userId"] description];
         userAccount.displayName = dictionary[@"displayName"];
         userAccount.email = dictionary[@"email"];
         userAccount.hashedPassword = dictionary[@"hashedPassword"];

@@ -23,10 +23,10 @@
     [self.myRequests removeAllObjects];
     [self.othersRequests removeAllObjects];
 
-    NSArray *items = [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:[UserAccount currentUserAccount] error:NULL];
+    NSDictionary *items = [ServerAdapter getAllItemsWithBorrowsRelatedToUserAccount:[UserAccount currentUserAccount]];
     
     // My Requests
-    for (Item *item in items) {
+    for (Item *item in items[@"myRequests"]) {
         for (Borrow *borrow in item.borrows) {
             if (![borrow isActive] && [borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
                 [self.myRequests addObject:item];
@@ -35,7 +35,7 @@
         }
     }
     // Requests from others
-    for (Item *item in items) {
+    for (Item *item in items[@"requestsFromOthers"]) {
         for (Borrow *borrow in item.borrows) {
             if (![borrow isActive] && [borrow.item.owner isEqual:[UserAccount currentUserAccount]]) {
                 [self.othersRequests addObject:item];
