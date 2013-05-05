@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic) NSUInteger year;
 @property (nonatomic, strong) UIImage *picture;
+@property (nonatomic, strong) NSString *pictureUrl;
 
 @property (nonatomic, strong) Format* format;
 @property (nonatomic, strong) UserAccount *owner;
@@ -32,5 +33,7 @@
 
 - (NSDictionary*)dictionary;
 + (Item*)fromDictionary:(NSDictionary*)dictionary;
+
+- (void)loadPicture;
 
 @end

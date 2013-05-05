@@ -102,10 +102,17 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
         
         // Configure the cell...
-        cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
         
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];
+        [item loadPicture];
+        
+        if (item.picture) {
+            cell.imageView.image = item.picture;
+        } else {
+            cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
+        }
+        
         cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
         cell.detailTextLabel.text = item.format.name;
     } else {

@@ -10,6 +10,7 @@
 #import "Borrow.h"
 #import "Format.h"
 #import "UserAccount.h"
+#import "Base64.h"
 
 @implementation Item
 @synthesize borrows = _borrows;
@@ -84,8 +85,16 @@
         dictionary[@"year"] = [@(self.year) stringValue];
     }
     if (self.format) {
-        dictionary[@"format"] = self.format;
+        dictionary[@"format"] = self.format.name;
     }
+    
+    if (self.picture) {
+        NSData *imageData = UIImageJPEGRepresentation(self.picture, 1);
+        NSString *base64Image = [Base64 encode:imageData];
+        dictionary[@"picture"] = base64Image;
+        dictionary[@"contentType"] = @"image/jpeg";
+    }
+    
     return [dictionary copy];
 }
 
@@ -98,8 +107,26 @@
         item.title = dictionary[@"title"];
         item.year = [dictionary[@"year"] unsignedIntegerValue];
         item.format = [Format formatForString:dictionary[@"format"]];
+        item.pictureUrl = dictionary[@"pictureUrl"] != [NSNull null] ? dictionary[@"pictureUrl"] : nil;
+        if (dictionary[@"picture"] != [NSNull null]) {
+            NSString *base64Image = dictionary[@"picture"];
+            NSData *imageData = [Base64 decode:base64Image];
+            item.picture = [UIImage imageWithData:imageData];
+        }
     }
     return item;
+}
+
+- (void)loadPicture
+{
+    if (self.pictureUrl) {
+        NSLog(@"loading picture for %@", self.title);
+        NSURL *url = [NSURL URLWithString:self.pictureUrl];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        self.picture = [UIImage imageWithData:data];
+        NSLog(@"loaded picture for %@", self.title);
+
+    }
 }
 
 @end

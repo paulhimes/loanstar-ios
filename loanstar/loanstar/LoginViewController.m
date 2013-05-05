@@ -60,7 +60,7 @@
 {
     UserAccount *userAccount = [[UserAccount alloc] init];
     userAccount.email = self.emailField.text;
-    userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
+    userAccount.hashedPassword = self.passwordField.text;
 
     UserAccount *confirmedUserAccount = [ServerAdapter loginWithUserAccount:userAccount];
     
@@ -94,7 +94,7 @@
     if ([displayName length] > 0) {
         UserAccount *userAccount = [[UserAccount alloc] init];
         userAccount.email = self.emailField.text;
-        userAccount.hashedPassword = [self hashString:[NSString stringWithFormat:@"%@:%@", self.emailField.text, self.passwordField.text]];
+        userAccount.hashedPassword = self.passwordField.text;
         userAccount.displayName = displayName;
         
         UserAccount *confirmedUserAccount = [ServerAdapter createUserAccount:userAccount];
@@ -109,12 +109,5 @@
         }
     }
 }
-
-- (NSString*)hashString:(NSString*)plaintext
-{
-    // Don't tell the security guys about this one...
-    return [@([plaintext hash]) stringValue];
-}
-
 
 @end

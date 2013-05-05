@@ -89,7 +89,7 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/items/owned"
                                                                dataDictionary:@{@"userId": userAccount.userId}
                                                                    httpMethod:kGET
-                                                                        debug:NO];
+                                                                        debug:YES];
     
     NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
@@ -108,7 +108,8 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 + (void)editItem:(Item *)item
 {
     [self requestDictionaryFromAPIEndpoint:@"api/item/update"
-                            dataDictionary:@{@"title": item.title, @"year": @(item.year), @"format": item.format.name, @"itemId": item.itemId} httpMethod:kPUT
+                            dataDictionary:[item dictionary]
+                                httpMethod:kPUT
                                      debug:YES];
 }
 

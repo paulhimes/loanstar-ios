@@ -78,16 +78,16 @@
                             <constraint firstItem="yth-ug-6ab" firstAttribute="centerX" secondItem="IEz-2h-9yy" secondAttribute="centerX" type="default" id="5em-if-NNM"/>
                             <constraint firstAttribute="trailing" secondItem="yth-ug-6ab" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6hr-cE-0ur"/>
                             <constraint firstAttribute="trailing" secondItem="gi3-CH-tNx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="75M-nQ-T1c"/>
-                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="145" type="user" id="AoR-hl-Fw0"/>
                             <constraint firstItem="6n7-ui-Dbp" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Crm-G4-Oy9"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="top" secondItem="6n7-ui-Dbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="IhV-Y8-P2y"/>
+                            <constraint firstItem="QAH-hO-shQ" firstAttribute="top" secondItem="yth-ug-6ab" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="LVW-Q1-M5t"/>
                             <constraint firstItem="AjX-4V-PA0" firstAttribute="width" secondItem="F6v-Xl-tOY" secondAttribute="width" type="user" id="RJ0-7O-8Ek"/>
                             <constraint firstItem="F6v-Xl-tOY" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Y94-AM-RuZ"/>
                             <constraint firstAttribute="bottom" secondItem="F6v-Xl-tOY" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="YjA-JE-xEj"/>
+                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="121" id="dym-KF-e2h"/>
                             <constraint firstAttribute="bottom" secondItem="AjX-4V-PA0" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="fhV-AH-6xA"/>
                             <constraint firstItem="IEz-2h-9yy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="67" id="h8g-CV-h8U"/>
                             <constraint firstAttribute="trailing" secondItem="AjX-4V-PA0" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="my4-es-MMN"/>
-                            <constraint firstItem="QAH-hO-shQ" firstAttribute="top" secondItem="yth-ug-6ab" secondAttribute="bottom" constant="77" type="user" id="nFf-pa-zhh"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qpB-d9-y2Q"/>
                             <constraint firstItem="gi3-CH-tNx" firstAttribute="top" secondItem="QAH-hO-shQ" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="taV-0I-4Ok"/>
                         </constraints>
@@ -827,6 +827,9 @@
         <class className="ItemEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="action" name="changePicture:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
                 <relationship kind="outlet" name="formatPicker" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
@@ -845,6 +848,8 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="createAction:"/>
+                <relationship kind="action" name="loginAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>

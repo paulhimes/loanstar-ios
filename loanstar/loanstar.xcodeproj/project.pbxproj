@@ -45,6 +45,7 @@
 		8BF417691718562F00077E2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417671718562F00077E2D /* InfoPlist.strings */; };
 		8BF4176C1718562F00077E2D /* loanstarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4176B1718562F00077E2D /* loanstarTests.m */; };
 		8BF74CFA1730C00D0038B04D /* LoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF74CF91730C00D0038B04D /* LoadingCell.m */; };
+		8BF74CFE1734E0CA0038B04D /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF74CFC1734DF060038B04D /* Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		8BF4176B1718562F00077E2D /* loanstarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loanstarTests.m; sourceTree = "<group>"; };
 		8BF74CF81730C00C0038B04D /* LoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCell.h; sourceTree = "<group>"; };
 		8BF74CF91730C00D0038B04D /* LoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCell.m; sourceTree = "<group>"; };
+		8BF74CFB1734DF050038B04D /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		8BF74CFC1734DF060038B04D /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 				8B90917A1728EE5A000A8B35 /* ServerAdapter.m */,
 				8B9EF742172E073700A64E8E /* MockServerAdapter.h */,
 				8B9EF743172E073800A64E8E /* MockServerAdapter.m */,
+				8BF74CFB1734DF050038B04D /* Base64.h */,
+				8BF74CFC1734DF060038B04D /* Base64.m */,
 				8B90916F17264062000A8B35 /* Lists */,
 				8BA0D675171B3A1A00484E46 /* ItemDetailViewController.h */,
 				8BA0D676171B3A1A00484E46 /* ItemDetailViewController.m */,
@@ -415,6 +420,7 @@
 				8B90917B1728EE5A000A8B35 /* ServerAdapter.m in Sources */,
 				8B9EF744172E073800A64E8E /* MockServerAdapter.m in Sources */,
 				8BF74CFA1730C00D0038B04D /* LoadingCell.m in Sources */,
+				8BF74CFE1734E0CA0038B04D /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

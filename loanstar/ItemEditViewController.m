@@ -47,7 +47,12 @@
     [super viewWillAppear:animated];
     self.title = self.item.title;
     self.titleField.text = self.item.title;
-    self.yearField.text = [NSString stringWithFormat:@"%d", self.item.year];
+    if (self.item.year > 0) {
+        self.yearField.text = [NSString stringWithFormat:@"%d", self.item.year];
+    }
+    if (self.item.picture) {
+        [self.pictureButton setImage:self.item.picture forState:UIControlStateNormal];
+    }
     
     if (self.item.format == [Format vhs]) {
         self.formatPicker.selectedSegmentIndex = 0;
@@ -75,7 +80,10 @@
     if (self.item) {
         // Update item details.
         self.item.title = self.titleField.text;
-        self.item.year = [self.yearField.text integerValue];
+        NSInteger year = [self.yearField.text integerValue];
+        if (year > 0) {
+            self.item.year = [self.yearField.text integerValue];
+        }
         
         switch (self.formatPicker.selectedSegmentIndex) {
             case 0:
@@ -147,8 +155,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    if (image) {
-        [self.pictureButton setImage:[self scaleAndCropImage:image toSize:CGSizeMake(320, 240)] forState:UIControlStateNormal];
+    self.item.picture = [self scaleAndCropImage:image toSize:CGSizeMake(320, 240)];
+    if (self.item.picture) {
+        [self.pictureButton setImage:self.item.picture forState:UIControlStateNormal];
     }
     
     [self dismissViewControllerAnimated:YES completion:^{}];
