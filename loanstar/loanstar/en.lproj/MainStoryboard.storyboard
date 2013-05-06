@@ -375,7 +375,11 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-9s-4nF">
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textFieldEditingDidEnd:" destination="BAf-uO-f5L" eventType="editingDidEnd" id="VG9-yX-1GU"/>
+                                                        <outlet property="delegate" destination="BAf-uO-f5L" id="bGb-Ml-mZ9"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -406,6 +410,10 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O5e-o7-3cZ">
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textFieldEditingDidEnd:" destination="BAf-uO-f5L" eventType="editingDidEnd" id="3xa-yR-IZ1"/>
+                                                        <outlet property="delegate" destination="BAf-uO-f5L" id="vp4-1p-juq"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -439,6 +447,9 @@
                                                         <segment title="DVD"/>
                                                         <segment title="Blu-ray"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="segmentControlValueChanged:" destination="BAf-uO-f5L" eventType="valueChanged" id="vb5-uK-uVw"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -510,6 +521,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="BAf-uO-f5L" eventType="touchUpInside" id="icZ-U5-yIC"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -537,6 +551,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="5U0-OB-ic2" id="xHW-qg-xYg"/>
                         <outlet property="formatPicker" destination="7Ih-vg-QuQ" id="Ell-cB-p2q"/>
                         <outlet property="pictureButton" destination="Ssr-tq-vft" id="PFc-DK-HHV"/>
                         <outlet property="titleField" destination="Zvz-9s-4nF" id="ZQP-Mr-n4a"/>
@@ -829,7 +844,11 @@
             <relationships>
                 <relationship kind="action" name="cancelButtonPressed:"/>
                 <relationship kind="action" name="changePicture:"/>
+                <relationship kind="action" name="deleteButtonPressed:"/>
                 <relationship kind="action" name="saveButtonPressed:"/>
+                <relationship kind="action" name="segmentControlValueChanged:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="textFieldEditingDidEnd:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="formatPicker" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
@@ -848,8 +867,6 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
-                <relationship kind="action" name="createAction:"/>
-                <relationship kind="action" name="loginAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
@@ -872,6 +889,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dcL-HK-ahO"/>
         <segue reference="RG1-rB-rwS"/>
-        <segue reference="Jgf-cK-Ih7"/>
+        <segue reference="l50-B4-jeb"/>
     </inferredMetricsTieBreakers>
 </document>

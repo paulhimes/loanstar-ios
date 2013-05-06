@@ -11,12 +11,13 @@
 #import "ServerAdapter.h"
 #import "MockServerAdapter.h"
 
-@interface ItemEditViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ItemEditViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *yearField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *formatPicker;
 @property (weak, nonatomic) IBOutlet UIButton *pictureButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -60,10 +61,20 @@
         self.formatPicker.selectedSegmentIndex = 1;
     } else if (self.item.format == [Format bluray]) {
         self.formatPicker.selectedSegmentIndex = 2;
+    } else {
+        // Force the format to be set.
+        [self segmentControlValueChanged:self.formatPicker];
+    }
+    
+    if ([self.item.itemId length] == 0) {
+        self.deleteButton.hidden = YES;
+    } else {
+        self.deleteButton.hidden = NO;
     }
 }
 
-- (IBAction)changePicture:(id)sender {
+- (IBAction)changePicture:(id)sender
+{
     
     UIActionSheet *actionSheet;
     
@@ -76,42 +87,33 @@
     [actionSheet showInView:self.view];
 }
 
-- (IBAction)saveButtonPressed:(id)sender {
-    if (self.item) {
-        // Update item details.
-        self.item.title = self.titleField.text;
-        NSInteger year = [self.yearField.text integerValue];
-        if (year > 0) {
-            self.item.year = [self.yearField.text integerValue];
+- (IBAction)saveButtonPressed:(id)sender
+{
+    if ([self itemIsValid]) {
+        if ([self.item.itemId length] > 0) {
+            [ServerAdapter editItem:self.item];
+        } else {
+            [ServerAdapter createItem:self.item];
         }
-        
-        switch (self.formatPicker.selectedSegmentIndex) {
-            case 0:
-                self.item.format = [Format vhs];
-                break;
-            case 1:
-                self.item.format = [Format dvd];
-                break;
-            case 2:
-                self.item.format = [Format bluray];
-                break;
-            default:
-                break;
-        }
-
-        self.item.picture = [self.pictureButton imageForState:UIControlStateNormal];
-        
-        [ServerAdapter editItem:self.item];
-        [self dismiss];
-    } else {
-        Item *item = [[Item alloc] init];
-        // Fill in item details.
-        item = [ServerAdapter createItem:item];
         [self dismiss];
     }
 }
 
-- (IBAction)cancelButtonPressed:(id)sender {
+- (BOOL)itemIsValid
+{
+    return [self.item.title length] > 0 && self.item.year > 0 && [self.item.owner.userId length] > 0;
+}
+
+- (IBAction)cancelButtonPressed:(id)sender
+{
+    [self dismiss];
+}
+
+- (IBAction)deleteButtonPressed:(id)sender
+{
+    if ([self.item.itemId length] > 0) {
+        [ServerAdapter deleteItem:self.item];
+    }
     [self dismiss];
 }
 
@@ -156,10 +158,6 @@
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     self.item.picture = [self scaleAndCropImage:image toSize:CGSizeMake(320, 240)];
-    if (self.item.picture) {
-        [self.pictureButton setImage:self.item.picture forState:UIControlStateNormal];
-    }
-    
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
@@ -187,6 +185,48 @@
     UIGraphicsEndImageContext();
     
     return croppedImage;
+}
+
+#pragma mark - Editing Actions
+
+- (IBAction)textFieldEditingDidEnd:(UITextField *)sender
+{
+    if (sender == self.titleField) {
+        self.item.title = self.titleField.text;
+    } else if (sender == self.yearField) {
+        NSInteger year = [self.yearField.text integerValue];
+        if (year > 0) {
+            self.item.year = [self.yearField.text integerValue];
+        }
+    }
+}
+
+- (IBAction)segmentControlValueChanged:(UISegmentedControl *)sender
+{
+    switch (self.formatPicker.selectedSegmentIndex) {
+        case 0:
+            self.item.format = [Format vhs];
+            break;
+        case 1:
+            self.item.format = [Format dvd];
+            break;
+        case 2:
+            self.item.format = [Format bluray];
+            break;
+        default:
+            break;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.titleField) {
+        [self.yearField becomeFirstResponder];
+    } else if (textField == self.yearField) {
+        [self.yearField resignFirstResponder];
+    }
+    
+    return NO;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "ItemListViewController.h"
 #import "ItemDetailViewController.h"
 #import "LoadingCell.h"
+#import "ItemEditViewController.h"
 
 @interface ItemListViewController ()
 
@@ -58,13 +59,11 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         itemDetailViewController.item = [self itemsInSection:indexPath.section][indexPath.row];
     } else if ([segue.identifier isEqualToString:@"Add"]) {
-        
-//        // Create a new contact.
-//        Contact *contact = [[Contact alloc] init];
-//        
-//        EditContactViewController *editContactViewController = (EditContactViewController*)((UINavigationController*)segue.destinationViewController).topViewController;
-//        editContactViewController.contact = contact;
-//        [editContactViewController hideCancelButton];
+        UINavigationController *navController = segue.destinationViewController;
+        ItemEditViewController *editViewController = (ItemEditViewController*)navController.topViewController;
+        Item *item = [[Item alloc] init];
+        item.owner = [UserAccount currentUserAccount];
+        editViewController.item = item;
     }
 }
 
@@ -105,8 +104,9 @@
         
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];
-        [item loadPicture];
         
+        
+        [item loadPicture];
         if (item.picture) {
             cell.imageView.image = item.picture;
         } else {

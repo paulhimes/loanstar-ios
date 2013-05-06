@@ -95,6 +95,10 @@
         dictionary[@"contentType"] = @"image/jpeg";
     }
     
+    if ([self.owner.userId length] > 0) {
+        dictionary[@"userId"] = self.owner.userId;
+    }
+    
     return [dictionary copy];
 }
 
@@ -103,7 +107,7 @@
     Item *item;
     if (dictionary) {
         item = [[Item alloc] init];
-        item.itemId = dictionary[@"itemId"];
+        item.itemId = [dictionary[@"itemId"] description];
         item.title = dictionary[@"title"];
         item.year = [dictionary[@"year"] unsignedIntegerValue];
         item.format = [Format formatForString:dictionary[@"format"]];

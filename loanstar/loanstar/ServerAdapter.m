@@ -89,7 +89,7 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/items/owned"
                                                                dataDictionary:@{@"userId": userAccount.userId}
                                                                    httpMethod:kGET
-                                                                        debug:YES];
+                                                                        debug:NO];
     
     NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *itemDictionary in responseDictionary[@"itemList"]) {
@@ -101,21 +101,18 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 + (Item *)createItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/create" dataDictionary:nil httpMethod:kPOST debug:NO];
-    return item;
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/item/create" dataDictionary:[item dictionary] httpMethod:kPOST debug:YES];
+    return [Item fromDictionary:responseDictionary];
 }
 
 + (void)editItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/update"
-                            dataDictionary:[item dictionary]
-                                httpMethod:kPUT
-                                     debug:YES];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/update" dataDictionary:[item dictionary] httpMethod:kPUT debug:NO];
 }
 
 + (void)deleteItem:(Item *)item
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" dataDictionary:nil httpMethod:kDELETE debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/item/delete" dataDictionary:[item dictionary] httpMethod:kDELETE debug:YES];
 }
 
 #pragma mark - Borrow management
@@ -224,7 +221,7 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
         [request setHTTPBody:jsonData];
     }
     
-    if (debug) NSLog(@"sending: %@", request);
+    if (debug) NSLog(@"sending: %@ with data %@", request, dataDictionary);
     
     // Make the request and get the response.
     NSURLResponse *response;
