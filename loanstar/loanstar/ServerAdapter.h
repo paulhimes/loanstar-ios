@@ -24,6 +24,8 @@
 + (void)editItem:(Item *)item;
 + (void)deleteItem:(Item *)item;
 
++ (UIImage*)loadImageFromURL:(NSString*)urlString;
+
 #pragma mark - Borrow management
 
 + (Borrow *)createBorrow:(Borrow *)borrow;

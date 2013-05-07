@@ -115,6 +115,13 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
     [self requestDictionaryFromAPIEndpoint:@"api/item/delete" dataDictionary:[item dictionary] httpMethod:kDELETE debug:YES];
 }
 
++ (UIImage *)loadImageFromURL:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    return [UIImage imageWithData:data];
+}
+
 #pragma mark - Borrow management
 
 + (Borrow *)createBorrow:(Borrow *)borrow

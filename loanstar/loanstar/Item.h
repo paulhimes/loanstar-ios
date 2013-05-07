@@ -34,6 +34,4 @@
 - (NSDictionary*)dictionary;
 + (Item*)fromDictionary:(NSDictionary*)dictionary;
 
-- (void)loadPicture;
-
 @end

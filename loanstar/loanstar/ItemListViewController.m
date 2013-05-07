@@ -105,12 +105,30 @@
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];
         
-        
-        [item loadPicture];
         if (item.picture) {
             cell.imageView.image = item.picture;
         } else {
+            // Show the placeholder image.
             cell.imageView.image = [UIImage imageNamed:@"placeholder.jpg"];
+            
+            if ([item.pictureUrl length] > 0) {
+                // Load the picture from the server.
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                    UIImage *picture = [ServerAdapter loadImageFromURL:item.pictureUrl];
+                    // If the picture successfully loaded.
+                    if (picture) {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            // Set the picture on the main queue.
+                            item.picture = picture;
+                            // If the cell for this item is still visible on screen.
+                            if ([[tableView indexPathsForVisibleRows] containsObject:indexPath]) {
+                                // Set the cell image to the item's picture.
+                                cell.imageView.image = item.picture;
+                            }
+                        });
+                    }
+                });                
+            }
         }
         
         cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];

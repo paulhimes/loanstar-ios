@@ -121,16 +121,4 @@
     return item;
 }
 
-- (void)loadPicture
-{
-    if (self.pictureUrl) {
-        NSLog(@"loading picture for %@", self.title);
-        NSURL *url = [NSURL URLWithString:self.pictureUrl];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        self.picture = [UIImage imageWithData:data];
-        NSLog(@"loaded picture for %@", self.title);
-
-    }
-}
-
 @end
