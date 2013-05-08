@@ -12,6 +12,7 @@
 #import "Borrow.h"
 #import "Status.h"
 #import "ItemEditViewController.h"
+#import "Theme.h"
 
 @interface ItemDetailViewController ()
 
@@ -49,6 +50,8 @@
     if (![self.item.owner isEqual:[UserAccount currentUserAccount]]) {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    
+    self.tableView.backgroundColor = [Theme backgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

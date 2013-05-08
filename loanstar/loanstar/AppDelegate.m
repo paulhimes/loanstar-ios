@@ -7,12 +7,26 @@
 //
 
 #import "AppDelegate.h"
+#import "Theme.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Configure the global uiappearance settings
+    [[UINavigationBar appearance] setTintColor:[Theme navigationBarColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme titleColor], UITextAttributeFont: [Theme navigationTitleFont]}];
+    
+    [[UITabBar appearance] setTintColor:[Theme navigationBarColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[Theme titleColor]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme titleColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme navigationTitleColor]} forState:UIControlStateNormal];
+    
+    [[UISegmentedControl appearance] setTintColor:[Theme navigationBarColor]];
+    
     return YES;
 }
 							

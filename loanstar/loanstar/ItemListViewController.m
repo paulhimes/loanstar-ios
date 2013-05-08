@@ -10,6 +10,7 @@
 #import "ItemDetailViewController.h"
 #import "LoadingCell.h"
 #import "ItemEditViewController.h"
+#import "Theme.h"
 
 @interface ItemListViewController ()
 
@@ -32,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = [Theme backgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,6 +45,8 @@
     // Items have been loaded. Dismiss the waiting / loading view and refresh the table.
     self.dataLoaded = YES;
     [self.tableView reloadData];
+    
+    [self.navigationController.navigationBar setNeedsLayout];
 }
 
 
@@ -101,6 +106,8 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
         
         // Configure the cell...
+        cell.textLabel.font = [Theme bodyTextFont];
+        cell.detailTextLabel.font = [Theme bodyTextSmallFont];
         
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];

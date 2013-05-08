@@ -10,13 +10,15 @@
 
 @interface Theme : NSObject
 
-@property (nonatomic, readonly) UIColor *backgroundColor;
-@property (nonatomic, readonly) UIColor *textColor;
-@property (nonatomic, readonly) UIColor *labelColor;
-@property (nonatomic, readonly) UIColor *titleColor;
-@property (nonatomic, readonly) UIColor *navigationBarColor;
-@property (nonatomic, readonly) UIColor *navigationTitleColor;
-
++ (UIColor *)backgroundColor;
++ (UIColor *)textColor;
++ (UIColor *)labelColor;
++ (UIColor *)titleColor;
++ (UIColor *)navigationBarColor;
++ (UIColor *)navigationTitleColor;
++ (UIFont *)navigationTitleFont;
++ (UIFont *)bodyTextFont;
++ (UIFont *)bodyTextSmallFont;
 
 
 @end
