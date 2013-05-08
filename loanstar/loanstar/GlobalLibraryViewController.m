@@ -41,6 +41,13 @@
             [self.loanedItems addObject:item];
         }
     }
+    
+    // Sort all the arrays.
+    NSComparator comparator = ^NSComparisonResult(id obj1, id obj2) {
+        return [((Item*)obj1).title compare:((Item*)obj2).title];
+    };
+    [self.availableItems sortUsingComparator:comparator];
+    [self.loanedItems sortUsingComparator:comparator];
 }
 
 - (NSMutableArray *)availableItems

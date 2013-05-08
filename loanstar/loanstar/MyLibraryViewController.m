@@ -46,6 +46,14 @@
     
     [self.borrowedItems removeAllObjects];
     [self.borrowedItems addObjectsFromArray:[ServerAdapter getAllItemsCurrentlyBorrowedByUserAccount:[UserAccount currentUserAccount]]];
+    
+    // Sort all the arrays.
+    NSComparator comparator = ^NSComparisonResult(id obj1, id obj2) {
+        return [((Item*)obj1).title compare:((Item*)obj2).title];
+    };
+    [self.atHomeItems sortUsingComparator:comparator];
+    [self.awayItems sortUsingComparator:comparator];
+    [self.borrowedItems sortUsingComparator:comparator];
 }
 
 - (NSMutableArray *)atHomeItems

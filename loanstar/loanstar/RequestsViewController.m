@@ -43,6 +43,44 @@
             }
         }
     }
+    
+    // Sort all the arrays.
+    [self.myRequests sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Borrow *borrow1;
+        Borrow *borrow2;
+        
+        for (Borrow *borrow in ((Item*)obj1).borrows) {
+            // Find this user's borrow request.
+            if ([borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
+                borrow1 = borrow;
+            }
+        }
+        for (Borrow *borrow in ((Item*)obj1).borrows) {
+            // Find this user's borrow request.
+            if ([borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
+                borrow2 = borrow;
+            }
+        }
+        
+        return [borrow2.requestDate timeIntervalSince1970] - [borrow1.requestDate timeIntervalSince1970];
+    }];
+    [self.othersRequests sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Borrow *oldestBorrow1;
+        Borrow *oldestBorrow2;
+        
+        for (Borrow *borrow in ((Item*)obj1).borrows) {
+            if (!oldestBorrow1 || [borrow.requestDate compare:oldestBorrow1.requestDate] == NSOrderedAscending) {
+                oldestBorrow1 = borrow;
+            }
+        }
+        for (Borrow *borrow in ((Item*)obj1).borrows) {
+            if (!oldestBorrow2 || [borrow.requestDate compare:oldestBorrow2.requestDate] == NSOrderedAscending) {
+                oldestBorrow2 = borrow;
+            }
+        }
+        
+        return [oldestBorrow2.requestDate timeIntervalSince1970] - [oldestBorrow1.requestDate timeIntervalSince1970];
+    }];
 }
 
 - (NSMutableArray *)myRequests

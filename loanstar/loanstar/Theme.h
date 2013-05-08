@@ -11,14 +11,19 @@
 @interface Theme : NSObject
 
 + (UIColor *)backgroundColor;
-+ (UIColor *)textColor;
-+ (UIColor *)labelColor;
-+ (UIColor *)titleColor;
+
 + (UIColor *)navigationBarColor;
 + (UIColor *)navigationTitleColor;
++ (UIColor *)navigationTitleInactiveColor;
 + (UIFont *)navigationTitleFont;
-+ (UIFont *)bodyTextFont;
-+ (UIFont *)bodyTextSmallFont;
 
++ (UIFont *)tabItemFont;
+
++ (UIFont *)titleFont;
++ (UIColor *)titleColor;
++ (UIFont *)subtitleFont;
++ (UIColor *)subtitleColor;
+
++ (UIColor *)tableHeaderColor;
 
 @end

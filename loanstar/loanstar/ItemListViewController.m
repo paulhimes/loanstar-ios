@@ -12,6 +12,9 @@
 #import "ItemEditViewController.h"
 #import "Theme.h"
 
+#define HEADER_HORIZONTAL_PADDING 20
+#define HEADER_VERTICAL_PADDING 4
+
 @interface ItemListViewController ()
 
 @property (nonatomic) BOOL dataLoaded;
@@ -86,9 +89,28 @@
     return numberOfSections;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.dataLoaded ? self.sectionTitles[section] : nil;
+    UIView *headerView;
+    if (self.dataLoaded) {
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.opaque = NO;
+        titleLabel.backgroundColor = [Theme tableHeaderColor];
+        titleLabel.text = self.sectionTitles[section];
+        titleLabel.font = [Theme titleFont];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.textColor = [Theme navigationTitleColor];
+        [titleLabel sizeToFit];
+        titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width + HEADER_HORIZONTAL_PADDING, titleLabel.frame.size.height);
+        headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleLabel.frame.size.width, titleLabel.frame.size.height)];
+        [headerView addSubview:titleLabel];
+    }
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -106,8 +128,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
         
         // Configure the cell...
-        cell.textLabel.font = [Theme bodyTextFont];
-        cell.detailTextLabel.font = [Theme bodyTextSmallFont];
+        cell.textLabel.font = [Theme titleFont];
+        cell.textLabel.textColor = [Theme titleColor];
+        cell.detailTextLabel.font = [Theme subtitleFont];
+        cell.detailTextLabel.textColor = [Theme subtitleColor];
         
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];

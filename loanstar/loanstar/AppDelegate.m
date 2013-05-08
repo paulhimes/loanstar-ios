@@ -17,13 +17,13 @@
     
     // Configure the global uiappearance settings
     [[UINavigationBar appearance] setTintColor:[Theme navigationBarColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme titleColor], UITextAttributeFont: [Theme navigationTitleFont]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme navigationTitleColor], UITextAttributeFont: [Theme navigationTitleFont]}];
     
     [[UITabBar appearance] setTintColor:[Theme navigationBarColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:[Theme titleColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[Theme navigationTitleColor]];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme titleColor]} forState:UIControlStateSelected];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme navigationTitleColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme navigationTitleColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor: [Theme navigationTitleInactiveColor], UITextAttributeFont: [Theme tabItemFont]} forState:UIControlStateNormal];
     
     [[UISegmentedControl appearance] setTintColor:[Theme navigationBarColor]];
     

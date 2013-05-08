@@ -207,11 +207,6 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Requests";
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -221,6 +216,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell" forIndexPath:indexPath];
+    
+    cell.textLabel.font = [Theme titleFont];
+    cell.textLabel.textColor = [Theme titleColor];
+    cell.detailTextLabel.font = [Theme subtitleFont];
+    cell.detailTextLabel.textColor = [Theme subtitleColor];
     
     Borrow *borrow = self.item.borrows[indexPath.row];
     cell.textLabel.text = borrow.borrower.displayName;
