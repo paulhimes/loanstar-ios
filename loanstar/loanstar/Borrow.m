@@ -66,6 +66,15 @@
     if (self.startDate) {
         dictionary[@"startDate"] = [@([self.startDate timeIntervalSince1970]) stringValue];
     }
+    if (self.endDate) {
+        dictionary[@"endDate"] = [@([self.endDate timeIntervalSince1970]) stringValue];
+    }
+    if (self.item) {
+        dictionary[@"itemId"] = self.item.itemId;
+    }
+    if (self.borrower) {
+        dictionary[@"userId"] = self.borrower.userId;
+    }
     return [dictionary copy];
 }
 

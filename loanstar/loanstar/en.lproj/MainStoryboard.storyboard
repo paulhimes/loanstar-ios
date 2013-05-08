@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -655,6 +655,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="requestItem:" destination="1wj-tA-cGj" eventType="touchUpInside" id="5v9-uz-sPj"/>
+                                    </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfU-Ms-bgy">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -665,6 +668,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="cancelRequest:" destination="1wj-tA-cGj" eventType="touchUpInside" id="uLG-Fn-BjE"/>
+                                    </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtf-BT-3hH">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -675,6 +681,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="returnItemOrDenyRequest:" destination="1wj-tA-cGj" eventType="touchUpInside" id="ddR-ZY-l3q"/>
+                                    </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-ce-aHe">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -685,6 +694,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="acceptRequest:" destination="1wj-tA-cGj" eventType="touchUpInside" id="8hQ-Ka-PXw"/>
+                                    </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gq8-aW-Nyw">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -695,6 +707,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="returnItemOrDenyRequest:" destination="1wj-tA-cGj" eventType="touchUpInside" id="lY5-za-gCA"/>
+                                    </connections>
                                 </button>
                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No Requests" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rh-e1-udG">
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
@@ -825,6 +840,10 @@
         <class className="ItemDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="acceptRequest:" candidateClass="UIButton"/>
+                <relationship kind="action" name="cancelRequest:" candidateClass="UIButton"/>
+                <relationship kind="action" name="requestItem:" candidateClass="UIButton"/>
+                <relationship kind="action" name="returnItemOrDenyRequest:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
@@ -867,6 +886,8 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="createAction:"/>
+                <relationship kind="action" name="loginAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
@@ -889,6 +910,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="dcL-HK-ahO"/>
         <segue reference="RG1-rB-rwS"/>
-        <segue reference="l50-B4-jeb"/>
+        <segue reference="Jgf-cK-Ih7"/>
     </inferredMetricsTieBreakers>
 </document>
