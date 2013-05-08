@@ -126,13 +126,19 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 + (Borrow *)createBorrow:(Borrow *)borrow
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create" dataDictionary:nil httpMethod:kPOST debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create"
+                            dataDictionary:[borrow dictionary]
+                                httpMethod:kPOST
+                                     debug:YES];
     return borrow;
 }
 
 + (void)editBorrow:(Borrow *)borrow
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update" dataDictionary:nil httpMethod:kPUT debug:NO];
+    [self requestDictionaryFromAPIEndpoint:@"api/borrow/update"
+                            dataDictionary:[borrow dictionary]
+                                httpMethod:kPUT
+                                     debug:YES];
 }
 
 // done

@@ -11,6 +11,7 @@
 #import "UserAccount.h"
 #import "Borrow.h"
 #import "Status.h"
+#import "ServerAdapter.h"
 #import "ItemEditViewController.h"
 #import "Theme.h"
 
@@ -65,7 +66,11 @@
     if (self.item.picture) {
         self.pictureImageView.image = self.item.picture;
     }
-    
+    [self prepareButtonsAndBorrows];
+}
+
+- (void)prepareButtonsAndBorrows
+{
     // Determine the item status...
     BOOL activeBorrow = NO;
     // Check if any of the borrows are active as of now.
@@ -123,7 +128,7 @@
             }
         }
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,6 +144,59 @@
         ItemEditViewController *editViewController = (ItemEditViewController*)navController.topViewController;
         editViewController.item = self.item;
     }
+}
+
+# pragma mark - button handlers
+
+- (IBAction)requestItem:(UIButton *)sender
+{
+    Borrow *borrow = [[Borrow alloc] init];
+    borrow.item = self.item;
+    borrow.requestDate = [NSDate date];
+    borrow.borrower = [UserAccount currentUserAccount];
+
+    borrow = [ServerAdapter createBorrow:borrow];
+    [self.item addBorrow:borrow];
+    [self refreshAfterBorrowAction];
+}
+
+- (IBAction)cancelRequest:(UIButton *)sender
+{
+    Borrow *borrow;
+    for (borrow in self.item.borrows) {
+        if ([borrow.borrower isEqual:[UserAccount currentUserAccount]]) {
+            break;
+        }
+    }
+    // give borrow an end date so the server deletes it
+    borrow.endDate = [NSDate date];
+    [ServerAdapter editBorrow:borrow];
+    [self.item removeBorrow:borrow];
+    [self refreshAfterBorrowAction];
+}
+
+- (IBAction)acceptRequest:(UIButton *)sender
+{
+    Borrow *borrow = self.item.borrows[0];
+    borrow.startDate = [NSDate date];
+    [ServerAdapter editBorrow:borrow];
+    [self refreshAfterBorrowAction];
+}
+
+- (IBAction)returnItemOrDenyRequest:(UIButton *)sender
+{
+    Borrow *borrow = self.item.borrows[0];
+    // give borrow an end date so the server deletes it
+    borrow.endDate = [NSDate date];
+    [ServerAdapter editBorrow:borrow];
+    [self.item removeBorrow:borrow];
+    [self refreshAfterBorrowAction];
+}
+
+- (void)refreshAfterBorrowAction
+{
+    [self.tableView reloadData];
+    [self prepareButtonsAndBorrows];
 }
 
 #pragma mark - Table view data source
