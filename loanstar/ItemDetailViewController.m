@@ -96,7 +96,16 @@
             }
         }
     }
-    self.itemStatusLabel.text = activeBorrow ? [@"Loaned Out to " stringByAppendingString:borrow.borrower.displayName] : @"Available";
+    if(activeBorrow) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateStyle = NSDateFormatterLongStyle;
+
+        NSString *borrower = borrow.borrower.displayName;
+        NSString *startDate = [formatter stringFromDate:borrow.startDate];
+        self.itemStatusLabel.text = [NSString stringWithFormat:@"Loaned Out to %@ since %@", borrower, startDate];
+    } else {
+        self.itemStatusLabel.text =  @"Available";
+    }
     
     // Determine which borrow button(s) to show...
     // Hide all the buttons first.
