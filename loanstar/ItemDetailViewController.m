@@ -63,16 +63,30 @@
     self.denyButton.layer.cornerRadius = cornerRadius;
     self.cancelRequestButton.layer.cornerRadius = cornerRadius;
     self.returnedButton.layer.cornerRadius = cornerRadius;
+
+    [self styleLabel:self.itemTitleLabel];
+    [self styleLabel:self.itemFormatLabel];
+    [self styleLabel:self.itemYearLabel];
+    [self styleLabel:self.ownerNameLabel];
+    [self styleLabel:self.itemStatusLabel];
+}
+
+- (void)styleLabel:(UILabel*)label
+{
+    label.layer.shadowRadius = 1;
+    label.layer.shadowOpacity = 1.0;
+    label.layer.shadowColor = [UIColor blackColor].CGColor;
+    label.layer.shadowOffset = CGSizeMake(0, 3);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.title = self.item.title;
-    self.itemTitleLabel.text = self.item.title;
-    self.itemYearLabel.text = [NSString stringWithFormat:@"%d", self.item.year];
-    self.itemFormatLabel.text = self.item.format.name;
-    self.ownerNameLabel.text = self.item.owner.displayName;
+    self.itemTitleLabel.text = [NSString stringWithFormat:@" %@ ", self.item.title];
+    self.itemYearLabel.text = [NSString stringWithFormat:@" %d ", self.item.year];
+    self.itemFormatLabel.text = [NSString stringWithFormat:@" %@ ", self.item.format.name];
+    self.ownerNameLabel.text = [NSString stringWithFormat:@" %@ ", self.item.owner.displayName];
     if (self.item.picture) {
         self.pictureImageView.image = self.item.picture;
     }
@@ -102,9 +116,9 @@
 
         NSString *borrower = borrow.borrower.displayName;
         NSString *startDate = [formatter stringFromDate:borrow.startDate];
-        self.itemStatusLabel.text = [NSString stringWithFormat:@"Loaned Out to %@ since %@", borrower, startDate];
+        self.itemStatusLabel.text = [NSString stringWithFormat:@" Loaned Out to %@ since %@ ", borrower, startDate];
     } else {
-        self.itemStatusLabel.text =  @"Available";
+        self.itemStatusLabel.text =  @" Available ";
     }
     
     // Determine which borrow button(s) to show...
