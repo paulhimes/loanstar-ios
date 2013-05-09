@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *accountButton;
+@property (weak, nonatomic) IBOutlet UILabel *starLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleVerticalConstraint;
 
 @end
 
@@ -66,6 +68,9 @@
             self.passwordField.alpha = 1;
             self.loginButton.alpha = 1;
             self.accountButton.alpha = 1;
+            self.titleVerticalConstraint.constant = 20;
+            [self.view layoutIfNeeded];
+            self.starLabel.alpha = 0;
         } completion:^(BOOL finished) {
             
         }];

@@ -28,15 +28,17 @@
 		8BA0D682171B4E3A00484E46 /* UITabBarMostViewedTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67C171B4E3A00484E46 /* UITabBarMostViewedTemplate.png */; };
 		8BA0D683171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA0D67D171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png */; };
 		8BA0D689171B4FFE00484E46 /* ItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */; };
+		8BD44E51173B52D10085B4BD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD44E50173B52D10085B4BD /* Default-568h@2x.png */; };
+		8BD44E53173B52E30085B4BD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD44E52173B52E30085B4BD /* Default@2x.png */; };
+		8BD44E55173B531B0085B4BD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD44E54173B531B0085B4BD /* Default.png */; };
+		8BD44E57173B53F50085B4BD /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD44E56173B53F40085B4BD /* icon114.png */; };
+		8BD44E59173B53F80085B4BD /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD44E58173B53F80085B4BD /* icon57.png */; };
 		8BF4173B1718562F00077E2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173A1718562F00077E2D /* UIKit.framework */; };
 		8BF4173D1718562F00077E2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173C1718562F00077E2D /* Foundation.framework */; };
 		8BF4173F1718562F00077E2D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4173E1718562F00077E2D /* CoreGraphics.framework */; };
 		8BF417451718562F00077E2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417431718562F00077E2D /* InfoPlist.strings */; };
 		8BF417471718562F00077E2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417461718562F00077E2D /* main.m */; };
 		8BF4174B1718562F00077E2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4174A1718562F00077E2D /* AppDelegate.m */; };
-		8BF4174D1718562F00077E2D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF4174C1718562F00077E2D /* Default.png */; };
-		8BF4174F1718562F00077E2D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF4174E1718562F00077E2D /* Default@2x.png */; };
-		8BF417511718562F00077E2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417501718562F00077E2D /* Default-568h@2x.png */; };
 		8BF417541718562F00077E2D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF417521718562F00077E2D /* MainStoryboard.storyboard */; };
 		8BF417571718562F00077E2D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF417561718562F00077E2D /* LoginViewController.m */; };
 		8BF4175F1718562F00077E2D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF4175E1718562F00077E2D /* SenTestingKit.framework */; };
@@ -94,6 +96,11 @@
 		8BA0D67D171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITabBarMostViewedTemplate@2x.png"; sourceTree = "<group>"; };
 		8BA0D687171B4FFE00484E46 /* ItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemEditViewController.h; path = ../ItemEditViewController.h; sourceTree = "<group>"; };
 		8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemEditViewController.m; path = ../ItemEditViewController.m; sourceTree = "<group>"; };
+		8BD44E50173B52D10085B4BD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		8BD44E52173B52E30085B4BD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		8BD44E54173B531B0085B4BD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8BD44E56173B53F40085B4BD /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		8BD44E58173B53F80085B4BD /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
 		8BF417371718562F00077E2D /* loanstar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loanstar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF4173A1718562F00077E2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8BF4173C1718562F00077E2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,9 +111,6 @@
 		8BF417481718562F00077E2D /* loanstar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "loanstar-Prefix.pch"; sourceTree = "<group>"; };
 		8BF417491718562F00077E2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8BF4174A1718562F00077E2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8BF4174C1718562F00077E2D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		8BF4174E1718562F00077E2D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		8BF417501718562F00077E2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8BF417531718562F00077E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8BF417551718562F00077E2D /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8BF417561718562F00077E2D /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -195,6 +199,9 @@
 		8BF4172E1718562F00077E2D = {
 			isa = PBXGroup;
 			children = (
+				8BD44E58173B53F80085B4BD /* icon57.png */,
+				8BD44E56173B53F40085B4BD /* icon114.png */,
+				8BD44E54173B531B0085B4BD /* Default.png */,
 				8BF417401718562F00077E2D /* loanstar */,
 				8BF417641718562F00077E2D /* loanstarTests */,
 				8BF417391718562F00077E2D /* Frameworks */,
@@ -259,9 +266,8 @@
 				8BF417491718562F00077E2D /* AppDelegate.h */,
 				8BF4174A1718562F00077E2D /* AppDelegate.m */,
 				8BF417481718562F00077E2D /* loanstar-Prefix.pch */,
-				8BF4174C1718562F00077E2D /* Default.png */,
-				8BF4174E1718562F00077E2D /* Default@2x.png */,
-				8BF417501718562F00077E2D /* Default-568h@2x.png */,
+				8BD44E52173B52E30085B4BD /* Default@2x.png */,
+				8BD44E50173B52D10085B4BD /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,9 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF417451718562F00077E2D /* InfoPlist.strings in Resources */,
-				8BF4174D1718562F00077E2D /* Default.png in Resources */,
-				8BF4174F1718562F00077E2D /* Default@2x.png in Resources */,
-				8BF417511718562F00077E2D /* Default-568h@2x.png in Resources */,
 				8BF417541718562F00077E2D /* MainStoryboard.storyboard in Resources */,
 				8B96DE0A1718CD43002FD8E4 /* placeholder.jpg in Resources */,
 				8BA0D67E171B4E3A00484E46 /* UITabBarContactsTemplate.png in Resources */,
@@ -368,6 +371,11 @@
 				8BA0D681171B4E3A00484E46 /* UITabBarHistoryTemplate@2x.png in Resources */,
 				8BA0D682171B4E3A00484E46 /* UITabBarMostViewedTemplate.png in Resources */,
 				8BA0D683171B4E3A00484E46 /* UITabBarMostViewedTemplate@2x.png in Resources */,
+				8BD44E51173B52D10085B4BD /* Default-568h@2x.png in Resources */,
+				8BD44E53173B52E30085B4BD /* Default@2x.png in Resources */,
+				8BD44E55173B531B0085B4BD /* Default.png in Resources */,
+				8BD44E57173B53F50085B4BD /* icon114.png in Resources */,
+				8BD44E59173B53F80085B4BD /* icon57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

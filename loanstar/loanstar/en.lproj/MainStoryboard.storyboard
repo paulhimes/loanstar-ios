@@ -19,6 +19,13 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="3"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="★" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmB-WV-xKh">
+                                <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                <color key="textColor" red="1" green="0.96866446169999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="0.0" height="6"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n7-ui-Dbp">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="dqg-e7-nTn"/>
@@ -46,7 +53,7 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-CH-tNx">
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="yeh-G4-zzs"/>
                                 </connections>
@@ -88,23 +95,25 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14117647058823529" green="0.56862745098039214" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="EAK-kN-Sde" firstAttribute="leading" secondItem="gi3-CH-tNx" secondAttribute="leading" type="default" id="9c1-jj-xDG"/>
+                            <constraint firstItem="gi3-CH-tNx" firstAttribute="leading" secondItem="EAK-kN-Sde" secondAttribute="leading" type="default" id="69Z-pw-s3R"/>
                             <constraint firstItem="EAK-kN-Sde" firstAttribute="leading" secondItem="AjX-4V-PA0" secondAttribute="leading" type="default" id="9q8-kV-5Bn"/>
                             <constraint firstItem="QAH-hO-shQ" firstAttribute="leading" secondItem="yth-ug-6ab" secondAttribute="leading" type="default" id="AJD-Sh-mQR"/>
+                            <constraint firstItem="IEz-2h-9yy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="65" type="user" id="Cq3-re-X9k"/>
+                            <constraint firstAttribute="bottom" secondItem="EAK-kN-Sde" secondAttribute="bottom" constant="86" id="GEn-jI-wY1"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="top" secondItem="6n7-ui-Dbp" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="IhV-Y8-P2y"/>
+                            <constraint firstItem="gi3-CH-tNx" firstAttribute="centerX" secondItem="fmB-WV-xKh" secondAttribute="centerX" type="default" id="Ina-re-eHP"/>
+                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="99" id="Kp5-kH-vse"/>
+                            <constraint firstAttribute="centerY" secondItem="fmB-WV-xKh" secondAttribute="centerY" type="user" id="L9I-L6-crp"/>
                             <constraint firstItem="gi3-CH-tNx" firstAttribute="leading" secondItem="QAH-hO-shQ" secondAttribute="leading" type="default" id="LDj-kF-A0E"/>
                             <constraint firstItem="QAH-hO-shQ" firstAttribute="top" secondItem="yth-ug-6ab" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="LVW-Q1-M5t"/>
-                            <constraint firstItem="6n7-ui-Dbp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="99" id="Qvb-WJ-pyV"/>
-                            <constraint firstItem="AjX-4V-PA0" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ufj-pI-28s"/>
                             <constraint firstItem="gi3-CH-tNx" firstAttribute="trailing" secondItem="yth-ug-6ab" secondAttribute="trailing" type="default" id="Wcx-7b-ZsI"/>
                             <constraint firstItem="IEz-2h-9yy" firstAttribute="trailing" secondItem="yth-ug-6ab" secondAttribute="trailing" type="default" id="Xj5-gb-vMQ"/>
-                            <constraint firstItem="IEz-2h-9yy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Y9o-xG-rhs"/>
                             <constraint firstItem="EAK-kN-Sde" firstAttribute="trailing" secondItem="gi3-CH-tNx" secondAttribute="trailing" type="default" id="aGD-gt-Oxq"/>
                             <constraint firstAttribute="bottom" secondItem="AjX-4V-PA0" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="btU-7t-Pmz"/>
                             <constraint firstItem="EAK-kN-Sde" firstAttribute="trailing" secondItem="AjX-4V-PA0" secondAttribute="trailing" type="default" id="kjW-Yh-oMi"/>
+                            <constraint firstAttribute="centerX" secondItem="fmB-WV-xKh" secondAttribute="centerX" type="user" id="owH-D3-gRx"/>
                             <constraint firstItem="6n7-ui-Dbp" firstAttribute="leading" secondItem="IEz-2h-9yy" secondAttribute="leading" type="default" id="r8y-vZ-cQ6"/>
                             <constraint firstItem="gi3-CH-tNx" firstAttribute="top" secondItem="QAH-hO-shQ" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="taV-0I-4Ok"/>
-                            <constraint firstAttribute="bottom" secondItem="EAK-kN-Sde" secondAttribute="bottom" constant="86" id="u0V-zo-jVX"/>
                             <constraint firstItem="yth-ug-6ab" firstAttribute="leading" secondItem="6n7-ui-Dbp" secondAttribute="leading" type="default" id="usT-LD-pUj"/>
                         </constraints>
                     </view>
@@ -115,7 +124,9 @@
                         <outlet property="loginButton" destination="EAK-kN-Sde" id="QOh-aN-AKv"/>
                         <outlet property="passwordField" destination="gi3-CH-tNx" id="a59-h8-uVj"/>
                         <outlet property="passwordLabel" destination="QAH-hO-shQ" id="NkB-cz-lZM"/>
+                        <outlet property="starLabel" destination="fmB-WV-xKh" id="V5X-iz-G5r"/>
                         <outlet property="titleLabel" destination="IEz-2h-9yy" id="f8v-1y-IeY"/>
+                        <outlet property="titleVerticalConstraint" destination="Cq3-re-X9k" id="RnO-6c-eKK"/>
                         <segue destination="cJM-lA-Lcm" kind="modal" identifier="QuickLogin" modalTransitionStyle="crossDissolve" id="P3t-PJ-6gK"/>
                         <segue destination="cJM-lA-Lcm" kind="modal" identifier="Login" modalTransitionStyle="crossDissolve" id="dcL-HK-ahO"/>
                     </connections>
@@ -834,65 +845,6 @@
         <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
-    <classes>
-        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
-        </class>
-        <class className="ItemDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="itemYearLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noRequestsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ownerNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="ItemEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="formatPicker" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ItemListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="accountButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MyLibraryViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RequestsViewController" superclassName="ItemListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
-        </class>
-        <class className="UIRefreshControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
