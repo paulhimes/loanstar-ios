@@ -28,6 +28,7 @@
 
 + (UserAccount*)currentUserAccount;
 + (void)setCurrentUserAccount:(UserAccount*)userAccount;
++ (NSString*)lastUsedEmail;
 
 - (NSDictionary*)dictionary;
 + (UserAccount*)fromDictionary:(NSDictionary*)dictionary;

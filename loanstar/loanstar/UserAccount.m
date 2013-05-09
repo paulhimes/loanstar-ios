@@ -97,10 +97,19 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
 
 + (void)setCurrentUserAccount:(UserAccount*)userAccount
 {
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.email forKey:kCurrentEmail];
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.userId forKey:kCurrentUserId];
-    [[NSUserDefaults standardUserDefaults] setValue:userAccount.displayName forKey:kCurrentDisplayName];
+    if (userAccount) {
+        [[NSUserDefaults standardUserDefaults] setValue:userAccount.email forKey:kCurrentEmail];
+        [[NSUserDefaults standardUserDefaults] setValue:userAccount.userId forKey:kCurrentUserId];
+        [[NSUserDefaults standardUserDefaults] setValue:userAccount.displayName forKey:kCurrentDisplayName];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUserId];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString*)lastUsedEmail
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kCurrentEmail];
 }
 
 - (NSDictionary*)dictionary

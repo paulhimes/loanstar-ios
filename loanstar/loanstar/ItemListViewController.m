@@ -78,6 +78,8 @@
         Item *item = [[Item alloc] init];
         item.owner = [UserAccount currentUserAccount];
         editViewController.item = item;
+    } else if ([segue.identifier isEqualToString:@"Logout"]) {
+        [UserAccount setCurrentUserAccount:nil]; // Logout
     }
 }
 

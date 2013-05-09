@@ -29,6 +29,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    CGFloat cornerRadius = 5;
+    self.loginButton.layer.cornerRadius = cornerRadius;
+    self.accountButton.layer.cornerRadius = cornerRadius;
     
     self.emailLabel.alpha = 0;
     self.emailField.alpha = 0;
@@ -36,6 +39,16 @@
     self.passwordField.alpha = 0;
     self.loginButton.alpha = 0;
     self.accountButton.alpha = 0;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSString *previousEmail = [UserAccount lastUsedEmail];
+    if ([previousEmail length] > 0) {
+        self.emailField.text = previousEmail;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

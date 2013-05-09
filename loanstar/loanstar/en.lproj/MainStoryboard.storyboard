@@ -160,7 +160,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Global Library" id="vty-tT-5uk"/>
+                    <navigationItem key="navigationItem" title="Global Library" id="vty-tT-5uk">
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="diA-Qw-hcK">
+                            <connections>
+                                <segue destination="2" kind="modal" identifier="Logout" modalTransitionStyle="crossDissolve" id="iEp-GA-3dO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="90b-0T-lqb">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.48485971719999998" blue="0.1094320255" alpha="1" colorSpace="calibratedRGB"/>
@@ -206,7 +212,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Requests" id="0cj-6M-Mbk"/>
+                    <navigationItem key="navigationItem" title="Requests" id="0cj-6M-Mbk">
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="CNG-tu-S9f">
+                            <connections>
+                                <segue destination="2" kind="modal" identifier="Logout" modalTransitionStyle="crossDissolve" id="mwg-Nt-Ufe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="jPO-Qa-vGp">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.48485971719999998" blue="0.1094320255" alpha="1" colorSpace="calibratedRGB"/>
@@ -305,6 +317,11 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Library" id="RXi-Ch-fS0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="gXS-89-ckE">
+                            <connections>
+                                <segue destination="2" kind="modal" identifier="Logout" modalTransitionStyle="crossDissolve" id="MHm-Wd-rJq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mgI-Rz-B91">
                             <connections>
                                 <segue destination="M4N-pZ-FC1" kind="modal" identifier="Add" modalTransitionStyle="coverVertical" id="l50-B4-jeb"/>
@@ -817,13 +834,73 @@
         <image name="UITabBarMostViewedTemplate.png" width="16" height="16"/>
         <image name="placeholder.jpg" width="1085" height="814"/>
     </resources>
+    <classes>
+        <class className="GlobalLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GlobalLibraryViewController.h"/>
+        </class>
+        <class className="ItemDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cancelRequestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="denyButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="itemFormatLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemStatusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="itemYearLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="noRequestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ownerNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pictureImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="requestButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="returnedButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ItemEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemEditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="formatPicker" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="pictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="yearField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ItemListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="accountButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MyLibraryViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyLibraryViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RequestsViewController" superclassName="ItemListViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RequestsViewController.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dcL-HK-ahO"/>
+        <segue reference="MHm-Wd-rJq"/>
+        <segue reference="P3t-PJ-6gK"/>
         <segue reference="RG1-rB-rwS"/>
         <segue reference="Jgf-cK-Ih7"/>
     </inferredMetricsTieBreakers>
