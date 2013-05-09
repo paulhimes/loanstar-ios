@@ -16,9 +16,9 @@
 
 @interface ItemListViewController : UITableViewController
 
-@property (nonatomic, readonly) NSArray *sectionTitles;
-
 - (void)loadItems;
+- (NSArray*)sectionTitles;
 - (NSArray*)itemsInSection:(NSUInteger)section;
+
 
 @end

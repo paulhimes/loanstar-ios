@@ -15,6 +15,8 @@
 #import "ItemEditViewController.h"
 #import "Theme.h"
 
+#define HEADER_HORIZONTAL_PADDING 20
+
 @interface ItemDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
@@ -53,6 +55,14 @@
     }
     
     self.tableView.backgroundColor = [Theme backgroundColor];
+    
+    // Style the buttons
+    CGFloat cornerRadius = 5;
+    self.requestButton.layer.cornerRadius = cornerRadius;
+    self.acceptButton.layer.cornerRadius = cornerRadius;
+    self.denyButton.layer.cornerRadius = cornerRadius;
+    self.cancelRequestButton.layer.cornerRadius = cornerRadius;
+    self.returnedButton.layer.cornerRadius = cornerRadius;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -205,6 +215,25 @@
 {
     // Return the number of sections.
     return 1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView;
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.opaque = NO;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.text = @"Requests";
+    titleLabel.font = [Theme titleFont];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [Theme navigationTitleColor];
+    [titleLabel sizeToFit];
+    titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width + HEADER_HORIZONTAL_PADDING, titleLabel.frame.size.height);
+    headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleLabel.frame.size.width, titleLabel.frame.size.height)];
+    headerView.backgroundColor = [Theme tableHeaderColor];
+    [headerView addSubview:titleLabel];
+
+    return headerView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

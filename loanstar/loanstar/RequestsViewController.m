@@ -16,7 +16,6 @@
 @end
 
 @implementation RequestsViewController
-@synthesize sectionTitles = _sectionTitles;
 
 - (void)loadItems
 {
@@ -101,21 +100,32 @@
 
 - (NSArray *)sectionTitles
 {
-    if (!_sectionTitles) {
-        _sectionTitles = @[@"My Requests", @"Requests From Others"];
+    NSMutableArray *titles = [NSMutableArray array];
+    
+    if ([self.myRequests count] > 0) {
+        [titles addObject:@"My Requests"];
+    }
+    if ([self.othersRequests count] > 0) {
+        [titles addObject:@"Requests From Others"];
     }
     
-    return _sectionTitles;
+    return [titles copy];
 }
 
 - (NSArray *)itemsInSection:(NSUInteger)section
 {
-    NSMutableArray *items = [NSMutableArray array];
+    NSArray *items = @[];
     
-    if (section == 0) {
-        items = self.myRequests;
-    } else if (section == 1) {
-        items = self.othersRequests;
+    NSArray *sectionTitles = [self sectionTitles];
+    if ([sectionTitles count] > section) {
+        NSString *sectionTitle = sectionTitles[section];
+        
+        if ([sectionTitle isEqualToString:@"My Requests"]) {
+            items = self.myRequests;
+        }
+        if ([sectionTitle isEqualToString:@"Requests From Others"]) {
+            items = self.othersRequests;
+        }
     }
     
     return [items copy];

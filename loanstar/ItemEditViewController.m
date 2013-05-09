@@ -38,6 +38,10 @@
     [super viewDidLoad];
 
     self.tableView.backgroundColor = [Theme backgroundColor];
+    
+    // Style the buttons
+    CGFloat cornerRadius = 5;
+    self.deleteButton.layer.cornerRadius = cornerRadius;
 }
 
 - (void)viewWillAppear:(BOOL)animated

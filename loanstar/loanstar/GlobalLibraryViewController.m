@@ -16,7 +16,6 @@
 @end
 
 @implementation GlobalLibraryViewController
-@synthesize sectionTitles = _sectionTitles;
 
 - (void)loadItems
 {
@@ -68,21 +67,32 @@
 
 - (NSArray *)sectionTitles
 {
-    if (!_sectionTitles) {
-        _sectionTitles = @[@"Available", @"On Loan"];
+    NSMutableArray *titles = [NSMutableArray array];
+    
+    if ([self.availableItems count] > 0) {
+        [titles addObject:@"Available"];
+    }
+    if ([self.loanedItems count] > 0) {
+        [titles addObject:@"On Loan"];
     }
     
-    return _sectionTitles;
+    return [titles copy];
 }
 
 - (NSArray *)itemsInSection:(NSUInteger)section
 {
-    NSMutableArray *items = [NSMutableArray array];
+    NSArray *items = @[];
     
-    if (section == 0) {
-        items = self.availableItems;
-    } else if (section == 1) {
-        items = self.loanedItems;
+    NSArray *sectionTitles = [self sectionTitles];
+    if ([sectionTitles count] > section) {
+        NSString *sectionTitle = sectionTitles[section];
+        
+        if ([sectionTitle isEqualToString:@"Available"]) {
+            items = self.availableItems;
+        }
+        if ([sectionTitle isEqualToString:@"On Loan"]) {
+            items = self.loanedItems;
+        }
     }
     
     return [items copy];

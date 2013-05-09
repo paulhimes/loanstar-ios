@@ -13,7 +13,6 @@
 #import "Theme.h"
 
 #define HEADER_HORIZONTAL_PADDING 20
-#define HEADER_VERTICAL_PADDING 4
 
 @interface ItemListViewController ()
 
@@ -22,7 +21,6 @@
 @end
 
 @implementation ItemListViewController
-@synthesize sectionTitles = _sectionTitles;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,23 +34,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self reloadListItems];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadListItems)
+                  forControlEvents:UIControlEventValueChanged];
     self.tableView.backgroundColor = [Theme backgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.dataLoaded = NO;
     [super viewWillAppear:animated];
-    [self loadItems];
-    // Items have been loaded. Dismiss the waiting / loading view and refresh the table.
-    self.dataLoaded = YES;
-    [self.tableView reloadData];
-    
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
-
+- (void)reloadListItems
+{
+    [self.refreshControl beginRefreshing];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [self loadItems];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataLoaded = YES;
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -85,17 +91,17 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    NSUInteger numberOfSections = self.dataLoaded ? [self.sectionTitles count] : 1;
+    NSUInteger numberOfSections = self.dataLoaded ? [self.sectionTitles count] : 0;
     return numberOfSections;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *headerView;
-    if (self.dataLoaded) {
+    if (self.dataLoaded && [self.sectionTitles count] > section) {
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.opaque = NO;
-        titleLabel.backgroundColor = [Theme tableHeaderColor];
+        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.text = self.sectionTitles[section];
         titleLabel.font = [Theme titleFont];
         titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -103,6 +109,7 @@
         [titleLabel sizeToFit];
         titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width + HEADER_HORIZONTAL_PADDING, titleLabel.frame.size.height);
         headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleLabel.frame.size.width, titleLabel.frame.size.height)];
+        headerView.backgroundColor = [Theme tableHeaderColor];
         [headerView addSubview:titleLabel];
     }
     return headerView;
@@ -116,17 +123,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.dataLoaded ? [[self itemsInSection:section] count] : 1;
+    return self.dataLoaded ? [[self itemsInSection:section] count] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
     
-    if (self.dataLoaded) {
-        // Item Cell
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
-        
+    if (self.dataLoaded && [[self itemsInSection:indexPath.section] count] > indexPath.row) {
         // Configure the cell...
         cell.textLabel.font = [Theme titleFont];
         cell.textLabel.textColor = [Theme titleColor];
@@ -165,10 +169,8 @@
         cell.textLabel.text = item.title;//[NSString stringWithFormat:@"%@ (%d)", item.title, item.year];
         cell.detailTextLabel.text = item.format.name;
     } else {
-        // Loading Cell
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
-        LoadingCell *loadingCell = (LoadingCell*)cell;
-        [loadingCell.activityIndicator startAnimating];
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
     }
     
     return cell;
@@ -178,11 +180,7 @@
 
 - (NSArray *)sectionTitles
 {
-    if (!_sectionTitles) {
-        _sectionTitles = @[];
-    }
-    
-    return _sectionTitles;
+    return @[];
 }
 
 - (NSArray*)itemsInSection:(NSUInteger)section

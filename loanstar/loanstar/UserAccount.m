@@ -124,7 +124,7 @@ static NSString * const kCurrentDisplayName = @"CurrentDisplayName";
 + (UserAccount*)fromDictionary:(NSDictionary*)dictionary
 {
     UserAccount *userAccount;
-    if (dictionary) {
+    if (dictionary && [dictionary isKindOfClass:[NSDictionary class]]) {
         userAccount = [[UserAccount alloc] init];
         userAccount.userId = [dictionary[@"userId"] description];
         userAccount.displayName = dictionary[@"displayName"];

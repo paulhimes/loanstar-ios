@@ -13,8 +13,13 @@
 
 @interface LoginViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *accountButton;
 
 @end
 
@@ -24,6 +29,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.emailLabel.alpha = 0;
+    self.emailField.alpha = 0;
+    self.passwordLabel.alpha = 0;
+    self.passwordField.alpha = 0;
+    self.loginButton.alpha = 0;
+    self.accountButton.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -32,6 +44,18 @@
     
     if ([UserAccount currentUserAccount]) {
         [self performSegueWithIdentifier:@"QuickLogin" sender:nil];
+    } else {
+        // Show login UI
+        [UIView animateWithDuration:0.5 animations:^{
+            self.emailLabel.alpha = 1;
+            self.emailField.alpha = 1;
+            self.passwordLabel.alpha = 1;
+            self.passwordField.alpha = 1;
+            self.loginButton.alpha = 1;
+            self.accountButton.alpha = 1;
+        } completion:^(BOOL finished) {
+            
+        }];
     }
 }
 

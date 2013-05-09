@@ -17,7 +17,6 @@
 @end
 
 @implementation MyLibraryViewController
-@synthesize sectionTitles = _sectionTitles;
 
 - (void)loadItems
 {
@@ -82,23 +81,38 @@
 
 - (NSArray *)sectionTitles
 {
-    if (!_sectionTitles) {
-        _sectionTitles = @[@"At Home", @"Away", @"Borrowed"];
+    NSMutableArray *titles = [NSMutableArray array];
+    
+    if ([self.atHomeItems count] > 0) {
+        [titles addObject:@"At Home"];
+    }
+    if ([self.awayItems count] > 0) {
+        [titles addObject:@"Away"];
+    }
+    if ([self.borrowedItems count] > 0) {
+        [titles addObject:@"Borrowed"];
     }
     
-    return _sectionTitles;
+    return [titles copy];
 }
 
 - (NSArray *)itemsInSection:(NSUInteger)section
 {
-    NSMutableArray *items = [NSMutableArray array];
+    NSArray *items = @[];
     
-    if (section == 0) {
-        items = self.atHomeItems;
-    } else if (section == 1) {
-        items = self.awayItems;
-    } else {
-        items = self.borrowedItems;
+    NSArray *sectionTitles = [self sectionTitles];
+    if ([sectionTitles count] > section) {
+        NSString *sectionTitle = sectionTitles[section];
+        
+        if ([sectionTitle isEqualToString:@"At Home"]) {
+            items = self.atHomeItems;
+        }
+        if ([sectionTitle isEqualToString:@"Away"]) {
+            items = self.awayItems;
+        }
+        if ([sectionTitle isEqualToString:@"Borrowed"]) {
+            items = self.borrowedItems;
+        }
     }
     
     return [items copy];
