@@ -138,6 +138,10 @@
         cell.textLabel.textColor = [Theme titleColor];
         cell.detailTextLabel.font = [Theme subtitleFont];
         cell.detailTextLabel.textColor = [Theme subtitleColor];
+        UIView *selectedView = [[UIView alloc] initWithFrame:CGRectZero];
+        selectedView.backgroundColor = [Theme navigationBarColor];
+        cell.selectedBackgroundView = selectedView;
+        
         
         // Get the item for this cell.
         Item *item = [self itemsInSection:indexPath.section][indexPath.row];
