@@ -85,7 +85,8 @@
     BOOL activeBorrow = NO;
     // Check if any of the borrows are active as of now.
     NSDate *now = [NSDate date];
-    for (Borrow *borrow in self.item.borrows) {
+    Borrow *borrow;
+    for (borrow in self.item.borrows) {
         if (borrow.startDate && borrow.startDate.timeIntervalSince1970 < now.timeIntervalSince1970) {
             // Borrow started before now.
             if (!borrow.endDate || borrow.endDate.timeIntervalSince1970 > now.timeIntervalSince1970) {
@@ -95,7 +96,7 @@
             }
         }
     }
-    self.itemStatusLabel.text = activeBorrow ? @"Loaned Out" : @"Available";
+    self.itemStatusLabel.text = activeBorrow ? [@"Loaned Out to " stringByAppendingString:borrow.borrower.displayName] : @"Available";
     
     // Determine which borrow button(s) to show...
     // Hide all the buttons first.
