@@ -83,13 +83,16 @@
     Borrow *borrow;
     if (dictionary) {
         borrow = [[Borrow alloc] init];
-        borrow.borrowId = dictionary[@"borrowId"];
+        borrow.borrowId = [dictionary[@"borrowId"] description];
 
         if (![dictionary[@"requestDate"] isEqual:[NSNull null]]) {
             borrow.requestDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[@"requestDate"] doubleValue]];
         }
         if (![dictionary[@"startDate"] isEqual:[NSNull null]]) {
             borrow.startDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[@"startDate"] doubleValue]];
+        }
+        if (![dictionary[@"requestDate"] isEqual:[NSNull null]]) {
+            borrow.requestDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[@"requestDate"] doubleValue]];
         }
     }
     return borrow;

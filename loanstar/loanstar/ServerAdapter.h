@@ -28,7 +28,7 @@
 
 #pragma mark - Borrow management
 
-+ (Borrow *)createBorrow:(Borrow *)borrow;
++ (NSString *)createBorrow:(Borrow *)borrow;
 + (void)editBorrow:(Borrow *)borrow;
 + (NSDictionary *)getAllItemsWithBorrowsRelatedToUserAccount:(UserAccount*)userAccount;
 + (NSArray *)getAllItemsCurrentlyBorrowedByUserAccount:(UserAccount*)userAccount;

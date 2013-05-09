@@ -124,13 +124,13 @@ static NSString * const kServerBaseUrl = @"http://primatehouse.com:8086";
 
 #pragma mark - Borrow management
 
-+ (Borrow *)createBorrow:(Borrow *)borrow
++ (NSString *)createBorrow:(Borrow *)borrow
 {
-    [self requestDictionaryFromAPIEndpoint:@"api/borrow/create"
-                            dataDictionary:[borrow dictionary]
-                                httpMethod:kPOST
-                                     debug:YES];
-    return borrow;
+    NSDictionary *responseDictionary = [self requestDictionaryFromAPIEndpoint:@"api/borrow/create"
+                                                               dataDictionary:[borrow dictionary]
+                                                                   httpMethod:kPOST
+                                                                        debug:YES];
+    return [responseDictionary[@"borrowId"] description];
 }
 
 + (void)editBorrow:(Borrow *)borrow
