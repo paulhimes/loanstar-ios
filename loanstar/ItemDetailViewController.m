@@ -250,10 +250,13 @@
     cell.textLabel.textColor = [Theme titleColor];
     cell.detailTextLabel.font = [Theme subtitleFont];
     cell.detailTextLabel.textColor = [Theme subtitleColor];
-    
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterLongStyle;
     Borrow *borrow = self.pendingRequests[indexPath.row];
+
     cell.textLabel.text = borrow.borrower.displayName;
-    cell.detailTextLabel.text = borrow.status.name;
+    cell.detailTextLabel.text = [formatter stringFromDate:borrow.requestDate];
     
     return cell;
 }
