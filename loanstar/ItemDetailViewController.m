@@ -239,7 +239,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.item.borrows count];
+    return [self.pendingRequests count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -251,11 +251,22 @@
     cell.detailTextLabel.font = [Theme subtitleFont];
     cell.detailTextLabel.textColor = [Theme subtitleColor];
     
-    Borrow *borrow = self.item.borrows[indexPath.row];
+    Borrow *borrow = self.pendingRequests[indexPath.row];
     cell.textLabel.text = borrow.borrower.displayName;
     cell.detailTextLabel.text = borrow.status.name;
     
     return cell;
+}
+
+- (NSArray *)pendingRequests
+{
+    NSMutableArray *pending = [NSMutableArray array];
+    for(Borrow *borrow in self.item.borrows) {
+        if(!borrow.isActive) {
+            [pending addObject:borrow];
+        }
+    }
+    return [pending copy];
 }
 
 @end
