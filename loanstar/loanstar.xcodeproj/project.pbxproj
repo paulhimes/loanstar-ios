@@ -98,9 +98,9 @@
 		8BA0D688171B4FFE00484E46 /* ItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemEditViewController.m; path = ../ItemEditViewController.m; sourceTree = "<group>"; };
 		8BD44E50173B52D10085B4BD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		8BD44E52173B52E30085B4BD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		8BD44E54173B531B0085B4BD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		8BD44E56173B53F40085B4BD /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
-		8BD44E58173B53F80085B4BD /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		8BD44E54173B531B0085B4BD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		8BD44E56173B53F40085B4BD /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon114.png; path = ../icon114.png; sourceTree = "<group>"; };
+		8BD44E58173B53F80085B4BD /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon57.png; path = ../icon57.png; sourceTree = "<group>"; };
 		8BF417371718562F00077E2D /* loanstar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loanstar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF4173A1718562F00077E2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8BF4173C1718562F00077E2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -199,9 +199,6 @@
 		8BF4172E1718562F00077E2D = {
 			isa = PBXGroup;
 			children = (
-				8BD44E58173B53F80085B4BD /* icon57.png */,
-				8BD44E56173B53F40085B4BD /* icon114.png */,
-				8BD44E54173B531B0085B4BD /* Default.png */,
 				8BF417401718562F00077E2D /* loanstar */,
 				8BF417641718562F00077E2D /* loanstarTests */,
 				8BF417391718562F00077E2D /* Frameworks */,
@@ -266,6 +263,9 @@
 				8BF417491718562F00077E2D /* AppDelegate.h */,
 				8BF4174A1718562F00077E2D /* AppDelegate.m */,
 				8BF417481718562F00077E2D /* loanstar-Prefix.pch */,
+				8BD44E58173B53F80085B4BD /* icon57.png */,
+				8BD44E56173B53F40085B4BD /* icon114.png */,
+				8BD44E54173B531B0085B4BD /* Default.png */,
 				8BD44E52173B52E30085B4BD /* Default@2x.png */,
 				8BD44E50173B52D10085B4BD /* Default-568h@2x.png */,
 			);
