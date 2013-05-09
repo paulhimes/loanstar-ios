@@ -161,12 +161,11 @@
 - (IBAction)requestItem:(UIButton *)sender
 {
     Borrow *borrow = [[Borrow alloc] init];
-    borrow.item = self.item;
+    [self.item addBorrow:borrow];
     borrow.requestDate = [NSDate date];
     borrow.borrower = [UserAccount currentUserAccount];
 
-    borrow = [ServerAdapter createBorrow:borrow];
-    [self.item addBorrow:borrow];
+    borrow.borrowId = [ServerAdapter createBorrow:borrow];
     [self refreshAfterBorrowAction];
 }
 
